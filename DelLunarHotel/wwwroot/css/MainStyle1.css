@@ -1,0 +1,824 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+html {
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    position: relative;
+}
+button {
+    cursor: pointer;
+}
+ul{
+    list-style: none;
+}
+body {
+    min-width: 500px;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-width: 800px;
+    padding-bottom: 200px;
+    margin: 0;
+    min-height: 100vh;
+    position: relative;
+}
+#login-button-all-pages {
+    background: #002B49;
+    font-size: 16px;
+    color: white;
+    min-width: 80px;
+    height: 2.5rem;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: 2px solid #002B49;
+    cursor: pointer;
+}
+.header-top-bar {
+    max-height: 70px;
+    line-height: 35px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #002B49;
+    background-color: white;
+    border-bottom: 1px solid black;
+    z-index: 5;
+    background-image: url("/assets/header_banner_gray.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: fixed;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-gap: 0px;
+}
+
+    .header-top-bar .top-bar-middle {
+        text-align: center;
+    }
+
+        .header-top-bar .top-bar-middle p {
+            margin: 20px;
+            font-size: 35px;
+        }
+
+    .header-top-bar .top-bar-right {
+        position: relative;
+        padding-right: 30px;
+        justify-content: end;
+        display: flex;
+        align-items: center;
+    }
+
+    .header-top-bar .top-bar-left {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        max-height: 70px;
+        left: 30px;
+        padding: 10px;
+    }
+.header-top-bar .top-bar-left img{
+    height: 80%;
+}
+    .header-top-bar .top-bar-left a {
+        text-decoration: none;
+        color: #002B49;
+        font-family: 'Cinzel Decorative', cursive;
+        font-weight: 700;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+    .header-top-bar .top-bar-right .user-dropdown-content {
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        font-size: 0.8rem;
+        min-width: 200px;
+        right: 0;
+    }
+
+        .header-top-bar .top-bar-right .user-dropdown-content img {
+            max-height: 20px;
+            padding-right: 8px;
+        }
+
+#user_name {
+    position: relative;
+    font-weight: 400;
+    cursor: context-menu;
+}
+
+    #user_name .user-dropdown-content {
+        display: none;
+    }
+
+        #user_name .user-dropdown-content .row-selection {
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+            #user_name .user-dropdown-content .row-selection * {
+                pointer-events: none;
+            }
+
+            #user_name .user-dropdown-content .row-selection:hover {
+                background-color: #adadad;
+                cursor: pointer;
+            }
+
+            #user_name .user-dropdown-content .row-selection:active {
+                background-color: #818181;
+            }
+
+            #user_name .user-dropdown-content .row-selection:last-child {
+                border-top: 1px solid black;
+            }
+
+    #user_name:hover .user-dropdown-content {
+        display: block;
+    }
+
+    /*header end*/
+main {
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 80vw;
+    text-align: center;
+}
+main .bookroom .page-2,
+main .bookroom .page-3,
+main .bookroom .page-4,
+main .bookroom .page-5
+{
+    width: 100%;
+    height: fit-content;
+    display: none;
+}
+    main .bookroom .page-1 {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+    }
+main .bookroom .page-1 .page {
+    display: flex;
+}
+/*---------------Filter-----------------*/
+    main .bookroom .page-1 .page .filter {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 85px;
+        padding: 15px 15px 0px 15px;
+        margin-right: 50px;
+        text-align: left;
+        width: 35%;
+        height: fit-content;
+        border-radius: 5px;
+        background-color: #f5f4f4;
+        box-shadow: 0px 3px 3px grey;
+    }
+
+        main .bookroom .page-1 .page .filter .field button {
+            background-color: #002B49;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            width: 30%;
+            height: 40px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        main .bookroom .page-1 .page .filter .field {
+            margin: 10px;
+        }
+
+            main .bookroom .page-1 .page .filter .field .label {
+                font-weight: 800;
+                color: #002B49;
+                font-size: 1.5em;
+            }
+
+            main .bookroom .page-1 .page .filter .field input {
+                font-size: 18px;
+                width: 100%;
+                height: 35px;
+                border-radius: 3px;
+            }
+
+.choose-number-of-guest {
+    margin-top: 10px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nbog-button {
+    cursor: pointer;
+    font-weight: 300;
+    border-radius: 5px;
+    padding: 6px 30px;
+    color: black;
+    border: 1px solid black;
+    background-color: white;
+    margin: 4px;
+}
+
+.checked-choose-number-of-guest {
+    border: 1px solid #002B49;
+    background-color: #002B49;
+    color: white;
+    font-weight: 500;
+}
+
+main .bookroom .page-1 .page .filter .selectday .selectday-container {
+    display: flex;
+}
+
+@media (max-width: 1100px) {
+    main .bookroom .page-1 .page .filter .selectday .selectday-container {
+        flex-direction: column;
+    }
+}
+
+main .bookroom .page-1 .page .filter .selectday .selectday-container .checkday {
+    margin: 0px;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+    main .bookroom .page-1 .page .filter .selectday .selectday-container .checkday p {
+        margin: 8px;
+    }
+
+
+/*-----------page-1 result---------*/
+main .bookroom .page-1 .page .result{
+    width: 65%;
+}
+.grid{
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+.nogrid {
+    padding: 0 30px;
+    display: block;
+}
+main .bookroom .page-1 .page .result .room {
+    background-color: #f5f4f4;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0px 3px 3px grey;
+}
+main .bookroom .page-1 .page .result .room img {
+    max-width: 100%;
+    display: block;
+}
+main .bookroom .page-1 .page .result .room p{
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+main .bookroom .page-1 .page .result .room .name{
+    margin: 10px 0px 10px 0px;
+    padding-left: 5px;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+main .bookroom .page-1 .page .result .room .desc{
+    margin: 5px 0px 0px 0px;
+    padding-left: 15px;
+    font-size: 0.8em;
+    font-weight: 400;
+}
+main .bookroom .page-1 .page .result .room .price{
+    margin: 5px 0px 10px 0px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 0.8em;
+    padding-right: 5px;
+}
+main .bookroom .page-1 .page .result .room .btns{
+    border-top: 1px solid black;
+    padding: 20px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .bookroom .page-1 .page .result .room .btns a, 
+main .bookroom .page-1 .page .result .room .btns button
+{
+    color: black;
+    font-weight: 700;
+    display: block;
+    line-height: 35px;
+    width: 100%;
+    height: 50%;
+}
+main .bookroom .page-1 .page .result .room .btns button
+{
+    font-weight: 500;
+    border: none;
+    border-radius: 3px;
+    background-color: #002B49;
+    color: white;
+}
+
+main .steps-bar {
+    display: flex;
+    width: 600px;
+    margin: 40px auto;
+    border-bottom: 2px solid black;
+}
+main .steps-bar .step{
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    color: #002B49;
+}
+main .steps-bar .step p{
+    margin-bottom: 8px;
+    position: relative;
+    z-index: -1;
+}
+.steps-bar .step:last-child .bullet:after{
+    display: none;
+}
+.steps-bar .step .bullet:after{
+    position: absolute;
+    content: '';
+    width: 100px;
+    height: 6px;
+    bottom: 9px;
+    right: -114px;
+    border: 1.5px solid #002B49;
+}
+.steps-bar .step .bullet{
+    position: relative;
+    height: 25px;
+    width: 25px;
+    font-size: 1.2em;
+    font-weight: 800;
+    outline: 3px solid #002B49;
+    outline-offset: 3px;
+    border: 8px solid #002B49;
+    display: inline-block;
+    border-radius: 50%;
+    line-height: 25px;
+}
+.steps-bar .step span{
+    line-height: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    z-index: -1;
+}
+
+/*Start--------------page 2-------------------*/
+main .bookroom .page-2 .room {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 30px;
+    background-color: #f5f4f4;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0px 3px 3px grey;
+}
+
+main .bookroom .page-2 .room img {
+    width: 100%;
+}
+
+.bookroom .page-2 .room .content {
+    padding: 30px;
+}
+
+.bookroom .page-2 .room .content .field img {
+    height: 25px;
+    display: block;
+    width: 50px;
+}
+
+.bookroom .page-2 .room .content .field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookroom .page-2 .room .content .field > * {
+    width: 100%;
+}
+
+.bookroom .page-2 .room .content .field > div > * {
+    padding: 0;
+    margin: 0;
+}
+
+.bookroom .page-2 .room .content .field:nth-child(1),
+.bookroom .page-2 .room .content .field:nth-child(2) {
+    border-bottom: 1px solid #002B49;
+    padding: 15px 0;
+}
+
+.bookroom .page-2 .room .content .field .label {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.bookroom .page-2 .room .content .field .value {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.bookroom .page-2 .room .content .field .price {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.bookroom .page-2 .room .content .field button {
+    color: #002B49;
+    height: fit-content;
+    font-size: 18px;
+    width: fit-content;
+    border: 3px solid #002B49;
+    border-radius: 3px;
+}
+
+.bookroom .page-2 .room .content .field .buttonStep {
+    font-size: 0;
+}
+
+.bookroom .page-2 .room .content .field .buttonStep span {
+    text-align: center;
+    font-size: 1rem;
+    display: inline-block;
+    width: 20px;
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: #002b49;
+    padding: 0 10px;
+}
+
+.bookroom .page-2 .room .content .field .buttonStep button {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #002b49;
+    font-size: 1rem;
+    color: white;
+    background-color: #002b49;
+}
+
+.bookroom .page-2 .room .content .field .buttonStep button.subtractVal {
+    border-radius: 2px 0 0 2px;
+}
+
+.bookroom .page-2 .room .content .field .buttonStep button.addVal {
+    border-radius: 0 2px 2px 0;
+}
+
+.bookroom .page-2 .room .content .field .left {
+    text-align: left;
+}
+
+.bookroom .page-2 .room .content .field .right {
+    text-align: right;
+}
+
+.bookroom .page-2 .addanother {
+    width: fit-content;
+    margin: 20px auto;
+    display: block;
+    padding: 5px;
+    font-size: 1.3rem;
+    color: #002B49;
+    font-weight: 600;
+    border: 2px solid #002B49;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.bookroom .page-2 .page-2-next {
+    display: block;
+    margin: 20px auto;
+    width: 50%;
+    font-size: 1.5rem;
+    padding: 10px 0px;
+    color: white;
+    font-weight: 600;
+    border: none;
+    background-color: #002B49;
+    border-radius: 5px;
+}
+/*End--------------page 2-------------------*/
+
+/*Start--------------page 3-------------------*/
+.bookroom .page-3 .page-3-next {
+    display: block;
+    margin: 20px auto;
+    width: 50%;
+    font-size: 1.5rem;
+    padding: 10px 0px;
+    color: white;
+    font-weight: 600;
+    border: none;
+    background-color: #002B49;
+    border-radius: 5px;
+}
+main .bookroom .page-3 .room {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 30px;
+    background-color: #f5f4f4;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0px 3px 3px grey;
+}
+main .bookroom .page-3 .room img{
+    width: 100%;
+}
+.bookroom .page-3 .room .content {
+    padding: 30px;
+}
+.bookroom .page-3 .room .content .field img {
+    height: 25px;
+    display: block;
+    width: 50px;
+}
+
+.bookroom .page-3 .room .content .field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bookroom .page-3 .room .content .list-food .list-food-item  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+}
+.bookroom .page-3 .room .content .list-food .list-food-item > * {
+    width: 100%;
+}
+.bookroom .page-3 .room .content .field > * {
+    width: 100%;
+}
+    .bookroom .page-3 .room .content .list-food button {
+        color: #002B49;
+        height: fit-content;
+        font-size: 18px;
+        width: fit-content;
+        border: 3px solid #002B49;
+        border-radius: 3px;
+    }
+
+    .bookroom .page-3 .room .content .list-food .buttonStep {
+        font-size: 0;
+    }
+
+        .bookroom .page-3 .room .content .list-food .buttonStep span {
+            text-align: center;
+            font-size: 1rem;
+            display: inline-block;
+            width: 20px;
+            border-width: 1px 0;
+            border-style: solid;
+            border-color: #002b49;
+            padding: 0 10px;
+        }
+
+        .bookroom .page-3 .room .content .list-food .buttonStep button {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #002b49;
+            font-size: 1rem;
+            color: white;
+            background-color: #002b49;
+        }
+
+            .bookroom .page-3 .room .content .list-food .buttonStep button.subtractVal {
+                border-radius: 2px 0 0 2px;
+            }
+
+            .bookroom .page-3 .room .content .list-food .buttonStep button.addVal {
+                border-radius: 0 2px 2px 0;
+            }
+.bookroom .page-3 .room .content .list-food .name {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+.bookroom .page-3 .room .content .field > div > *,
+.bookroom .page-3 .room .content .list-food > div > *,
+.bookroom .page-3 .room .content .list-food p  {
+    padding: 0;
+    margin: 0;
+}
+.bookroom .page-3 .room .content .field:nth-child(1),
+.bookroom .page-3 .room .content .field:nth-child(2),
+.bookroom .page-3 .room .content .list-food
+{
+    border-bottom: 1px solid #002B49;
+    padding: 15px 0;
+}
+.bookroom .page-3 .room .content .field .label {
+    font-weight: 400;
+    font-size: 1rem;
+}
+.bookroom .page-3 .room .content .field .value {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+.bookroom .page-3 .room .content .left {
+    text-align: left;
+}
+.bookroom .page-3 .room .content .right {
+    text-align: right;
+}
+.bookroom .page-3 .room .content .field button {
+    width: fit-content;
+    margin: 0px auto;
+    margin-top: 20px;
+    display: block;
+    padding: 5px;
+    font-size: 1.3rem;
+    color: #002B49;
+    font-weight: 600;
+    border: 2px solid #002B49;
+    background-color: white;
+    border-radius: 3px;
+}
+/*new*/
+.select-food-page-container{
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    pointer-events: none;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 6;
+}
+.select-food-page-container.show{
+    pointer-events: auto;
+    opacity: 1;
+    transition: 0.5s ease;
+}
+.select-food-page{
+    background-color: #fff;
+    width: 65vw;
+    height: 80vh;
+    max-height: 100vh;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    border-radius: 0.3rem;
+}
+
+.header-select-food {
+    border-top-right-radius: 0.6rem;
+    border-top-left-radius: 0.6rem;
+    max-height: 70px;
+    line-height: 35px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #002B49;
+    background-color: white;
+    border-bottom: 1px solid black;
+    z-index: 5;
+}
+.header-select-food .top-bar-middle{
+    text-align: center;
+}
+.header-select-food .top-bar-middle p{
+    margin: 20px;
+    font-size: 35px;
+    font-family: "myWebsiteContentFont";
+}
+.header-select-food .top-bar-right{
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+}
+.header-select-food .top-bar-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+}
+.header-select-food .top-bar-left img{
+    height: 80%;
+}
+.header-select-food .top-bar-left a{
+    text-decoration: none;
+    color: #002B49;
+    font-weight: 800;
+    font-size: 28px;
+    font-family: "myWebsiteTitleFont";
+}
+.close-button-food-list{
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+.info-food-list {
+    margin-top: 10px;
+    overflow-y: scroll;
+    height: 60vh;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 30px;
+    padding: 0 30px;
+    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("/assets/food-banner.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    padding: 1rem;
+}
+.food-item-in-list {
+    display: block;
+    background-color: #002B49;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #002B49;
+}
+.food-item-in-list .food-item-img {
+    width: 100%;
+}
+.food-item-img{
+    border-bottom: 1px solid black;
+    display: block;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.hello{
+    box-sizing: border-box;
+    color: red;
+    height: 200px;
+    width: 200px;
+    cursor: pointer;
+}
+.food-item-cost {
+    font-weight: bold;
+}
+.filter-welcome {
+    margin-top: 3rem;
+    text-align: center;
+}
+.filter-field {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.filter {
+    height: 30px;
+    margin-top: 0;
+}
+.addfood{
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.current-step-bullet
+{
+    background-color: #002B49;
+    color: white;
+    font-weight: bold;
+}
+.current-step-text {
+    font-weight: bold;
+}
+main .steps-bar .step .bullet.active:after {
+    background-color: #002B49;
+}
+.disable-button {
+    pointer-events: none!important;
+    background-color:gray!important;
+    color: white!important;
+    border-color: gray!important;
+}
+button:hover{
+    background-color: black!important;
+    color: white!important;
+}

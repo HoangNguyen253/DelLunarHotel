@@ -1,0 +1,86 @@
+﻿@{ 
+    string linkAnh = ViewData["linkIMG"].ToString();
+    string textResult = ViewData["thongbaodp"].ToString();
+    string welcome = ViewData["welcome"].ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/Result.css'>
+    <script src="https://kit.fontawesome.com/c694a51664.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="header-top-bar">
+        <div class="top-bar-left">
+            <img class="logo-img" src="/assets/logo.png">
+            <a class="del-lunar-home" href="/Home/Index">Del Lunar</a>
+        </div>
+        <div class="top-bar-middle">
+            <p class="step-name">Book room</p>
+        </div>
+    </header>
+    <main>
+        <div class="steps-bar">
+            <div class="step step-1">
+                <div class="bullet">
+                    <span>1</span>
+                </div>
+                <p>Chọn phòng</p>
+            </div>
+            <div class="step step-2">
+                <div class="bullet">
+                    <span>2</span>
+                </div>
+                <p>Chọn đồ ăn</p>
+            </div>
+            <div class="step step-3">
+                <div class="bullet">
+                    <span>3</span>
+                </div>
+                <p>Thông tin</p>
+            </div>
+            <div class="step step-4">
+                <div class="bullet">
+                    <span>4</span>
+                </div>
+                <p>Thanh toán</p>
+            </div>
+        </div>
+        <div class="result">
+            <div class="field">
+                <img src="@linkAnh">
+                <p>@textResult <br /> @welcome</p>
+            </div>
+            <div>
+                <a href="/Home/Index">Trang chủ</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <ul>
+            <li>
+                <h3><i class="fas fa-map-marker-alt"></i>Address</h3>
+                <p>3730 South Las Vegas Boulevard Las Vegas, NV 89158</p>
+            </li>
+            <li>
+                <h3><i class="fas fa-phone-alt"></i>Contact</h3>
+                <p>702.590.7111</p>
+            </li>
+            <li>
+                <h3><i class="fas fa-envelope"></i>Email</h3>
+                <p>delhotel@gmail.com</p>
+            </li>
+            <li>
+                <h3><i class="fas fa-funnel-dollar"></i>Sponsor</h3>
+                <a href="https://www.uit.edu.vn/"> <img class="logo-uit-sponsor" src="~/assets/logo-uit.png" /></a>
+                <a href="https://vnuhcm.edu.vn/">  <img class="logo-hcm-sponsor" src="~/assets/logo-hcm.png" /></a>
+            </li>
+        </ul>
+    </footer>
+</body>
+</html>

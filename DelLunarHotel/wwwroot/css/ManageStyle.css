@@ -1,0 +1,6255 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+
+
+* {
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.name_of_hotel {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.5rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.staff_info_field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .staff_info_field:hover {
+        background-color: #064e81;
+    }
+
+#avatar {
+    width: 2rem;
+    height: 2rem;
+    padding: 0.5rem;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.change_color_icon {
+    filter: invert(1);
+}
+
+.arrow_in_menu_burger.rotate_90_icon_arrow {
+    transform: rotate(-90deg);
+    transition: 0.5s;
+}
+
+/*=================== HEADER: begin ============*/
+.header_admin {
+    color: white;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #002b49;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    padding: 0 2rem;
+    box-shadow: 0 0.2rem 1rem 0 rgba(0, 0, 0, .25);
+    height: 8vh;
+    z-index: 100;
+    margin-bottom: 0.5vh;
+}
+
+.header_admin_left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#today {
+    font-weight: 500;
+}
+
+#time_now_id {
+    padding-left: 1rem;
+    font-weight: 500;
+}
+
+.header_admin_left div {
+    padding-right: 0.8rem;
+}
+
+#check_menu_burger_id {
+    display: none;
+}
+
+#check_menu_burger_icon_id {
+    cursor: pointer;
+}
+/*=================== HEADER: end ============*/
+
+main {
+    height: 92vh;
+}
+/*=================== MENU: begin ============*/
+.menu_burger {
+    position: fixed;
+    top: 8.5vh;
+    width: 20%;
+    left: 0;
+    transition: all 0.5s;
+    height: 92vh;
+    background-color: white;
+    border: 3px solid #002B49
+}
+
+.user_type_field {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.2rem;
+    /* background-color: red; */
+}
+
+.admin_option, .staff_option {
+    display: block;
+    height: 100%;
+    width: 50%;
+}
+
+    .admin_option a, .staff_option a {
+        font-weight: 700;
+        background-color: #002b49;
+        text-decoration: none;
+        height: 100%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        font-size: 1rem;
+        transition: 0.3s;
+    }
+
+        .admin_option a.chosen_tab_menu_burger, .staff_option a.chosen_tab_menu_burger {
+            background-color: white;
+            color: #002B49;
+            border-bottom: none;
+            transition: 0.3s;
+        }
+
+.option_list_in_burger {
+    margin-top: 0.2rem;
+    border-top: 1px solid #c9c9c9;
+}
+
+.option_name_icon {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    align-items: center;
+    padding-left: 1rem;
+    border-left: 0.1rem solid #c9c9c9;
+    border-right: 0.1rem solid #c9c9c9;
+    border-bottom: 0.1rem solid #c9c9c9;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #002B49;
+}
+
+    .option_name_icon p, .option_name_icon img, .arrow_in_menu_burger {
+        pointer-events: none;
+    }
+
+    .option_name_icon p {
+        font-weight: 700;
+    }
+
+.arrow_in_menu_burger {
+    transition: 0.5s;
+}
+
+.arrow_in_menu_burger {
+    text-align: center;
+}
+
+.option_name_icon:hover {
+    padding-left: 1.8rem;
+}
+
+img.icon_item {
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+.selection_name_icon {
+    border-left: none;
+    display: flex;
+    align-items: center;
+    padding-left: 3.2rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: #e4e4e4;
+    color: black;
+    transition: 0.3s;
+}
+
+    .selection_name_icon p {
+        padding-left: 0.4rem;
+        font-weight: 500;
+    }
+
+    .selection_name_icon p, .selection_name_icon img {
+        pointer-events: none;
+    }
+
+    .selection_name_icon.chosen_selection_menu_burger {
+        border-left: 0.4rem solid #002B49;
+        transition: 0.3s;
+    }
+
+        .selection_name_icon.chosen_selection_menu_burger p {
+            font-weight: 700;
+        }
+
+    .selection_name_icon:hover {
+        padding-left: 3.7rem;
+    }
+
+        .selection_name_icon:hover p {
+            font-weight: 700;
+        }
+
+    .option_name_icon p, .selection_name_icon p {
+        font-size: 0.9rem;
+    }
+
+
+.admin_option_name_icon {
+    border-left: none;
+    display: flex;
+    align-items: center;
+    padding-left: 1.5rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+    cursor: pointer;
+    transition: 0.5s;
+    color: black;
+    transition: 0.3s;
+}
+
+    .admin_option_name_icon:hover {
+        padding-left: 2rem;
+        transition: 0.3s;
+    }
+
+        .admin_option_name_icon:hover p {
+            font-weight: 700;
+        }
+
+    .admin_option_name_icon p, .admin_option_name_icon i {
+        pointer-events: none;
+    }
+
+    .admin_option_name_icon.chosen_selection_menu_burger {
+        border-left: 0.4rem solid #002B49;
+        transition: 0.3s;
+    }
+
+        .admin_option_name_icon.chosen_selection_menu_burger p {
+            font-weight: 700;
+        }
+
+    .admin_option_name_icon p {
+        font-size: 0.9rem;
+        padding-left: 0.4rem;
+        font-weight: 500;
+    }
+/*=================== MENU: end ============*/
+
+.main_working_window {
+    padding: 0;
+    transition: all 0.5s;
+    margin-left: 20.5%;
+    height: 100%;
+    background-image: url(../assets/quanly/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: content-box;
+}
+
+#sdp_main_working_window_id {
+    position: relative;
+    background-color: #e4e4e4;
+    display: none;
+}
+
+    #sdp_main_working_window_id.show {
+        display: block;
+    }
+
+#dsdatphong_main_working_window_id {
+    position: relative;
+    background-color: #e4e4e4;
+    display: none;
+}
+
+    #dsdatphong_main_working_window_id.show {
+        display: block;
+    }
+
+#dshoadon_main_working_window_id {
+    position: relative;
+    background-color: #e4e4e4;
+    display: none;
+}
+
+    #dshoadon_main_working_window_id.show {
+        display: block;
+    }
+
+#dskhachhang_main_working_window_id {
+    position: relative;
+    background-color: #e4e4e4;
+    display: none;
+}
+
+    #dskhachhang_main_working_window_id.show {
+        display: block;
+    }
+
+#quanlynhanvien_main_working_window_id {
+    position: relative;
+    background-color: #e4e4e4;
+    display: none;
+}
+
+    #quanlynhanvien_main_working_window_id.show {
+        display: block;
+    }
+
+#quanlyphong_main_working_window_id {
+    position: relative;
+    background-color: #e4e4e4;
+    display: none;
+}
+
+    #quanlyphong_main_working_window_id.show {
+        display: block;
+    }
+
+#quanlyloaiphong_main_working_window_id {
+    position: relative;
+    background-color: #e4e4e4;
+    display: none;
+}
+
+    #quanlyloaiphong_main_working_window_id.show {
+        display: block;
+    }
+
+#quanlydoan_main_working_window_id {
+    position: relative;
+    background-color: #e4e4e4;
+    display: none;
+}
+
+    #quanlydoan_main_working_window_id.show {
+        display: block;
+    }
+
+#quanlytinhluong_main_working_window_id {
+    position: relative;
+    background-color: #e4e4e4;
+    display: none;
+}
+
+    #quanlytinhluong_main_working_window_id.show {
+        display: block;
+    }
+
+#quanlyDoanhThu_main_working_window_id {
+    position: relative;
+    background-color: #e4e4e4;
+    display: none;
+}
+
+    #quanlyDoanhThu_main_working_window_id.show {
+        display: block;
+    }
+/* Màn hình của sơ đồ phòng - begin */
+/*=================== FILTER: begin ============*/
+.filter_sodophong {
+    height: 6vh;
+    background-color: #002b49;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    padding-left: 0.2rem;
+    z-index: 1;
+}
+
+.branch_name_and_btn_book_hot_field {
+    display: flex;
+    align-items: center;
+}
+
+.branch_name {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+}
+/* Dropdown filter - begin */
+.dropdown_filter_book_hot_sdp_main_working_window {
+    position: relative;
+    display: inline-block;
+}
+.dropdown_filter_book_hot_sdp_main_working_window input[type=date]::-webkit-calendar-picker-indicator {
+    margin-left: 0;
+}
+
+#btn_book_hot_sdp_main_working_window {
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.4rem;
+    cursor: pointer;
+}
+
+.dropdown_content_filter_book_hot_sdp_main_working_window {
+    position: absolute;
+    z-index: 5;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    width: 35vw;
+    border: 1px solid black;
+}
+
+#filter_book_hot_sdp_main_working_window_id {
+    padding: 0.5rem;
+}
+
+.content_filter_book_hot_sdp_main_working_window {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.part_filter_book_hot_sdp_main_working_window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .part_filter_book_hot_sdp_main_working_window p {
+        width: 35%;
+        font-size: 0.8rem;
+    }
+
+    .part_filter_book_hot_sdp_main_working_window input[type=date] {
+        height: 65%;
+        width: 60%;
+        font-size: 0.8rem;
+        font-weight: 500;
+        border: 2px solid black;
+    }
+
+    .part_filter_book_hot_sdp_main_working_window select {
+        height: 70%;
+        width: 62%;
+        font-size: 0.8rem;
+        font-weight: 500;
+        border: 2px solid black;
+    }
+
+.function_filter_book_hot_sdp_main_working_window {
+    text-align: right;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 0.2rem;
+}
+
+    .function_filter_book_hot_sdp_main_working_window button {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+        background-color: #002b49;
+        color: white;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        width: 20%;
+    }
+
+#submit_function_filter_book_hot_sdp_main_working_window {
+    border: 0.15rem solid #002b49
+}
+
+    #submit_function_filter_book_hot_sdp_main_working_window i {
+        color: white;
+    }
+
+    #submit_function_filter_book_hot_sdp_main_working_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+        #submit_function_filter_book_hot_sdp_main_working_window:active i {
+            color: #002b49;
+        }
+/* Dropdown filter - end */
+#filter_sodophong_info {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#status_room_filter_sodophong_info {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 70%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+    #status_room_filter_sodophong_info option {
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+#number_room_filter_sodophong_info {
+    height: 55%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#search_for_filter_sodophong_info {
+    height: 80%;
+    width: 4rem;
+    font-weight: 500;
+}
+
+/*=================== FILTER: end ============*/
+
+.data_window_sodophong {
+    overflow: scroll;
+    height: 85.5vh;
+    padding-left: 5px;
+}
+
+    .data_window_sodophong .floor_name {
+        padding: 10px 0 5px 0px;
+        font-weight: 500;
+        font-size: 1.1rem;
+    }
+
+        .data_window_sodophong .floor_name span {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+.list_room_of_floor {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.room_in_list {
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 220px;
+    cursor: pointer;
+    height: fit-content;
+}
+
+    .room_in_list:hover {
+        opacity: 0.8;
+        outline: 3px solid black;
+        outline-offset: 3px;
+    }
+
+    .room_in_list.available_room {
+        background-color: #002b49;
+    }
+
+        .room_in_list.available_room .room_status_icon img.status_icon {
+            content: url(../assets/quanly/available_room_icon.png);
+        }
+
+    .room_in_list.occupied_room {
+        background-color: #9E0909;
+    }
+
+        .room_in_list.occupied_room .room_status_icon img.status_icon {
+            content: url(../assets/quanly/occupied_room_icon.png);
+        }
+
+    .room_in_list.booked_room {
+        background-color: #185711;
+    }
+
+        .room_in_list.booked_room .room_status_icon img.status_icon {
+            content: url(../assets/quanly/booked_room_icon.png);
+        }
+
+    .room_in_list.returned_room {
+        background-color: #515151;
+    }
+
+        .room_in_list.returned_room .room_status_icon img.status_icon {
+            content: url(../assets/quanly/returned_room_icon.png);
+        }
+
+    .room_in_list.fixed_room {
+        background-color: black;
+    }
+
+        .room_in_list.fixed_room .room_status_icon img.status_icon {
+            content: url(../assets/quanly/fixed_room_icon.png);
+        }
+
+    .room_in_list div {
+        width: 100%;
+        pointer-events: none;
+    }
+
+.room_info_status_field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .room_info_status_field div {
+        padding: 5px;
+    }
+
+.room_in_list > *, .room_in_list * {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.room_status_in_list {
+    text-align: right;
+}
+
+.status_icon {
+    filter: invert(1);
+    width: 12%;
+    height: 12%;
+    padding-right: 0.2rem;
+}
+
+.room_status_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .room_status_icon p {
+        margin: 15px 0;
+    }
+
+.room_detail_field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+}
+
+.room_type_in_list {
+    text-align: left;
+}
+
+.room_number_people_in_list {
+    text-align: right;
+}
+
+.room_detail_field .room_type_in_list {
+    width: 65%;
+    padding: 5px;
+}
+
+.room_detail_field .room_number_people_in_list {
+    width: 35%;
+    padding: 5px;
+}
+/* Màn hình sơ đồ phòng - end */
+/* Màn hình thông tin khách hàng popup - begin */
+.thongtinkhachhang_window_popup_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+    .thongtinkhachhang_window_popup_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.thongtinkhachhang_window_popup {
+    width: 45vw;
+    max-height: 100vh;
+    position: relative;
+}
+
+.header_thongtinkhachhang_window_popup {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_close_thongtinkhachhang_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.header_name_thongtinkhachhang_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.info_thongtinkhachhang_window {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5rem;
+    align-self: center;
+}
+
+.body_thongtinkhachhang_window {
+    background-color: white;
+}
+
+.data_thongtinkhachhhang_info_field {
+    display: flex;
+    align-items: center;
+}
+
+    .data_thongtinkhachhhang_info_field p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 40%;
+    }
+
+.mark_required_star {
+    color: red;
+}
+
+.data_thongtinkhachhhang_info_field input, .data_thongtinkhachhhang_info_field select {
+    font-weight: 500;
+    font-size: 0.8rem;
+    border: 0.1rem solid black;
+    height: 1.6rem;
+    width: 45%;
+}
+
+    .data_thongtinkhachhhang_info_field select option {
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+
+.function_thongtinkhachhang_window_field {
+    border-top: 0.1rem solid #c9c9c9;
+    padding: 0.5rem;
+    text-align: right;
+}
+
+#btn_confirm_thongtinkhachhang, #btn_add_thongtinkhachhang {
+    display: none;
+}
+
+.thongtinkhachhang_window_popup_container.create_customer #btn_add_thongtinkhachhang, .thongtinkhachhang_window_popup_container.query_customer #btn_confirm_thongtinkhachhang {
+    display: inline-block;
+}
+
+
+#btn_confirm_thongtinkhachhang, #btn_add_thongtinkhachhang, #btn_cancel_thongtinkhachhang:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_thongtinkhachhang, #btn_confirm_thongtinkhachhang:active, #btn_add_thongtinkhachhang:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_confirm_thongtinkhachhang, #btn_cancel_thongtinkhachhang, #btn_add_thongtinkhachhang {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: 15%;
+    font-size: 0.8rem;
+}
+/* Màn hình thông tin khách hàng popup - end */
+
+/* Màn hình popup thêm mới hóa đơn - begin */
+.add_receipt_window_popup_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .add_receipt_window_popup_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.add_receipt_window_popup {
+    width: 60vw;
+    position: relative;
+    max-height: 100vh;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.add_receipt_window_popup_container.show .add_receipt_window_popup {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_add_receipt_window_popup {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_add_receipt_window_popup {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_add_receipt_window_popup {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_add_receipt_window_popup {
+    background-color: white;
+}
+
+.title_body_add_receipt_window_popup {
+    padding: 0.5rem;
+    margin: 0;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+    color: #002b49;
+    font-size: 1.2rem;
+}
+
+.info_body_add_receipt_window_popup {
+    max-height: 85vh;
+    overflow-y: scroll;
+}
+
+.field_name_in_info_body_add_receipt_window_popup {
+    padding-top: 0.4rem;
+    padding-left: 1rem;
+    padding-bottom: 0.2rem;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.thongtinhoadon_info_body_add_receipt_window_popup {
+    display: grid;
+    grid-template-columns: 0.8fr 1.4fr 0.8fr;
+    padding: 0.5rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.data_field_in_thongtinhoadon_info_body_add_receipt_window_popup {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem;
+}
+
+    .data_field_in_thongtinhoadon_info_body_add_receipt_window_popup p {
+        padding: 0.5rem;
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: 500;
+        width: 35%;
+        text-align: left;
+    }
+
+    .data_field_in_thongtinhoadon_info_body_add_receipt_window_popup input {
+        font-size: 0.8rem;
+        font-weight: 500;
+        border: 0.1rem solid black;
+        height: 1.6rem;
+        width: 50%;
+    }
+        .data_field_in_thongtinhoadon_info_body_add_receipt_window_popup input[type=date]::-webkit-calendar-picker-indicator {
+            margin-left: 0;
+        }
+
+#cccd_khachthanhtoan_add_receipt_window {
+    width: 35%;
+}
+
+.btn_confirm_khachthanhtoan_add_receipt_window {
+    margin-left: 3%;
+    background-color: #002b49;
+    color: white;
+    font-size: 0.8rem;
+    height: 1.9rem;
+    width: 12%;
+    font-weight: 500;
+    border-radius: 0.6rem;
+    cursor: pointer;
+}
+
+    .btn_confirm_khachthanhtoan_add_receipt_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.search_idphong_info_body_add_receipt_window_popup {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem;
+    justify-content: center;
+}
+
+    .search_idphong_info_body_add_receipt_window_popup p {
+        padding-left: 1rem;
+        width: 15%;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .search_idphong_info_body_add_receipt_window_popup #idphong_need_paid_id {
+        font-size: 0.8rem;
+        font-weight: 500;
+        border: 0.1rem solid black;
+        height: 1.6rem;
+        width: 30%;
+    }
+
+#check_idphong_need_paid_id {
+    margin-left: 3%;
+    background-color: #002b49;
+    color: white;
+    font-size: 0.8rem;
+    height: 1.9rem;
+    width: 10%;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+    #check_idphong_need_paid_id:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#error_nf_check_idphong_need_paid_id {
+    color: red;
+    font-size: 0.8rem;
+    font-weight: 500;
+    width: 30%;
+    padding-left: 0.8rem;
+}
+
+.receipt_table_field_in_info_body_add_receipt_window_popup {
+    padding: 0.6rem;
+}
+
+.header_table_in_info_body_add_receipt_window_popup {
+    background: #002B49;
+    color: white;
+}
+
+.receipt_table_in_info_body_add_receipt_window_popup {
+    border-collapse: collapse;
+    border: 0.1rem solid #002B49;
+    width: 100%;
+}
+
+    .receipt_table_in_info_body_add_receipt_window_popup thead {
+        display: table;
+        width: 100%;
+    }
+
+    .receipt_table_in_info_body_add_receipt_window_popup tbody {
+        display: block;
+        width: 100%;
+        overflow-y: scroll;
+        max-height: 35vh;
+    }
+
+        .receipt_table_in_info_body_add_receipt_window_popup tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.stt_receipt_table_field_in_add_receipt_window_popup {
+    width: 11%;
+}
+
+.service_receipt_table_field_in_add_receipt_window_popup {
+    width: 30%;
+}
+
+.checkin_receipt_table_field_in_add_receipt_window_popup, .checkout_receipt_table_field_in_add_receipt_window_popup {
+    width: 15%;
+}
+
+.thoigiandat_receipt_table_field_in_add_receipt_window_popup {
+    width: 30%;
+}
+
+.count_receipt_table_field_in_add_receipt_window_popup {
+    width: 11%;
+}
+
+.price_receipt_table_field_in_add_receipt_window_popup {
+    width: 18%;
+}
+
+.receipt_table_in_info_body_add_receipt_window_popup th, .receipt_table_in_info_body_add_receipt_window_popup td {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+td.price_receipt_table_field_in_add_receipt_window_popup {
+    text-align: right;
+    padding-right: 1.2rem;
+}
+
+.receipt_table_in_info_body_add_receipt_window_popup .data_food_none_border {
+    border: none;
+}
+
+#total_price_all_receipt {
+    padding: 0;
+    padding-right: 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.function_add_receipt_window_field {
+    text-align: right;
+    padding: 0.6rem;
+}
+
+#btn_export_add_receipt_window, #btn_cancel_add_receipt_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_add_receipt_window, #btn_export_add_receipt_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_export_add_receipt_window, #btn_cancel_add_receipt_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 15%;
+}
+
+
+
+/* Màn hình làm việc của mục Danh sách đặt phòng - begin */
+.filter_dsdatphong {
+    height: 6vh;
+    background-color: #002b49;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    padding-left: 0.2rem;
+    z-index: 1;
+}
+
+.branch_name_and_btn_book_redirect_field {
+    display: flex;
+    align-items: center;
+}
+
+#btn_book_redirect_dsdatphong_main_working_window {
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.4rem;
+    cursor: pointer;
+}
+
+#filter_dsdatphong_info {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#date_booking_room_filter_dsdatphong_info {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 58%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#enter_booking_room_code_filter_dsdatphong_info {
+    height: 55%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#search_for_filter_dsdatphong_info {
+    height: 80%;
+    width: 4rem;
+    font-weight: 500;
+}
+
+.data_window_dsdatphong {
+    height: 86vh;
+    padding: 5px;
+    background-color: #e4e4e4;
+}
+
+.header_list_book_room_table_data_window_dsdatphong {
+    background: #0666A9;
+    color: white;
+}
+
+.list_book_room_table_data_window_dsdatphong {
+    background-color: white;
+    border-collapse: collapse;
+    border: 0.1rem solid #002B49;
+    width: 100%;
+}
+
+    .list_book_room_table_data_window_dsdatphong thead {
+        display: table;
+        width: 100%;
+    }
+
+    .list_book_room_table_data_window_dsdatphong tbody {
+        display: block;
+        width: 100%;
+        overflow-y: overlay;
+        max-height: 77vh;
+    }
+
+        .list_book_room_table_data_window_dsdatphong tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.madatphong_list_book_room_table_data_window_dsdatphong {
+    width: 15%;
+}
+
+.idphong_list_book_room_table_data_window_dsdatphong {
+    width: 14%;
+}
+
+.idkhachdat_list_book_room_table_data_window_dsdatphong, .tungay_list_book_room_table_data_window_dsdatphong {
+    width: 14%;
+}
+
+.denngay_list_book_room_table_data_window_dsdatphong {
+    width: 14%;
+}
+
+.tiencoc_list_book_room_table_data_window_dsdatphong {
+    width: 15%;
+}
+
+.nhanphong_btn_list_book_room_table_data_window_dsdatphong {
+    width: 14%;
+}
+
+.list_book_room_table_data_window_dsdatphong th.thoigiano_list_book_room_table_data_window_dsdatphong {
+    border-bottom: none;
+}
+
+.list_book_room_table_data_window_dsdatphong th, .list_book_room_table_data_window_dsdatphong td {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.btn_nhanphong_list_book_room_table_data_window_dsdatphong {
+    background-color: #002b49;
+    color: white;
+}
+
+    .btn_nhanphong_list_book_room_table_data_window_dsdatphong:active {
+        background-color: white;
+        color: #002b49;
+    }
+.btn_nhanphong_list_book_room_table_data_window_dsdatphong {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 70%;
+}
+    .btn_nhanphong_list_book_room_table_data_window_dsdatphong.disable_receive {
+        pointer-events: none;
+        background-color: #c9c9c9;
+    }
+/* Màn hình làm việc của mục Danh sách đặt phòng - end */
+/* Màn hình làm việc của mục Danh sách hóa đơn - begin */
+.filter_dshoadon {
+    height: 6vh;
+    background-color: #002b49;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    padding-left: 0.2rem;
+    z-index: 1;
+}
+
+.branch_name_and_btn_create_new_receipt_field {
+    display: flex;
+    align-items: center;
+}
+
+#btn_create_new_receipt_dshoadon_main_working_window {
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.4rem;
+    cursor: pointer;
+}
+
+#filter_dshoadon_info {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#date_of_receipt_filter_dshoadon_info {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 58%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#enter_receipt_code_filter_dshoadon_info {
+    height: 55%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#search_for_filter_dshoadon_info {
+    height: 80%;
+    width: 4rem;
+    font-weight: 500;
+}
+
+
+
+.data_window_dshoadon {
+    height: 86vh;
+    padding: 5px;
+    background-color: #e4e4e4;
+}
+
+.header_list_receipt_table_data_window_dshoadon {
+    background: #0666A9;
+    color: white;
+}
+
+.list_receipt_table_data_window_dshoadon {
+    background-color: white;
+    border-collapse: collapse;
+    border: 0.1rem solid #002B49;
+    width: 100%;
+}
+
+    .list_receipt_table_data_window_dshoadon thead {
+        display: table;
+        width: 100%;
+    }
+
+    .list_receipt_table_data_window_dshoadon tbody {
+        display: block;
+        width: 100%;
+        overflow-y: overlay;
+        max-height: 76vh;
+    }
+
+        .list_receipt_table_data_window_dshoadon tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.mahoadon_list_receipt_table_data_window_dshoadon {
+    width: 15%;
+}
+
+.idkhachthanhtoan_list_receipt_table_data_window_dshoadon {
+    width: 14%;
+}
+
+.nhanvienthanhtoan_list_receipt_table_data_window_dshoadon {
+    width: 14%;
+}
+
+.thoigianxuat_list_receipt_table_data_window_dshoadon {
+    width: 16%;
+}
+
+.hinhthucthanhtoan_list_receipt_table_data_window_dshoadon {
+    width: 14%;
+}
+
+.tongsotien_list_receipt_table_data_window_dshoadon {
+    width: 15%;
+}
+
+.print_btn_list_receipt_table_data_window_dshoadon {
+    width: 12%;
+}
+
+.list_receipt_table_data_window_dshoadon th, .list_receipt_table_data_window_dshoadon td {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.btn_print_list_receipt_table_data_window_dshoadon {
+    background-color: #002b49;
+    color: white;
+}
+
+    .btn_print_list_receipt_table_data_window_dshoadon:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.btn_print_list_receipt_table_data_window_dshoadon {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 50%;
+}
+/* Màn hình làm việc của mục Danh sách hóa đơn - end */
+
+
+
+
+
+/* Màn hình làm việc của mục Danh sách khách hàng - begin */
+
+.filter_dskhachhang {
+    height: 6vh;
+    background-color: #002b49;
+    display: flex;
+    justify-content: right;
+    position: sticky;
+    padding-left: 0.2rem;
+    z-index: 1;
+}
+
+#filter_dskhachhang_info {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#enter_customer_code_filter_dskhachhang_info {
+    height: 55%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#search_for_filter_dskhachhang_info {
+    height: 80%;
+    width: 4rem;
+    font-weight: 500;
+}
+
+
+
+.data_window_dskhachhang {
+    height: 86vh;
+    padding: 5px;
+    background-color: #e4e4e4;
+}
+
+.header_list_customer_table_data_window_dskhachhang {
+    background: #0666A9;
+    color: white;
+}
+
+.list_customer_table_data_window_dskhachhang {
+    background-color: white;
+    border-collapse: collapse;
+    border: 0.1rem solid #002B49;
+    width: 100%;
+}
+
+    .list_customer_table_data_window_dskhachhang thead {
+        display: table;
+        width: 100%;
+    }
+
+    .list_customer_table_data_window_dskhachhang tbody {
+        display: block;
+        width: 100%;
+        overflow-y: overlay;
+        max-height: 77vh;
+    }
+
+        .list_customer_table_data_window_dskhachhang tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.checkall_list_customer_table_data_window_dskhachhang, .check_list_customer_table_data_window_dskhachhang {
+    width: 2%;
+}
+
+.makhachhang_list_customer_table_data_window_dskhachhang {
+    width: 12%;
+}
+
+.hoten_list_customer_table_data_window_dskhachhang {
+    width: 18%;
+}
+
+.ngaysinh_list_customer_table_data_window_dskhachhang {
+    width: 12%;
+}
+
+.sodienthoai_list_customer_table_data_window_dskhachhang {
+    width: 12%;
+}
+
+.email_list_customer_table_data_window_dskhachhang {
+    width: 22%;
+}
+
+.gioitinh_list_customer_table_data_window_dskhachhang {
+    width: 12%;
+}
+
+.function_edit_delete_list_customer_table_data_window_dskhachhang {
+    width: 10%;
+}
+
+.list_customer_table_data_window_dskhachhang th, .list_customer_table_data_window_dskhachhang td {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.btn_edit_list_customer_table_data_window_dskhachhang {
+    background-color: #002b49;
+    color: white;
+}
+
+    .btn_edit_list_customer_table_data_window_dskhachhang:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.btn_edit_list_customer_table_data_window_dskhachhang {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 40%;
+}
+
+#btn_delete_many_list_customer_table_data_window_dskhachhang_id.turn_off_btn {
+    pointer-events: none;
+    background-color: #c9c9c9;
+    color: #9E0909;
+}
+
+#btn_delete_many_list_customer_table_data_window_dskhachhang_id {
+    background-color: #9E0909;
+    color: white;
+}
+
+    #btn_delete_many_list_customer_table_data_window_dskhachhang_id:active {
+        background-color: white;
+        color: #9E0909;
+    }
+
+#btn_delete_many_list_customer_table_data_window_dskhachhang_id {
+    border: 0.1rem solid #9E0909;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 40%;
+}
+/* Màn hình làm việc của mục Danh sách khách hàng - end */
+
+
+
+
+
+/* Màn hình làm việc của mục Quản lý nhân viên - begin */
+
+.filter_quanlynhanhvien {
+    height: 6vh;
+    background-color: #002b49;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    padding-left: 0.2rem;
+    z-index: 1;
+}
+
+.btn_create_new_staff_field {
+    display: flex;
+    align-items: center;
+}
+
+#btn_create_new_staff_quanlynhanvien_main_working_window {
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.4rem;
+    cursor: pointer;
+    margin-left: 2rem;
+}
+
+#filter_quanlynhanvien_info {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#enter_staff_code_filter_quanlynhanvien_info {
+    height: 55%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#search_for_filter_quanlynhanvien_info {
+    height: 80%;
+    width: 4rem;
+    font-weight: 500;
+}
+
+
+
+.data_window_quanlynhanvien {
+    height: 86vh;
+    padding: 5px;
+    background-color: #e4e4e4;
+}
+
+.header_list_staff_table_data_window_quanlynhanvien {
+    background: #0666A9;
+    color: white;
+}
+
+.list_staff_table_data_window_quanlynhanvien {
+    background-color: white;
+    border-collapse: collapse;
+    border: 0.1rem solid #002B49;
+    width: 100%;
+}
+
+    .list_staff_table_data_window_quanlynhanvien thead {
+        display: table;
+        width: 100%;
+    }
+
+    .list_staff_table_data_window_quanlynhanvien tbody {
+        display: block;
+        width: 100%;
+        overflow-y: overlay;
+        max-height: 77vh;
+    }
+
+        .list_staff_table_data_window_quanlynhanvien tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.checkall_list_staff_table_data_window_quanlynhanvien, .check_list_staff_table_data_window_quanlynhanvien {
+    width: 2%;
+}
+
+.manhanvien_list_staff_table_data_window_quanlynhanvien {
+    width: 12%;
+}
+
+.hoten_list_staff_table_data_window_quanlynhanvien {
+    width: 18%;
+}
+
+.ngaysinh_list_staff_table_data_window_quanlynhanvien {
+    width: 12%;
+}
+
+.sodienthoai_list_staff_table_data_window_quanlynhanvien {
+    width: 12%;
+}
+
+.email_list_staff_table_data_window_quanlynhanvien {
+    width: 22%;
+}
+
+.machucvu_list_staff_table_data_window_quanlynhanvien {
+    width: 12%;
+}
+
+.function_edit_delete_list_staff_table_data_window_quanlynhanvien {
+    width: 10%;
+}
+
+.list_staff_table_data_window_quanlynhanvien th, .list_staff_table_data_window_quanlynhanvien td {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.btn_edit_list_staff_table_data_window_quanlynhanvien {
+    background-color: #002b49;
+    color: white;
+}
+
+    .btn_edit_list_staff_table_data_window_quanlynhanvien:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.btn_edit_list_staff_table_data_window_quanlynhanvien {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 40%;
+}
+
+#btn_delete_many_list_staff_table_data_window_quanlynhanvien_id.turn_off_btn {
+    pointer-events: none;
+    background-color: #c9c9c9;
+    color: #9E0909;
+}
+
+#btn_delete_many_list_staff_table_data_window_quanlynhanvien_id {
+    background-color: #9E0909;
+    color: white;
+}
+
+    #btn_delete_many_list_staff_table_data_window_quanlynhanvien_id:active {
+        background-color: white;
+        color: #9E0909;
+    }
+
+#btn_delete_many_list_staff_table_data_window_quanlynhanvien_id {
+    border: 0.1rem solid #9E0909;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 40%;
+}
+/* Màn hình làm việc của mục Quản lý nhân viên - end */
+
+/* Màn hình làm việc của mục Quản lý phòng - begin */
+
+.filter_quanlyphong {
+    height: 6vh;
+    background-color: #002b49;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    padding-left: 0.2rem;
+    z-index: 1;
+}
+
+.btn_create_new_room_field {
+    display: flex;
+    align-items: center;
+}
+
+#btn_create_new_room_quanlyphong_main_working_window_id {
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.4rem;
+    cursor: pointer;
+    margin-left: 2rem;
+}
+
+#filter_quanlyphong_info {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#enter_room_code_filter_quanlyphong_info {
+    height: 55%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#search_for_filter_quanlyphong_info {
+    height: 80%;
+    width: 4rem;
+    font-weight: 500;
+}
+
+
+
+.data_window_quanlyphong {
+    height: 86vh;
+    padding: 5px;
+    background-color: #e4e4e4;
+}
+
+.header_list_room_table_data_window_quanlyphong {
+    background: #0666A9;
+    color: white;
+}
+
+.list_room_table_data_window_quanlyphong {
+    background-color: white;
+    border-collapse: collapse;
+    border: 0.1rem solid #002B49;
+    width: 100%;
+}
+
+    .list_room_table_data_window_quanlyphong thead {
+        display: table;
+        width: 100%;
+    }
+
+    .list_room_table_data_window_quanlyphong tbody {
+        display: block;
+        width: 100%;
+        overflow-y: overlay;
+        max-height: 77vh;
+    }
+
+        .list_room_table_data_window_quanlyphong tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.checkall_list_room_table_data_window_quanlyphong, .check_list_room_table_data_window_quanlyphong {
+    width: 2%;
+}
+
+.maphong_list_room_table_data_window_quanlyphong {
+    width: 18%;
+}
+
+.machinhanh_list_room_table_data_window_quanlyphong {
+    width: 14%;
+}
+
+.maloaiphong_list_room_table_data_window_quanlyphong {
+    width: 14%;
+}
+
+.sophong_list_room_table_data_window_quanlyphong {
+    width: 14%;
+}
+
+.songuoio_list_room_table_data_window_quanlyphong {
+    width: 14%;
+}
+
+.sogiuong_list_room_table_data_window_quanlyphong {
+    width: 14%;
+}
+
+.function_edit_delete_list_room_table_data_window_quanlyphong {
+    width: 10%;
+}
+
+.list_room_table_data_window_quanlyphong th, .list_room_table_data_window_quanlyphong td {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.btn_edit_list_room_table_data_window_quanlyphong {
+    background-color: #002b49;
+    color: white;
+}
+
+    .btn_edit_list_room_table_data_window_quanlyphong:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.btn_edit_list_room_table_data_window_quanlyphong {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 40%;
+}
+
+#btn_delete_many_list_room_table_data_window_quanlyphong_id.turn_off_btn {
+    pointer-events: none;
+    background-color: #c9c9c9;
+    color: #9E0909;
+}
+
+#btn_delete_many_list_room_table_data_window_quanlyphong_id {
+    background-color: #9E0909;
+    color: white;
+}
+
+    #btn_delete_many_list_room_table_data_window_quanlyphong_id:active {
+        background-color: white;
+        color: #9E0909;
+    }
+
+#btn_delete_many_list_room_table_data_window_quanlyphong_id {
+    border: 0.1rem solid #9E0909;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 40%;
+}
+/* Màn hình làm việc của mục Quản lý phòng - end */
+
+/* Màn hình làm việc của mục Quản lý loại phòng - begin */
+
+.filter_quanlyloaiphong {
+    height: 6vh;
+    background-color: #002b49;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    padding-left: 0.2rem;
+    z-index: 1;
+}
+
+.btn_create_new_roomtype_field {
+    display: flex;
+    align-items: center;
+}
+
+#btn_create_new_roomtype_quanlyloaiphong_main_working_window_id {
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.4rem;
+    cursor: pointer;
+    margin-left: 2rem;
+}
+
+#filter_quanlyloaiphong_info {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#enter_roomtype_code_filter_quanlyphong_info {
+    height: 55%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#search_for_filter_quanlyloaiphong_info {
+    height: 80%;
+    width: 4rem;
+    font-weight: 500;
+}
+
+
+
+.data_window_quanlyloaiphong {
+    height: 86vh;
+    padding: 5px;
+    background-color: #e4e4e4;
+}
+
+.header_list_roomtype_table_data_window_quanlyloaiphong {
+    background: #0666A9;
+    color: white;
+}
+
+.list_roomtype_table_data_window_quanlyloaiphong {
+    background-color: white;
+    border-collapse: collapse;
+    border: 0.1rem solid #002B49;
+    width: 100%;
+}
+
+    .list_roomtype_table_data_window_quanlyloaiphong thead {
+        display: table;
+        width: 100%;
+    }
+
+    .list_roomtype_table_data_window_quanlyloaiphong tbody {
+        display: block;
+        width: 100%;
+        overflow-y: overlay;
+        max-height: 80vh;
+    }
+
+        .list_roomtype_table_data_window_quanlyloaiphong tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.checkall_list_roomtype_table_data_window_quanlyloaiphong, .check_list_roomtype_table_data_window_quanlyloaiphong {
+    width: 2%;
+}
+
+.maloaiphong_list_roomtype_table_data_window_quanlyloaiphong {
+    width: 16%;
+}
+
+.phantramquasonguoi_list_roomtype_table_data_window_quanlyloaiphong {
+    width: 18%;
+}
+
+.tulanh_list_roomtype_table_data_window_quanlyloaiphong {
+    width: 12%;
+}
+
+.maylanh_list_roomtype_table_data_window_quanlyloaiphong {
+    width: 12%;
+}
+
+.giatien_list_roomtype_table_data_window_quanlyloaiphong {
+    width: 15%;
+}
+
+.giacoc_list_roomtype_table_data_window_quanlyloaiphong {
+    width: 15%;
+}
+
+.function_edit_delete_list_roomtype_table_data_window_quanlyloaiphong {
+    width: 10%;
+}
+
+.list_roomtype_table_data_window_quanlyloaiphong th, .list_roomtype_table_data_window_quanlyloaiphong td {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.btn_edit_list_roomtype_table_data_window_quanlyloaiphong {
+    background-color: #002b49;
+    color: white;
+}
+
+    .btn_edit_list_roomtype_table_data_window_quanlyloaiphong:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.btn_edit_list_roomtype_table_data_window_quanlyloaiphong {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 40%;
+}
+
+#btn_delete_many_list_roomtype_table_data_window_quanlyloaiphong_id.turn_off_btn {
+    pointer-events: none;
+    background-color: #c9c9c9;
+    color: #9E0909;
+}
+
+#btn_delete_many_list_roomtype_table_data_window_quanlyloaiphong_id {
+    background-color: #9E0909;
+    color: white;
+}
+
+    #btn_delete_many_list_roomtype_table_data_window_quanlyloaiphong_id:active {
+        background-color: white;
+        color: #9E0909;
+    }
+
+#btn_delete_many_list_roomtype_table_data_window_quanlyloaiphong_id {
+    border: 0.1rem solid #9E0909;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 40%;
+}
+/* Màn hình làm việc của mục Quản lý loại phòng - end */
+
+/* Màn hình làm việc của mục Quản lý đồ ăn - begin */
+
+.filter_quanlydoan {
+    height: 6vh;
+    background-color: #002b49;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    padding-left: 0.2rem;
+    z-index: 1;
+}
+
+.btn_create_new_food_field {
+    display: flex;
+    align-items: center;
+}
+
+#btn_create_new_food_quanlydoan_main_working_window_id {
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.4rem;
+    cursor: pointer;
+    margin-left: 2rem;
+}
+
+#filter_quanlydoan_info {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#enter_food_code_filter_quanlydoan_info {
+    height: 55%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#search_for_filter_quanlydoan_info {
+    height: 80%;
+    width: 4rem;
+    font-weight: 500;
+}
+
+
+
+.data_window_quanlydoan {
+    height: 86vh;
+    padding: 5px;
+    background-color: #e4e4e4;
+}
+
+.header_list_food_table_data_window_quanlydoan {
+    background: #0666A9;
+    color: white;
+}
+
+.list_food_table_data_window_quanlydoan {
+    background-color: white;
+    border-collapse: collapse;
+    border: 0.1rem solid #002B49;
+    width: 100%;
+}
+
+    .list_food_table_data_window_quanlydoan thead {
+        display: table;
+        width: 100%;
+    }
+
+    .list_food_table_data_window_quanlydoan tbody {
+        display: block;
+        width: 100%;
+        overflow-y: overlay;
+        max-height: 80vh;
+    }
+
+        .list_food_table_data_window_quanlydoan tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.checkall_list_food_table_data_window_quanlydoan, .check_list_food_table_data_window_quanlydoan {
+    width: 2%;
+}
+
+.madoan_list_food_table_data_window_quanlydoan {
+    width: 20%;
+}
+
+.tendoan_list_food_table_data_window_quanlydoan {
+    width: 20%;
+}
+
+.linkimg_list_food_table_data_window_quanlydoan {
+    width: 28%;
+}
+
+.giatien_list_food_table_data_window_quanlydoan {
+    width: 20%;
+}
+
+.function_edit_delete_list_food_table_data_window_quanlydoan {
+    width: 10%;
+}
+
+.list_food_table_data_window_quanlydoan th, .list_food_table_data_window_quanlydoan td {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.btn_edit_list_food_table_data_window_quanlydoan {
+    background-color: #002b49;
+    color: white;
+}
+
+    .btn_edit_list_food_table_data_window_quanlydoan:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.btn_edit_list_food_table_data_window_quanlydoan {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 40%;
+}
+
+#btn_delete_many_list_food_table_data_window_quanlydoan_id.turn_off_btn {
+    pointer-events: none;
+    background-color: #c9c9c9;
+    color: #9E0909;
+}
+
+#btn_delete_many_list_food_table_data_window_quanlydoan_id {
+    background-color: #9E0909;
+    color: white;
+}
+
+    #btn_delete_many_list_food_table_data_window_quanlydoan_id:active {
+        background-color: white;
+        color: #9E0909;
+    }
+
+#btn_delete_many_list_food_table_data_window_quanlydoan_id {
+    border: 0.1rem solid #9E0909;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 40%;
+}
+/* Màn hình làm việc của mục Quản lý đồ ăn - end */
+
+
+
+/* Màn hình làm việc của mục Quản lý tính lương - begin */
+
+.filter_quanlytinhluong {
+    height: 6vh;
+    background-color: #002b49;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    padding-left: 0.2rem;
+    z-index: 1;
+}
+
+.btn_export_payroll_report_filter_quanlytinhluong_info_field {
+    display: flex;
+    align-items: center;
+}
+
+#btn_export_payroll_report_filter_quanlytinhluong_info_id {
+    height: 80%;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 700;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
+    color: #002B49;
+}
+
+#filter_quanlytinhluong_info {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#choose_date_filter_quanlytinhluong_info {
+    height: 58%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#btn_calculate_payroll_filter_quanlytinhluong_info {
+    height: 80%;
+    width: 40%;
+    font-weight: 500;
+}
+
+
+
+.data_window_quanlytinhluong {
+    height: 86vh;
+    padding: 2rem;
+    background-color: #e4e4e4;
+    overflow-y: overlay;
+    max-height: 77vh;
+}
+
+.content_payroll_report_data_window_quanlytinhluong {
+    padding: 2rem;
+    background-color: white;
+    display: block;
+}
+
+    .content_payroll_report_data_window_quanlytinhluong p, .content_payroll_report_data_window_quanlytinhluong span {
+        font-size: 0.8rem;
+    }
+
+.header_content_payroll_report_data_window_quanlytinhluong {
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    align-items: center;
+    justify-items: center;
+}
+
+    .header_content_payroll_report_data_window_quanlytinhluong p {
+        margin: 0;
+        padding: 0.5rem;
+    }
+
+#address_header_content_payroll_report_data_window_quanlytinhluong_id {
+    text-align: left;
+}
+
+.email_sdt_header_content_payroll_report_data_window_quanlytinhluong {
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo_header_content_payroll_report_data_window_quanlytinhluong {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#hotel_name_header_content_payroll_report_data_window_quanlytinhluong_id {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.header_salary_table_content_payroll_report_data_window_quanlytinhluong {
+    background: black;
+    color: white;
+}
+
+.salary_table_content_payroll_report_data_window_quanlytinhluong {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    .salary_table_content_payroll_report_data_window_quanlytinhluong caption {
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: 1rem;
+    }
+
+        .salary_table_content_payroll_report_data_window_quanlytinhluong caption span {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+    .salary_table_content_payroll_report_data_window_quanlytinhluong th, .salary_table_content_payroll_report_data_window_quanlytinhluong td {
+        text-align: center;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 0.4rem;
+        border-bottom: 0.1rem solid #c9c9c9;
+    }
+
+.footer_content_payroll_report_data_window_quanlytinhluong {
+    display: flex;
+    justify-content: right;
+}
+
+.signature_content_payroll_report_data_window_quanlytinhluong {
+    text-align: center;
+    padding: 2rem;
+}
+/* Màn hình làm việc của mục Quản lý tính lương - end */
+
+
+
+
+/* Màn hình làm việc của mục Quản lý doanh thu - begin */
+
+.filter_quanlyDoanhThu {
+    height: 6vh;
+    background-color: #002b49;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    padding-left: 0.2rem;
+    z-index: 1;
+}
+
+.btn_print_turnover_report_filter_quanlyDoanhThu_info_field {
+    display: flex;
+    align-items: center;
+}
+
+#btn_print_turnover_report_filter_quanlyDoanhThu_info_id {
+    height: 80%;
+    width: 100%;
+    font-weight: 500;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
+    color: #002B49;
+}
+
+#filter_quanlyDoanhThu_info {
+    margin-right: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#choose_date_filter_quanlyDoanhThu_info {
+    height: 58%;
+    margin-right: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#btn_view_turnover_filter_quanlyDoanhThu_info {
+    height: 80%;
+    width: 40%;
+    font-weight: 500;
+}
+
+
+
+.data_window_quanlyDoanhThu {
+    height: 86vh;
+    padding: 2rem;
+    background-color: #e4e4e4;
+    overflow-y: overlay;
+    max-height: 77vh;
+}
+
+.content_turnover_report_data_window_quanlyDoanhThu {
+    padding: 2rem;
+    background-color: white;
+    display: block;
+}
+
+    .content_turnover_report_data_window_quanlyDoanhThu p, .content_turnover_report_data_window_quanlyDoanhThu span {
+        font-size: 0.8rem;
+    }
+
+.header_content_turnover_report_data_window_quanlyDoanhThu {
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    align-items: center;
+    justify-items: center;
+}
+
+    .header_content_turnover_report_data_window_quanlyDoanhThu p {
+        margin: 0;
+        padding: 0.5rem;
+    }
+
+#address_header_content_turnover_report_data_window_quanlyDoanhThu_id {
+    text-align: left;
+}
+
+.email_sdt_header_content_turnover_report_data_window_quanlyDoanhThu_id {
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo_header_content_turnover_report_data_window_quanlyDoanhThu {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#hotel_name_header_content_turnover_report_data_window_quanlyDoanhThu_id {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+#title_content_turnover_report_data_window_quanlyDoanhThu {
+    text-align: center;
+    padding: 1rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+    #title_content_turnover_report_data_window_quanlyDoanhThu span {
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+
+#duration_content_turnover_report_data_window_quanlyDoanhThu {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.name_table_content_turnover_report_data_window_quanlyDoanhThu {
+    padding-top: 1.2rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1.2rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.header_turnin_table_content_turnover_report_data_window_quanlyDoanhThu {
+    background: black;
+    color: white;
+}
+
+.turnin_table_content_turnover_report_data_window_quanlyDoanhThu {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    .turnin_table_content_turnover_report_data_window_quanlyDoanhThu th, .turnin_table_content_turnover_report_data_window_quanlyDoanhThu td {
+        text-align: center;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 0.4rem;
+        border-bottom: 0.1rem solid #c9c9c9;
+    }
+
+.header_turnout_table_content_turnover_report_data_window_quanlyDoanhThu {
+    background: black;
+    color: white;
+}
+
+.turnout_table_content_turnover_report_data_window_quanlyDoanhThu {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    .turnout_table_content_turnover_report_data_window_quanlyDoanhThu th, .turnout_table_content_turnover_report_data_window_quanlyDoanhThu td {
+        text-align: center;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 0.4rem;
+        border-bottom: 0.1rem solid #c9c9c9;
+    }
+
+.footer_content_turnover_report_data_window_quanlyDoanhThu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 1rem;
+}
+
+.calculation_detail_content_turnover_report_data_window_quanlyDoanhThu {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+    .calculation_detail_content_turnover_report_data_window_quanlyDoanhThu p {
+        font-weight: 700;
+        font-size: 0.8rem;
+    }
+
+.signature_content_turnover_report_data_window_quanlyDoanhThu p {
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.signature_name_content_turnover_report_data_window_quanlyDoanhThu {
+    font-weight: 700;
+}
+/* Màn hình làm việc của mục Quản lý doanh thu - end */
+
+/*Css style_green - begin*/
+.receive_room_window_green_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .receive_room_window_green_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.receive_room_window_green {
+    width: 60vw;
+    position: relative;
+    max-height: 100vh;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.receive_room_window_green_container.show .receive_room_window_green {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_receive_room_window_green {
+    display: flex;
+    background-color: #002b49;
+    justify-content: space-between;
+    color: white;
+    align-items: center;
+    width: 100%;
+}
+
+.header_name_receive_room_window_green, .header_name_receive_room_window_green span {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_receive_room_window_green {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_receive_room_window_green {
+    background-color: white;
+}
+
+.info_receive_room_window_green {
+    max-height: 85vh;
+    overflow-y: scroll;
+}
+
+.hidden {
+    display: none;
+}
+
+.tab_option_receive_room_window_green {
+    display: flex;
+    padding: 0.5rem;
+}
+
+#option_thongtin_receive_room_window_green_id {
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: none;
+    cursor: pointer;
+    border: 0.1rem solid #002b49;
+    background-color: #002b49;
+    color: white;
+    transition: 0.3s;
+}
+
+#option_doan_receive_room_window_green_id {
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding-right: 1.8rem;
+    padding-left: 1.8rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: none;
+    cursor: pointer;
+    border: 0.1rem solid #002b49;
+    background-color: #002b49;
+    color: white;
+    transition: 0.3s;
+}
+
+    #option_thongtin_receive_room_window_green_id.chosen_tab, #option_doan_receive_room_window_green_id.chosen_tab {
+        border-top: 0.1rem solid #002b49;
+        border-right: 0.1rem solid #002b49;
+        border-left: 0.1rem solid #002b49;
+        border-bottom: none;
+        color: #002b49;
+        background-color: white;
+        transition: 0.3s;
+    }
+
+.part_info_receive_room_window_green {
+    border-top: 0.1rem solid #c9c9c9;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+}
+
+.field_name_info_receive_room_window_green {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.thongtinphong_field_receive_room_window_green {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0.5rem;
+}
+
+.data_thongtinphong_receive_room_window_green {
+    display: flex;
+    align-items: center;
+}
+
+    .data_thongtinphong_receive_room_window_green p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 35%;
+    }
+
+    .data_thongtinphong_receive_room_window_green input {
+        font-weight: 500;
+        font-size: 0.8rem;
+        border: 0.1rem solid black;
+        height: 1.6rem;
+        width: 60%;
+    }
+
+.data_thongtindatphong_receive_room_window_green {
+    display: flex;
+    align-items: center;
+}
+
+    .data_thongtindatphong_receive_room_window_green p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 40%;
+    }
+
+    .data_thongtindatphong_receive_room_window_green input {
+        font-weight: 500;
+        font-size: 0.8rem;
+        border: 0.1rem solid black;
+        height: 1.8rem;
+        width: 40%;
+    }
+
+        .data_thongtindatphong_receive_room_window_green input[type=date]::-webkit-calendar-picker-indicator {
+            margin-left: 0;
+        }
+
+        .data_thongtindatphong_receive_room_window_green input[type=date] {
+            width: 41%;
+        }
+
+.thongtindatphong_field_receive_room_window_green {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    padding: 0.5rem;
+}
+
+.btn_confirm_khachchu_thongtindatphong_receive_room_window_green {
+    background-color: #002b49;
+    color: white;
+    font-size: 0.8rem;
+    height: 2rem;
+    width: 15%;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+}
+
+    .btn_confirm_khachchu_thongtindatphong_receive_room_window_green:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.mini_field_grid_green {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.mini_field_grid_thongtinkhacho_green {
+    display: flex;
+}
+
+.thongtinkhacho_title_receive_room_window_green {
+    font-weight: 500;
+    font-size: 0.8rem;
+    width: 19%;
+    margin-top: 0.5rem;
+}
+
+.valid_khacho_info_data_green, .invalid_khacho_info_data_green {
+    display: grid;
+    grid-template-columns: 1.5fr 1.2fr 0.2fr;
+    column-gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.tenkhacho_info_green, .cccdkhacho_info_green {
+    font-weight: 500;
+    font-size: 0.8rem;
+    height: 100%;
+    border: 0.1rem solid black;
+}
+
+.tenkhacho_enter_green, .cccdkhacho_enter_green {
+    font-weight: 500;
+    font-size: 0.8rem;
+    height: 100%;
+    border: 0.05rem solid black;
+}
+
+.tenkhacho_info_green, .tenkhacho_enter_green {
+    width: 90%;
+}
+
+.cccdkhacho_info_green, .cccdkhacho_enter_green {
+    width: 95%;
+}
+
+.btn_thongtinkhacho_info_green {
+    background-color: white;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+    .btn_thongtinkhacho_info_green i {
+        color: #002b49;
+    }
+
+    .btn_thongtinkhacho_info_green:active {
+        background-color: #002b49;
+    }
+
+        .btn_thongtinkhacho_info_green:active i {
+            color: white;
+        }
+
+input:disabled {
+    background-color: #c9c9c9;
+}
+
+.food_order_table_field_green {
+    padding: 0.5rem;
+}
+
+.food_order_table_green {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.header_table_order_food_green {
+    background-color: #002b49;
+    color: white;
+}
+
+.food_order_table_green th, .food_order_table_green td {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.3rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+#sum_price_food_order_green {
+    border: none;
+    text-align: right;
+    font-weight: bold;
+}
+
+.function_receivephong_field_green {
+    text-align: right;
+    padding-right: 1rem;
+}
+
+#btn_confirm_receivephong_green, #btn_confirm_addfood_green, #btn_cancel_receivephong_green:active, #btn_cancel_addfood_green:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_receivephong_green, #btn_confirm_receivephong_green:active, #btn_cancel_addfood_green, #btn_confirm_addfood_green:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_confirm_receivephong_green, #btn_cancel_receivephong_green, #btn_confirm_addfood_green, #btn_cancel_addfood_green {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 15%;
+}
+/* Tab đồ ăn */
+.addfood_receive_room_window_green {
+    max-height: 85vh;
+    min-height: 50vh;
+    overflow-y: scroll;
+    border-top: 0.1rem solid #c9c9c9;
+}
+
+.part_addfood_receive_room_window_green {
+    border-top: 0.1rem solid #c9c9c9;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+}
+
+.food_table_and_order_list_field_receive_room_green {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+}
+
+.bangdoan_datdoan_receive_room_field_green {
+    padding: 1vh;
+}
+
+.search_function_in_bangdoan_datdoan_receive_room_field_green {
+    display: grid;
+    grid-template-columns: 1.8fr 0.2fr;
+    column-gap: 1vh;
+    padding-bottom: 0.5rem;
+}
+
+    .search_function_in_bangdoan_datdoan_receive_room_field_green input {
+        font-size: 0.8rem;
+    }
+
+.list_food_table_receive_room_green {
+    border-collapse: collapse;
+    width: 100%;
+    border: 0.1rem solid #002b49;
+}
+
+    .list_food_table_receive_room_green thead {
+        display: table;
+        width: 100%;
+    }
+
+    .list_food_table_receive_room_green tbody {
+        display: block;
+        width: 100%;
+        overflow-y: scroll;
+        max-height: 25vh;
+    }
+
+        .list_food_table_receive_room_green tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.stt_list_food_table_receive_room_green {
+    width: 15%;
+    display: table-cell;
+}
+
+.name_list_food_table_receive_room_green {
+    width: 70%;
+    display: table-cell;
+}
+
+.btn_add_list_food_table_receive_room_green {
+    width: 15%;
+    display: table-cell;
+}
+
+.header_list_food_table_receive_room_green {
+    font-size: 0.8rem;
+    background-color: #002b49;
+    color: white;
+}
+
+.list_food_table_receive_room_green th, .list_food_table_receive_room_green td {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.2rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.btn_add_food_into_order_list_green {
+    font-size: 0.5rem;
+}
+
+    .btn_add_food_into_order_list_green i {
+        color: #002b49;
+    }
+
+    .btn_add_food_into_order_list_green:active {
+        background-color: #002b49;
+    }
+
+        .btn_add_food_into_order_list_green:active i {
+            color: white;
+        }
+/* Bảng bên phải mục đồ ăn - begin */
+.bangorderingdoan_datdoan_receive_room_field_green {
+    padding: 1vh;
+}
+
+.ordering_food_table_receive_room_green {
+    border-collapse: collapse;
+    width: 100%;
+    border: 0.1rem solid #002b49;
+}
+
+    .ordering_food_table_receive_room_green thead {
+        display: table;
+        width: 100%;
+    }
+
+    .ordering_food_table_receive_room_green tbody {
+        display: block;
+        width: 100%;
+        overflow-y: scroll;
+        max-height: 30vh;
+    }
+
+        .ordering_food_table_receive_room_green tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.stt_ordering_food_table_receive_room_green {
+    width: 10%;
+    display: table-cell;
+}
+
+.name_ordering_food_table_receive_room_green {
+    width: 40%;
+    display: table-cell;
+}
+
+.count_ordering_food_table_receive_room_green {
+    width: 14%;
+    display: table-cell;
+}
+
+.price_ordering_food_table_in_receive_room_body {
+    width: 36%;
+    display: table-cell;
+}
+
+.count_each_food_ordering_food_table_receive_room_green {
+    width: 60%;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.header_ordering_food_table_receive_room_green {
+    font-size: 0.8rem;
+    background-color: #002b49;
+    color: white;
+}
+
+.ordering_food_table_receive_room_green th, .ordering_food_table_receive_room_green td {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.2rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.function_addfood_receivephong_field_green {
+    text-align: right;
+    padding-right: 1rem;
+}
+/* Bảng bên phải mục đồ ăn - end */
+/*Css style_green - end*/
+
+/*Css style_red - begin*/
+.view_room_window_red_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .view_room_window_red_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.view_room_window_red {
+    width: 60vw;
+    position: relative;
+    max-height: 100vh;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.view_room_window_red_container.show .view_room_window_red {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_view_room_window_red {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_view_room_window_red, .header_name_view_room_window_red span {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_view_room_window_red {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_view_room_window_red {
+    background-color: white;
+}
+
+.info_view_room_window_red {
+    max-height: 85vh;
+    overflow-y: scroll;
+}
+
+.hidden {
+    display: none;
+}
+
+.tab_option_view_room_window_red {
+    display: flex;
+    padding: 0.5rem;
+}
+
+#option_thongtin_view_room_window_red_id {
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: none;
+    cursor: pointer;
+    border: 0.1rem solid #002b49;
+    background-color: #002b49;
+    color: white;
+    transition: 0.3s;
+}
+
+#option_doan_view_room_window_red_id {
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding-right: 1.8rem;
+    padding-left: 1.8rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: none;
+    cursor: pointer;
+    border: 0.1rem solid #002b49;
+    background-color: #002b49;
+    color: white;
+    transition: 0.3s;
+}
+
+    #option_thongtin_view_room_window_red_id.chosen_tab, #option_doan_view_room_window_red_id.chosen_tab {
+        border-top: 0.1rem solid #002b49;
+        border-right: 0.1rem solid #002b49;
+        border-left: 0.1rem solid #002b49;
+        border-bottom: none;
+        color: #002b49;
+        background-color: white;
+        transition: 0.3s;
+    }
+
+.part_info_view_room_window_red {
+    border-top: 0.1rem solid #c9c9c9;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+}
+
+.field_name_info_view_room_window_red {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.thongtinphong_field_view_room_window_red {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0.5rem;
+}
+
+.data_thongtinphong_view_room_window_red {
+    display: flex;
+    align-items: center;
+}
+
+    .data_thongtinphong_view_room_window_red p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 35%;
+    }
+
+    .data_thongtinphong_view_room_window_red input {
+        font-weight: 500;
+        font-size: 0.8rem;
+        border: 0.1rem solid black;
+        height: 1.6rem;
+        width: 60%;
+    }
+
+.data_thongtindatphong_view_room_window_red {
+    display: flex;
+    align-items: center;
+}
+
+    .data_thongtindatphong_view_room_window_red p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 40%;
+    }
+
+    .data_thongtindatphong_view_room_window_red input {
+        font-weight: 500;
+        font-size: 0.8rem;
+        border: 0.1rem solid black;
+        height: 1.8rem;
+        width: 40%;
+    }
+
+        .data_thongtindatphong_view_room_window_red input[type=date]::-webkit-calendar-picker-indicator {
+            margin-left: 0;
+        }
+
+        .data_thongtindatphong_view_room_window_red input[type=date] {
+            width: 41%;
+        }
+
+.thongtindatphong_field_view_room_window_red {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    padding: 0.5rem;
+}
+
+.mini_field_grid_red {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.mini_field_grid_thongtinkhacho_red {
+    display: flex;
+}
+
+.thongtinkhacho_title_view_room_window_red {
+    font-weight: 500;
+    font-size: 0.8rem;
+    width: 19%;
+    margin-top: 0.5rem;
+}
+
+.valid_khacho_info_data_red, .invalid_khacho_info_data_red {
+    display: grid;
+    grid-template-columns: 1.5fr 1.2fr 0.2fr;
+    column-gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.tenkhacho_info_red, .cccdkhacho_info_red {
+    font-weight: 500;
+    font-size: 0.8rem;
+    height: 100%;
+    border: 0.1rem solid black;
+}
+
+.tenkhacho_enter_red, .cccdkhacho_enter_red {
+    font-weight: 500;
+    font-size: 0.8rem;
+    height: 100%;
+    border: 0.05rem solid black;
+}
+
+.tenkhacho_info_red, .tenkhacho_enter_red {
+    width: 90%;
+}
+
+.cccdkhacho_info_red, .cccdkhacho_enter_red {
+    width: 95%;
+}
+
+.btn_thongtinkhacho_info_red {
+    background-color: white;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+    .btn_thongtinkhacho_info_red i {
+        color: #002b49;
+    }
+
+    .btn_thongtinkhacho_info_red:active {
+        background-color: #002b49;
+    }
+
+        .btn_thongtinkhacho_info_red:active i {
+            color: white;
+        }
+
+input:disabled {
+    background-color: #c9c9c9;
+}
+
+.food_order_table_field_red {
+    padding: 0.5rem;
+}
+
+.food_order_table_red {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.header_table_order_food_red {
+    background-color: #002b49;
+    color: white;
+}
+
+.food_order_table_red th, .food_order_table_red td {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.3rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+#sum_price_food_order_red {
+    border: none;
+    text-align: right;
+    font-weight: bold;
+}
+
+.function_viewphong_field_red {
+    text-align: right;
+    padding-right: 1rem;
+}
+
+#btn_save_viewphong_red, #btn_confirm_addfood_red, #btn_cancel_viewphong_red:active, #btn_cancel_addfood_red:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_viewphong_red, #btn_save_viewphong_red:active, #btn_cancel_addfood_red, #btn_confirm_addfood_red:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_save_viewphong_red, #btn_cancel_viewphong_red, #btn_confirm_addfood_red, #btn_cancel_addfood_red {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 15%;
+}
+
+
+
+.addfood_view_room_window_red {
+    max-height: 85vh;
+    min-height: 50vh;
+    overflow-y: scroll;
+    border-top: 0.1rem solid #c9c9c9;
+}
+
+.part_addfood_view_room_window_red {
+    border-top: 0.1rem solid #c9c9c9;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+}
+
+.food_table_and_order_list_field_view_room_red {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+}
+
+.bangdoan_datdoan_view_room_field_red {
+    padding: 1vh;
+}
+
+.search_function_in_bangdoan_datdoan_view_room_field_red {
+    display: grid;
+    grid-template-columns: 1.8fr 0.2fr;
+    column-gap: 1vh;
+    padding-bottom: 0.5rem;
+}
+
+    .search_function_in_bangdoan_datdoan_view_room_field_red input {
+        font-size: 0.8rem;
+    }
+
+.list_food_table_view_room_red {
+    border-collapse: collapse;
+    width: 100%;
+    border: 0.1rem solid #002b49;
+}
+
+    .list_food_table_view_room_red thead {
+        display: table;
+        width: 100%;
+    }
+
+    .list_food_table_view_room_red tbody {
+        display: block;
+        width: 100%;
+        overflow-y: scroll;
+        max-height: 25vh;
+    }
+
+        .list_food_table_view_room_red tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.stt_list_food_table_view_room_red {
+    width: 15%;
+    display: table-cell;
+}
+
+.name_list_food_table_view_room_red {
+    width: 70%;
+    display: table-cell;
+}
+
+.btn_add_list_food_table_view_room_red {
+    width: 15%;
+    display: table-cell;
+}
+
+.header_list_food_table_view_room_red {
+    font-size: 0.8rem;
+    background-color: #002b49;
+    color: white;
+}
+
+.list_food_table_view_room_red th, .list_food_table_view_room_red td {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.2rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.btn_add_food_into_order_list_red {
+    font-size: 0.5rem;
+}
+
+    .btn_add_food_into_order_list_red i {
+        color: #002b49;
+    }
+
+    .btn_add_food_into_order_list_red:active {
+        background-color: #002b49;
+    }
+
+        .btn_add_food_into_order_list_red:active i {
+            color: white;
+        }
+/* Bảng bên phải mục đồ ăn - begin */
+.bangorderingdoan_datdoan_view_room_field_red {
+    padding: 1vh;
+}
+
+.ordering_food_table_view_room_red {
+    border-collapse: collapse;
+    width: 100%;
+    border: 0.1rem solid #002b49;
+}
+
+    .ordering_food_table_view_room_red thead {
+        display: table;
+        width: 100%;
+    }
+
+    .ordering_food_table_view_room_red tbody {
+        display: block;
+        width: 100%;
+        overflow-y: scroll;
+        max-height: 30vh;
+    }
+
+        .ordering_food_table_view_room_red tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.stt_ordering_food_table_view_room_red {
+    width: 10%;
+    display: table-cell;
+}
+
+.name_ordering_food_table_view_room_red {
+    width: 40%;
+    display: table-cell;
+}
+
+.count_ordering_food_table_view_room_red {
+    width: 14%;
+    display: table-cell;
+}
+
+.price_ordering_food_table_in_receive_room_body {
+    width: 36%;
+    display: table-cell;
+}
+
+.count_each_food_ordering_food_table_view_room_red {
+    width: 60%;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.header_ordering_food_table_view_room_red {
+    font-size: 0.8rem;
+    background-color: #002b49;
+    color: white;
+}
+
+.ordering_food_table_view_room_red th, .ordering_food_table_view_room_red td {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.2rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.function_addfood_viewphong_field_red {
+    text-align: right;
+    padding-right: 1rem;
+}
+/* Bảng bên phải mục đồ ăn - end */
+/*Css style_red - end*/
+
+
+/*Css style_black_gray - begin*/
+.notification_window_black_container, .notification_window_gray_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .notification_window_black_container.show, .notification_window_gray_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.notification_window_black, .notification_window_gray {
+    width: 25vw;
+    position: relative;
+    max-height: 100vh;
+}
+
+.header_notification_window_black, .header_notification_window_gray {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_notification_window_black, .header_name_notification_window_black span, .header_name_notification_window_gray, .header_name_notification_window_gray span {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_notification_window_black, .header_close_notification_window_gray {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_notification_window_black, .body_notification_window_gray {
+    background-color: white;
+}
+
+.content_notification_window_black, .content_notification_window_gray {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.function_notification_window_black, .function_notification_window_gray {
+    text-align: right;
+    padding: 0.8rem;
+    padding-right: 1rem;
+}
+
+#btn_ready_notification_window_black, #btn_cancel_notification_window_black:active, #btn_ready_notification_window_gray, #btn_cancel_notification_window_gray:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_notification_window_black, #btn_ready_notification_window_black:active, #btn_cancel_notification_window_gray, #btn_ready_notification_window_gray:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_ready_notification_window_black, #btn_cancel_notification_window_black, #btn_ready_notification_window_gray, #btn_cancel_notification_window_gray {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 30%;
+}
+/*Css style_black_gray - end*/
+
+
+/*Css style_blue - begin*/
+.notification_window_blue_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .notification_window_blue_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.notification_window_blue {
+    width: 25vw;
+    position: relative;
+    max-height: 100vh;
+}
+
+.header_notification_window_blue {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_notification_window_blue, .header_name_notification_window_blue span {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_notification_window_blue {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_notification_window_blue {
+    background-color: white;
+}
+
+.content_notification_window_blue {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.function_notification_window_blue {
+    text-align: center;
+    padding-bottom: 0.8rem;
+}
+
+#btn_order_room_notification_window_blue, #btn_fix_room_notification_window_blue:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_fix_room_notification_window_blue, #btn_order_room_notification_window_blue:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_order_room_notification_window_blue, #btn_fix_room_notification_window_blue {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 35%;
+}
+/*Css style_blue - end*/
+
+
+/*Css style_profile_staff - begin*/
+.staff_profile_popup_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .staff_profile_popup_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.staff_profile_popup_window {
+    width: 55vw;
+    position: relative;
+    max-height: 100vh;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.staff_profile_popup_window_container.show .staff_profile_popup_window {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_staff_profile_popup_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_staff_profile_popup_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_staff_profile_popup_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_staff_profile_popup_window {
+    background-color: white;
+    padding-right: 3rem;
+}
+
+.content_staff_profile_popup_window {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+}
+
+.avatar_field_staff_profile_popup_window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#avatar_img_staff_profile_popup_window {
+    padding-bottom: 1rem;
+}
+
+#btn_change_avatar_staff_profile_popup_window {
+    border: 0.2rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.3rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 35%;
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_change_avatar_staff_profile_popup_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.name_part_info_staff_profile_popup_window {
+    font-weight: 700;
+    font-size: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.data_info_staff_profile_popup_window {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+    .data_info_staff_profile_popup_window p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 25%;
+    }
+
+.input_data_info_staff_profile_popup_window {
+    font-weight: 500;
+    font-size: 0.8rem;
+    border: 0.1rem solid black;
+    height: 1.6rem;
+    width: 45%;
+}
+
+select.input_data_info_staff_profile_popup_window {
+    height: 1.8rem;
+    width: 46%;
+}
+
+    select.input_data_info_staff_profile_popup_window option {
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+
+input:disabled, select:disabled {
+    background-color: #c9c9c9;
+}
+
+.work_info_staff_profile_popup_window .name_part_info_staff_profile_popup_window {
+    border-top: 2px solid black;
+}
+.function_field_staff_profile_popup_window {
+    border-top: 0.1rem solid #c9c9c9;
+    padding: 0.5rem;
+    text-align: right;
+}
+
+#btn_logout_admin_in_staff_profile_popup_window_id {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: 15%;
+    font-size: 0.8rem;
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_logout_admin_in_staff_profile_popup_window_id:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+/*Css style_profile_staff - end*/
+
+/*Css style_dp_blue - begin*/
+.receive_room_window_blue_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .receive_room_window_blue_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.receive_room_window_blue {
+    width: 60vw;
+    position: relative;
+    max-height: 100vh;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.receive_room_window_blue_container.show .receive_room_window_blue {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_receive_room_window_blue {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_receive_room_window_blue, .header_name_receive_room_window_blue span {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_receive_room_window_blue {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_receive_room_window_blue {
+    background-color: white;
+}
+
+.info_receive_room_window_blue {
+    max-height: 85vh;
+    overflow-y: scroll;
+}
+
+.hidden {
+    display: none;
+}
+
+.tab_option_receive_room_window_blue {
+    display: flex;
+    padding: 0.5rem;
+}
+
+#option_thongtin_receive_room_window_blue_id {
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: none;
+    cursor: pointer;
+    border: 0.1rem solid #002b49;
+    background-color: #002b49;
+    color: white;
+    transition: 0.3s;
+}
+
+#option_doan_receive_room_window_blue_id {
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding-right: 1.8rem;
+    padding-left: 1.8rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: none;
+    cursor: pointer;
+    border: 0.1rem solid #002b49;
+    background-color: #002b49;
+    color: white;
+    transition: 0.3s;
+}
+
+    #option_thongtin_receive_room_window_blue_id.chosen_tab, #option_doan_receive_room_window_blue_id.chosen_tab {
+        border-top: 0.1rem solid #002b49;
+        border-right: 0.1rem solid #002b49;
+        border-left: 0.1rem solid #002b49;
+        border-bottom: none;
+        color: #002b49;
+        background-color: white;
+        transition: 0.3s;
+    }
+
+.part_info_receive_room_window_blue {
+    border-top: 0.1rem solid #c9c9c9;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+}
+
+.field_name_info_receive_room_window_blue {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.thongtinphong_field_receive_room_window_blue {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0.5rem;
+}
+
+.data_thongtinphong_receive_room_window_blue {
+    display: flex;
+    align-items: center;
+}
+
+    .data_thongtinphong_receive_room_window_blue p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 35%;
+    }
+
+    .data_thongtinphong_receive_room_window_blue input {
+        font-weight: 500;
+        font-size: 0.8rem;
+        border: 0.1rem solid black;
+        height: 1.6rem;
+        width: 60%;
+    }
+
+.data_thongtindatphong_receive_room_window_blue {
+    display: flex;
+    align-items: center;
+}
+
+    .data_thongtindatphong_receive_room_window_blue p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 40%;
+    }
+
+    .data_thongtindatphong_receive_room_window_blue input {
+        font-weight: 500;
+        font-size: 0.8rem;
+        border: 0.1rem solid black;
+        height: 1.8rem;
+        width: 40%;
+    }
+
+        .data_thongtindatphong_receive_room_window_blue input[type=date]::-webkit-calendar-picker-indicator {
+            margin-left: 0;
+        }
+
+        .data_thongtindatphong_receive_room_window_blue input[type=date] {
+            width: 41%;
+        }
+
+.thongtindatphong_field_receive_room_window_blue {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    padding: 0.5rem;
+}
+
+.btn_confirm_khachchu_thongtindatphong_receive_room_window_blue {
+    background-color: #002b49;
+    color: white;
+    font-size: 0.8rem;
+    height: 2rem;
+    width: 15%;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+}
+
+    .btn_confirm_khachchu_thongtindatphong_receive_room_window_blue:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.mini_field_grid_blue {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.mini_field_grid_thongtinkhacho_blue {
+    display: flex;
+}
+
+.thongtinkhacho_title_receive_room_window_blue {
+    font-weight: 500;
+    font-size: 0.8rem;
+    width: 19%;
+    margin-top: 0.5rem;
+}
+
+.valid_khacho_info_data_blue, .invalid_khacho_info_data_blue {
+    display: grid;
+    grid-template-columns: 1.5fr 1.2fr 0.2fr;
+    column-gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.tenkhacho_info_blue, .cccdkhacho_info_blue {
+    font-weight: 500;
+    font-size: 0.8rem;
+    height: 100%;
+    border: 0.1rem solid black;
+}
+
+.tenkhacho_enter_blue, .cccdkhacho_enter_blue {
+    font-weight: 500;
+    font-size: 0.8rem;
+    height: 100%;
+    border: 0.05rem solid black;
+}
+
+.tenkhacho_info_blue, .tenkhacho_enter_blue {
+    width: 90%;
+}
+
+.cccdkhacho_info_blue, .cccdkhacho_enter_blue {
+    width: 95%;
+}
+
+.btn_thongtinkhacho_info_blue {
+    background-color: white;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+    .btn_thongtinkhacho_info_blue i {
+        color: #002b49;
+    }
+
+    .btn_thongtinkhacho_info_blue:active {
+        background-color: #002b49;
+    }
+
+        .btn_thongtinkhacho_info_blue:active i {
+            color: white;
+        }
+
+input:disabled {
+    background-color: #c9c9c9;
+}
+
+.food_order_table_field_blue {
+    padding: 0.5rem;
+}
+
+.food_order_table_blue {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.header_table_order_food_blue {
+    background-color: #002b49;
+    color: white;
+}
+
+.food_order_table_blue th, .food_order_table_blue td {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.3rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+#sum_price_food_order_blue {
+    border: none;
+    text-align: right;
+    font-weight: bold;
+}
+
+.function_receivephong_field_blue {
+    text-align: right;
+    padding-right: 1rem;
+}
+
+#btn_confirm_receivephong_blue, #btn_confirm_addfood_blue, #btn_cancel_receivephong_blue:active, #btn_cancel_addfood_blue:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_receivephong_blue, #btn_confirm_receivephong_blue:active, #btn_cancel_addfood_blue, #btn_confirm_addfood_blue:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_confirm_receivephong_blue, #btn_cancel_receivephong_blue, #btn_confirm_addfood_blue, #btn_cancel_addfood_blue {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 15%;
+}
+/* Tab đồ ăn */
+.addfood_receive_room_window_blue {
+    max-height: 85vh;
+    min-height: 50vh;
+    overflow-y: scroll;
+    border-top: 0.1rem solid #c9c9c9;
+}
+
+.part_addfood_receive_room_window_blue {
+    border-top: 0.1rem solid #c9c9c9;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+}
+
+.food_table_and_order_list_field_receive_room_blue {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+}
+
+.bangdoan_datdoan_receive_room_field_blue {
+    padding: 1vh;
+}
+
+.search_function_in_bangdoan_datdoan_receive_room_field_blue {
+    display: grid;
+    grid-template-columns: 1.8fr 0.2fr;
+    column-gap: 1vh;
+    padding-bottom: 0.5rem;
+}
+
+    .search_function_in_bangdoan_datdoan_receive_room_field_blue input {
+        font-size: 0.8rem;
+    }
+
+.list_food_table_receive_room_blue {
+    border-collapse: collapse;
+    width: 100%;
+    border: 0.1rem solid #002b49;
+}
+
+    .list_food_table_receive_room_blue thead {
+        display: table;
+        width: 100%;
+    }
+
+    .list_food_table_receive_room_blue tbody {
+        display: block;
+        width: 100%;
+        overflow-y: scroll;
+        max-height: 25vh;
+    }
+
+        .list_food_table_receive_room_blue tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.stt_list_food_table_receive_room_blue {
+    width: 15%;
+    display: table-cell;
+}
+
+.name_list_food_table_receive_room_blue {
+    width: 70%;
+    display: table-cell;
+}
+
+.btn_add_list_food_table_receive_room_blue {
+    width: 15%;
+    display: table-cell;
+}
+
+.header_list_food_table_receive_room_blue {
+    font-size: 0.8rem;
+    background-color: #002b49;
+    color: white;
+}
+
+.list_food_table_receive_room_blue th, .list_food_table_receive_room_blue td {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.2rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.btn_add_food_into_order_list_blue {
+    font-size: 0.5rem;
+}
+
+    .btn_add_food_into_order_list_blue i {
+        color: #002b49;
+    }
+
+    .btn_add_food_into_order_list_blue:active {
+        background-color: #002b49;
+    }
+
+        .btn_add_food_into_order_list_blue:active i {
+            color: white;
+        }
+/* Bảng bên phải mục đồ ăn - begin */
+.bangorderingdoan_datdoan_receive_room_field_blue {
+    padding: 1vh;
+}
+
+.ordering_food_table_receive_room_blue {
+    border-collapse: collapse;
+    width: 100%;
+    border: 0.1rem solid #002b49;
+}
+
+    .ordering_food_table_receive_room_blue thead {
+        display: table;
+        width: 100%;
+    }
+
+    .ordering_food_table_receive_room_blue tbody {
+        display: block;
+        width: 100%;
+        overflow-y: scroll;
+        max-height: 30vh;
+    }
+
+        .ordering_food_table_receive_room_blue tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+.stt_ordering_food_table_receive_room_blue {
+    width: 10%;
+    display: table-cell;
+}
+
+.name_ordering_food_table_receive_room_blue {
+    width: 40%;
+    display: table-cell;
+}
+
+.count_ordering_food_table_receive_room_blue {
+    width: 14%;
+    display: table-cell;
+}
+
+.price_ordering_food_table_in_receive_room_body {
+    width: 36%;
+    display: table-cell;
+}
+
+.count_each_food_ordering_food_table_receive_room_blue {
+    width: 60%;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.header_ordering_food_table_receive_room_blue {
+    font-size: 0.8rem;
+    background-color: #002b49;
+    color: white;
+}
+
+.ordering_food_table_receive_room_blue th, .ordering_food_table_receive_room_blue td {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.2rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+.function_addfood_receivephong_field_blue {
+    text-align: right;
+    padding-right: 1rem;
+}
+/* Bảng bên phải mục đồ ăn - end */
+/*Css style_dp_blue - end*/
+
+/*Css style_edit_profile_staff - begin*/
+.edit_staff_profile_popup_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .edit_staff_profile_popup_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.edit_staff_profile_popup_window {
+    width: 55vw;
+    position: relative;
+    max-height: 100vh;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.edit_staff_profile_popup_window_container.show .edit_staff_profile_popup_window {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_edit_staff_profile_popup_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_edit_staff_profile_popup_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_edit_staff_profile_popup_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_edit_staff_profile_popup_window {
+    background-color: white;
+    padding-right: 3rem;
+}
+
+.content_edit_staff_profile_popup_window {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+}
+
+.avatar_field_edit_staff_profile_popup_window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#avatar_img_edit_staff_profile_popup_window {
+    padding-bottom: 1rem;
+}
+
+#btn_change_avatar_edit_staff_profile_popup_window {
+    border: 0.2rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.3rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 35%;
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_change_avatar_edit_staff_profile_popup_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.name_part_info_edit_staff_profile_popup_window {
+    font-weight: 700;
+    font-size: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.data_info_edit_staff_profile_popup_window {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+    .data_info_edit_staff_profile_popup_window p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 25%;
+    }
+
+.input_data_info_edit_staff_profile_popup_window {
+    font-weight: 500;
+    font-size: 0.8rem;
+    border: 0.1rem solid black;
+    height: 1.6rem;
+    width: 45%;
+}
+
+select.input_data_info_edit_staff_profile_popup_window {
+    height: 1.8rem;
+    width: 46%;
+}
+
+    select.input_data_info_edit_staff_profile_popup_window option {
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+
+.work_info_edit_staff_profile_popup_window .name_part_info_edit_staff_profile_popup_window {
+    border-top: 2px solid black;
+}
+
+.function_edit_staff_profile_popup_window {
+    text-align: right;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+#btn_save_edit_staff_profile_popup_window, #btn_create_new_staff_profile_popup_window {
+    display: none;
+}
+
+.edit_staff_profile_popup_window_container.admin_role_create_staff #btn_create_new_staff_profile_popup_window {
+    display: inline-block;
+}
+
+.edit_staff_profile_popup_window_container.admin_role_edit_staff #btn_save_edit_staff_profile_popup_window {
+    display: inline-block;
+}
+
+#btn_save_edit_staff_profile_popup_window, #btn_create_new_staff_profile_popup_window, #btn_cancel_edit_staff_profile_popup_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_edit_staff_profile_popup_window, #btn_create_new_staff_profile_popup_window:active, #btn_save_edit_staff_profile_popup_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_save_edit_staff_profile_popup_window, #btn_cancel_edit_staff_profile_popup_window, #btn_create_new_staff_profile_popup_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 15%;
+}
+/*Css style_edit_profile_staff - end*/
+
+
+/*Css style_noti_delete - begin*/
+/* Xóa nhân viên - begin  */
+.notification_confirm_delete_staff_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .notification_confirm_delete_staff_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.notification_confirm_delete_staff_window {
+    width: 25vw;
+    position: relative;
+    max-height: 100vh;
+}
+
+.header_notification_confirm_delete_staff_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_notification_confirm_delete_staff_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_notification_confirm_delete_staff_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_notification_confirm_delete_staff_window {
+    background-color: white;
+}
+
+.content_notification_confirm_delete_staff_window {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.function_notification_confirm_delete_staff_window {
+    text-align: right;
+    padding: 0.8rem;
+    padding-right: 1rem;
+}
+
+#btn_confirm_notification_delete_staff_window, #btn_cancel_notification_delete_staff_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_notification_delete_staff_window, #btn_confirm_notification_delete_staff_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_confirm_notification_delete_staff_window, #btn_cancel_notification_delete_staff_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 30%;
+}
+/* Xóa nhân viên - end  */
+/* Xóa phòng - begin */
+.notification_confirm_delete_room_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .notification_confirm_delete_room_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.notification_confirm_delete_room_window {
+    width: 25vw;
+    position: relative;
+    max-height: 100vh;
+}
+
+.header_notification_confirm_delete_room_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_notification_confirm_delete_room_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_notification_confirm_delete_room_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_notification_confirm_delete_room_window {
+    background-color: white;
+}
+
+.content_notification_confirm_delete_room_window {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.function_notification_confirm_delete_room_window {
+    text-align: right;
+    padding: 0.8rem;
+    padding-right: 1rem;
+}
+
+#btn_confirm_notification_delete_room_window, #btn_cancel_notification_delete_room_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_notification_delete_room_window, #btn_confirm_notification_delete_room_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_confirm_notification_delete_room_window, #btn_cancel_notification_delete_room_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 30%;
+}
+/* Xóa phòng - end */
+
+/* Xóa loại phòng - begin */
+.notification_confirm_delete_roomtype_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .notification_confirm_delete_roomtype_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.notification_confirm_delete_roomtype_window {
+    width: 25vw;
+    position: relative;
+    max-height: 100vh;
+}
+
+.header_notification_confirm_delete_roomtype_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_notification_confirm_delete_roomtype_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_notification_confirm_delete_roomtype_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_notification_confirm_delete_roomtype_window {
+    background-color: white;
+}
+
+.content_notification_confirm_delete_roomtype_window {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.function_notification_confirm_delete_roomtype_window {
+    text-align: right;
+    padding: 0.8rem;
+    padding-right: 1rem;
+}
+
+#btn_confirm_notification_delete_roomtype_window, #btn_cancel_notification_delete_roomtype_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_notification_delete_roomtype_window, #btn_confirm_notification_delete_roomtype_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_confirm_notification_delete_roomtype_window, #btn_cancel_notification_delete_roomtype_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 30%;
+}
+/* Xóa loại phòng - end */
+
+
+
+/* Xóa đồ ăn- begin */
+.notification_confirm_delete_food_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .notification_confirm_delete_food_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.notification_confirm_delete_food_window {
+    width: 25vw;
+    position: relative;
+    max-height: 100vh;
+}
+
+.header_notification_confirm_delete_food_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_notification_confirm_delete_food_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_notification_confirm_delete_food_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_notification_confirm_delete_food_window {
+    background-color: white;
+}
+
+.content_notification_confirm_delete_food_window {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.function_notification_confirm_delete_food_window {
+    text-align: right;
+    padding: 0.8rem;
+    padding-right: 1rem;
+}
+
+#btn_confirm_notification_delete_food_window, #btn_cancel_notification_delete_food_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_notification_delete_food_window, #btn_confirm_notification_delete_food_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_confirm_notification_delete_food_window, #btn_cancel_notification_delete_food_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 30%;
+}
+/* Xóa đồ ăn - end */
+
+
+
+
+/* Xóa khách hàng- begin */
+.notification_confirm_delete_customer_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .notification_confirm_delete_customer_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.notification_confirm_delete_customer_window {
+    width: 25vw;
+    position: relative;
+    max-height: 100vh;
+}
+
+.header_notification_confirm_delete_customer_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_notification_confirm_delete_customer_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_notification_confirm_delete_customer_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_notification_confirm_delete_customer_window {
+    background-color: white;
+}
+
+.content_notification_confirm_delete_customer_window {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.function_notification_confirm_delete_customer_window {
+    text-align: right;
+    padding: 0.8rem;
+    padding-right: 1rem;
+}
+
+#btn_confirm_notification_delete_customer_window, #btn_cancel_notification_delete_customer_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_notification_delete_customer_window, #btn_confirm_notification_delete_customer_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_confirm_notification_delete_customer_window, #btn_cancel_notification_delete_customer_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 30%;
+}
+/* Xóa khách hàng - end */
+
+
+
+
+/* Thông báo thêm hóa đơn thành công - begin */
+.notification_insert_update_delete_status_popup_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 9001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .notification_insert_update_delete_status_popup_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.notification_insert_update_delete_status_popup {
+    width: 25vw;
+    position: relative;
+    max-height: 100vh;
+}
+
+.header_notification_insert_update_delete_status_popup {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_notification_insert_update_delete_status_popup {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_notification_insert_update_delete_status_popup {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_notification_insert_update_delete_status_popup {
+    background-color: white;
+}
+
+.content_notification_insert_update_delete_status_popup {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.function_notification_insert_update_delete_status_popup {
+    text-align: center;
+    padding: 0.8rem;
+    padding-right: 1rem;
+}
+
+#btn_confirm_notification_insert_update_delete_status_popup {
+    background-color: #002b49;
+    color: white;
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 30%;
+}
+
+    #btn_confirm_notification_insert_update_delete_status_popup:active {
+        background-color: white;
+        color: #002b49;
+    }
+/* Thông báo thêm hóa đơn thành công - end */
+/*Css style_noti_delete - end*/
+
+/*Css style_edit_room - begin*/
+.edit_room_info_popup_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .edit_room_info_popup_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.edit_room_info_popup_window {
+    width: 55vw;
+    position: relative;
+    max-height: 100vh;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.edit_room_info_popup_window_container.show .edit_room_info_popup_window {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_edit_room_info_popup_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_edit_room_info_popup_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_edit_room_info_popup_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_edit_room_info_popup_window {
+    background-color: white;
+    padding: 1.5rem;
+}
+/* .content_edit_room_info_popup_window {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+} */
+.information_field_name_edit_room_info_popup_window {
+    font-size: 1rem;
+    font-weight: 700;
+    padding-bottom: 1rem;
+}
+
+.information_field_edit_room_info_popup_window {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.data_info_edit_room_info_popup_window {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+    .data_info_edit_room_info_popup_window p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 30%;
+    }
+
+.input_data_info_edit_room_info_popup_window {
+    font-weight: 500;
+    font-size: 0.8rem;
+    border: 0.1rem solid black;
+    height: 1.6rem;
+    width: 50%;
+}
+
+select.input_data_info_edit_room_info_popup_window {
+    height: 1.8rem;
+    width: 52%;
+}
+
+    select.input_data_info_edit_room_info_popup_window option {
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+
+.function_edit_room_info_popup_window {
+    padding-top: 1rem;
+    border-top: 2px solid #c9c9c9;
+    text-align: right;
+}
+
+#btn_save_edit_room_info_popup_window, #btn_create_new_room_edit_room_info_popup_window {
+    display: none;
+}
+
+.edit_room_info_popup_window_container.admin_role_create_room #btn_create_new_room_edit_room_info_popup_window {
+    display: inline-block;
+}
+
+.edit_room_info_popup_window_container.admin_role_edit_room #btn_save_edit_room_info_popup_window {
+    display: inline-block;
+}
+
+#btn_save_edit_room_info_popup_window, #btn_create_new_room_edit_room_info_popup_window, #btn_cancel_edit_room_info_popup_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_edit_room_info_popup_window, #btn_create_new_room_edit_room_info_popup_window:active, #btn_save_edit_room_info_popup_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_save_edit_room_info_popup_window, #btn_cancel_edit_room_info_popup_window, #btn_create_new_room_edit_room_info_popup_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 15%;
+}
+/*Css style_edit_room - end*/
+
+/*Css style_edit_roomtype - begin*/
+.edit_roomtype_info_popup_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .edit_roomtype_info_popup_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.edit_roomtype_info_popup_window {
+    width: 55vw;
+    position: relative;
+    max-height: 100vh;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.edit_roomtype_info_popup_window_container.show .edit_roomtype_info_popup_window {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_edit_roomtype_info_popup_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_edit_roomtype_info_popup_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_edit_roomtype_info_popup_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_edit_roomtype_info_popup_window {
+    background-color: white;
+    padding: 1rem;
+}
+
+.content_edit_roomtype_info_popup_window {
+    display: grid;
+    grid-template-columns: 0.6fr 1.4fr;
+}
+
+.img_about_roomtype_field_edit_roomtype_info_popup_window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#img_about_roomtype_edit_roomtype_info_popup_window {
+    padding-bottom: 1rem;
+    width: 85%;
+    height: 50%;
+}
+
+#btn_change_img_about_roomtype_field_edit_roomtype_info_popup_window {
+    border: 0.2rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.3rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 35%;
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_change_img_about_roomtype_field_edit_roomtype_info_popup_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.information_field_name_edit_roomtype_info_popup_window {
+    font-size: 1rem;
+    font-weight: 700;
+    padding-bottom: 1rem;
+}
+
+.information_field_edit_roomtype_info_popup_window {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.data_info_edit_roomtype_info_popup_window {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+    .data_info_edit_roomtype_info_popup_window p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 35%;
+    }
+
+    .data_info_edit_roomtype_info_popup_window div {
+        margin-left: 0.8rem;
+    }
+
+        .data_info_edit_roomtype_info_popup_window div input[type=checkbox] {
+            margin-left: 0;
+        }
+
+        .data_info_edit_roomtype_info_popup_window div label {
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+.input_data_info_edit_roomtype_info_popup_window {
+    font-weight: 500;
+    font-size: 0.8rem;
+    border: 0.1rem solid black;
+    height: 1.6rem;
+    width: 45%;
+    margin-left: 0.8rem;
+}
+
+.mota_data_info_edit_roomtype_info_popup_window {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+    .mota_data_info_edit_roomtype_info_popup_window p {
+        align-self: flex-start;
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 20%;
+    }
+
+    .mota_data_info_edit_roomtype_info_popup_window textarea {
+        margin-top: 0.35rem;
+        font-weight: 500;
+        font-size: 0.8rem;
+        border: 0.1rem solid black;
+    }
+
+.function_edit_roomtype_info_popup_window {
+    padding-top: 1rem;
+    border-top: 2px solid #c9c9c9;
+    text-align: right;
+    margin-right: 1rem;
+}
+
+#btn_save_edit_roomtype_info_popup_window, #btn_create_new_roomtype_edit_roomtype_info_popup_window {
+    display: none;
+}
+
+.edit_roomtype_info_popup_window_container.admin_role_create_roomtype #btn_create_new_roomtype_edit_roomtype_info_popup_window {
+    display: inline-block;
+}
+
+.edit_roomtype_info_popup_window_container.admin_role_edit_roomtype #btn_save_edit_roomtype_info_popup_window {
+    display: inline-block;
+}
+
+#btn_save_edit_roomtype_info_popup_window, #btn_create_new_roomtype_edit_roomtype_info_popup_window, #btn_cancel_edit_roomtype_info_popup_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_edit_roomtype_info_popup_window, #btn_create_new_roomtype_edit_roomtype_info_popup_window:active, #btn_save_edit_roomtype_info_popup_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_save_edit_roomtype_info_popup_window, #btn_cancel_edit_roomtype_info_popup_window, #btn_create_new_roomtype_edit_roomtype_info_popup_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 15%;
+}
+/*Css style_edit_roomtype - end*/
+
+/*Css style_edit_food - begin*/
+.edit_food_info_popup_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .edit_food_info_popup_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.edit_food_info_popup_window {
+    width: 40vw;
+    position: relative;
+    max-height: 100vh;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.edit_food_info_popup_window_container.show .edit_food_info_popup_window {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_edit_food_info_popup_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_edit_food_info_popup_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_edit_food_info_popup_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_edit_food_info_popup_window {
+    background-color: white;
+    padding: 1rem;
+}
+
+.content_edit_food_info_popup_window {
+    display: grid;
+    grid-template-columns: 0.6fr 1.4fr;
+}
+
+.img_about_food_field_edit_food_info_popup_window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#img_about_food_edit_food_info_popup_window {
+    padding-bottom: 1rem;
+    width: 85%;
+    height: 65%;
+}
+
+#btn_change_img_about_food_field_edit_food_info_popup_window {
+    border: 0.2rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.3rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 35%;
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_change_img_about_food_field_edit_food_info_popup_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+.information_field_name_edit_food_info_popup_window {
+    font-size: 1rem;
+    font-weight: 700;
+    padding-bottom: 1rem;
+}
+
+.data_info_edit_food_info_popup_window {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+    .data_info_edit_food_info_popup_window p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 35%;
+    }
+
+    .data_info_edit_food_info_popup_window div {
+        margin-left: 0.8rem;
+    }
+
+        .data_info_edit_food_info_popup_window div input[type=checkbox] {
+            margin-left: 0;
+        }
+
+        .data_info_edit_food_info_popup_window div label {
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+.input_data_info_edit_food_info_popup_window {
+    font-weight: 500;
+    font-size: 0.8rem;
+    border: 0.1rem solid black;
+    height: 1.6rem;
+    width: 45%;
+    margin-left: 0.8rem;
+}
+
+.function_edit_food_info_popup_window {
+    padding-top: 1rem;
+    border-top: 2px solid #c9c9c9;
+    text-align: right;
+    margin-right: 1rem;
+}
+
+#btn_save_edit_food_info_popup_window, #btn_create_new_food_edit_food_info_popup_window {
+    display: none;
+}
+
+.edit_food_info_popup_window_container.admin_role_create_food #btn_create_new_food_edit_food_info_popup_window {
+    display: inline-block;
+}
+
+.edit_food_info_popup_window_container.admin_role_edit_food #btn_save_edit_food_info_popup_window {
+    display: inline-block;
+}
+
+#btn_save_edit_food_info_popup_window, #btn_create_new_food_edit_food_info_popup_window, #btn_cancel_edit_food_info_popup_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_edit_food_info_popup_window, #btn_create_new_food_edit_food_info_popup_window:active, #btn_save_edit_food_info_popup_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_save_edit_food_info_popup_window, #btn_cancel_edit_food_info_popup_window, #btn_create_new_food_edit_food_info_popup_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 15%;
+}
+/*Css style_edit_food - end*/
+
+/*Css style_hoadon_pdf - begin*/
+.receipt_export_print_popup_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .receipt_export_print_popup_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.receipt_export_print_popup_window {
+    width: 55vw;
+    position: relative;
+    max-height: 100vh;
+    top: 0;
+    transition: 0.3s;
+}
+
+.receipt_export_print_popup_window_container.show .receipt_export_print_popup_window {
+    top: 0;
+    transition: 0.3s;
+}
+
+.body_receipt_export_print_popup_window {
+    background-color: white;
+}
+
+    .body_receipt_export_print_popup_window p, .body_receipt_export_print_popup_window span {
+        font-size: 0.8rem;
+    }
+
+.content_receipt_export_print_popup_window {
+    overflow-y: overlay;
+    padding: 2rem;
+    max-height: 80vh;
+}
+
+.header_content_receipt_export_print_popup_window {
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    align-items: center;
+    justify-items: center;
+}
+
+    .header_content_receipt_export_print_popup_window p {
+        margin: 0;
+        padding: 0.5rem;
+    }
+
+#address_header_content_receipt_export_print_popup_window_id {
+    text-align: left;
+}
+
+.email_sdt_header_content_receipt_export_print_popup_window {
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo_header_content_receipt_export_print_popup_window {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#hotel_name_header_content_receipt_export_print_popup_window_id {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+#title_content_receipt_export_print_popup_window {
+    text-align: center;
+    padding: 1rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.info_content_receipt_export_print_popup_window {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+    .info_content_receipt_export_print_popup_window p {
+        margin: 0;
+        padding-bottom: 0.5rem;
+    }
+
+
+.header_receipt_detail_table_content_receipt_export_print_popup_window {
+    background: black;
+    color: white;
+}
+
+.receipt_detail_table_content_receipt_export_print_popup_window {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    .receipt_detail_table_content_receipt_export_print_popup_window th, .receipt_detail_table_content_receipt_export_print_popup_window td {
+        text-align: center;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 0.4rem;
+        border-bottom: 0.1rem solid #c9c9c9;
+    }
+
+td.price_receipt_detail_table_content_receipt_export_print_popup_window {
+    text-align: right;
+    padding-right: 2rem;
+}
+
+.receipt_detail_table_content_receipt_export_print_popup_window .data_food_none_border {
+    border: none;
+}
+
+
+.cal_price_content_receipt_export_print_popup_window {
+    display: flex;
+    justify-content: right;
+}
+
+.cal_price_detail_content_receipt_export_print_popup_window {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .cal_price_detail_content_receipt_export_print_popup_window p {
+        font-weight: 500;
+        margin: 0;
+        padding-top: 0.8rem;
+        padding-left: 3rem;
+    }
+    .cal_price_detail_content_receipt_export_print_popup_window.phaithu_cost p {
+        font-weight: 700;
+    }
+
+
+
+.function_receipt_export_print_popup_window_container {
+    text-align: right;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    padding-right: 2rem;
+}
+
+#btn_print_receipt_export_print_popup_window_container, #btn_cancel_receipt_export_print_popup_window_container:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_receipt_export_print_popup_window_container, #btn_print_receipt_export_print_popup_window_container:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_print_receipt_export_print_popup_window_container, #btn_cancel_receipt_export_print_popup_window_container {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 10%;
+}
+/*Css style_hoadon_pdf - end*/
+
+/*Css style_profile_customer - begin*/
+.edit_customer_profile_window_popup_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+    .edit_customer_profile_window_popup_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.edit_customer_profile_window_popup {
+    width: 45vw;
+    max-height: 100vh;
+    position: relative;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.edit_customer_profile_window_popup_container.show .edit_customer_profile_window_popup {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_edit_customer_profile_window_popup {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_close_edit_customer_profile_window_popup {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.header_name_edit_customer_profile_window_popup {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.info_body_edit_customer_profile_window_popup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5rem;
+    align-self: center;
+}
+
+.body_edit_customer_profile_window_popup {
+    background-color: white;
+}
+
+.data_body_edit_customer_profile_window_popup {
+    display: flex;
+    align-items: center;
+}
+
+    .data_body_edit_customer_profile_window_popup p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 40%;
+    }
+
+.mark_required_star {
+    color: red;
+}
+
+.data_body_edit_customer_profile_window_popup input, .data_body_edit_customer_profile_window_popup select {
+    font-weight: 500;
+    font-size: 0.8rem;
+    border: 0.1rem solid black;
+    height: 1.6rem;
+    width: 45%;
+}
+
+    .data_body_edit_customer_profile_window_popup select option {
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+
+.function_edit_customer_profile_window_popup_field {
+    border-top: 0.1rem solid #c9c9c9;
+    padding: 0.5rem;
+    text-align: right;
+}
+
+#btn_save_edit_customer_profile_window_popup, #btn_cancel_edit_customer_profile_window_popup:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_edit_customer_profile_window_popup, #btn_save_edit_customer_profile_window_popup:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_save_edit_customer_profile_window_popup, #btn_cancel_edit_customer_profile_window_popup {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: 15%;
+    font-size: 0.8rem;
+}
+/*Css style_profile_customer - end*/
+
+/*Css popup xem phòng chuẩn bị checkout - begin*/
+.toreturn_room_window_receipt_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .toreturn_room_window_receipt_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.toreturn_room_window_receipt {
+    width: 60vw;
+    position: relative;
+    max-height: 100vh;
+    top: -100vh;
+    transition: 0.3s;
+}
+
+.toreturn_room_window_receipt_container.show .toreturn_room_window_receipt {
+    top: 0;
+    transition: 0.3s;
+}
+
+.header_toreturn_room_window_receipt {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_toreturn_room_window_receipt, .header_name_toreturn_room_window_receipt span {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_toreturn_room_window_receipt {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_toreturn_room_window_receipt {
+    background-color: white;
+}
+
+.info_toreturn_room_window_receipt {
+    max-height: 85vh;
+    overflow-y: scroll;
+}
+
+.hidden {
+    display: none;
+}
+
+.tab_option_toreturn_room_window_receipt {
+    display: flex;
+    padding: 0.5rem;
+}
+
+#option_thongtin_toreturn_room_window_receipt_id {
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-top: 0.1rem solid #002b49;
+    border-right: 0.1rem solid #002b49;
+    border-left: 0.1rem solid #002b49;
+    border-bottom: none;
+    color: #002b49;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.part_info_toreturn_room_window_receipt {
+    border-top: 0.1rem solid #c9c9c9;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+}
+
+.field_name_info_toreturn_room_window_receipt {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.thongtinphong_field_toreturn_room_window_receipt {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0.5rem;
+}
+
+.data_thongtinphong_toreturn_room_window_receipt {
+    display: flex;
+    align-items: center;
+}
+
+    .data_thongtinphong_toreturn_room_window_receipt p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 35%;
+    }
+
+    .data_thongtinphong_toreturn_room_window_receipt input {
+        font-weight: 500;
+        font-size: 0.8rem;
+        border: 0.1rem solid black;
+        height: 1.6rem;
+        width: 60%;
+    }
+
+.data_thongtindatphong_toreturn_room_window_receipt {
+    display: flex;
+    align-items: center;
+}
+
+    .data_thongtindatphong_toreturn_room_window_receipt p {
+        font-weight: 500;
+        font-size: 0.8rem;
+        width: 40%;
+    }
+
+    .data_thongtindatphong_toreturn_room_window_receipt input {
+        font-weight: 500;
+        font-size: 0.8rem;
+        border: 0.1rem solid black;
+        height: 1.8rem;
+        width: 40%;
+    }
+
+        .data_thongtindatphong_toreturn_room_window_receipt input[type=date]::-webkit-calendar-picker-indicator {
+            margin-left: 0;
+        }
+
+        .data_thongtindatphong_toreturn_room_window_receipt input[type=date] {
+            width: 41%;
+        }
+
+.thongtindatphong_field_toreturn_room_window_receipt {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    padding: 0.5rem;
+}
+
+.mini_field_grid_toreturn_receipt {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.mini_field_grid_thongtinkhacho_toreturn_receipt {
+    display: flex;
+}
+
+.thongtinkhacho_title_toreturn_room_window_receipt {
+    font-weight: 500;
+    font-size: 0.8rem;
+    width: 20%;
+    margin-top: 0.5rem;
+}
+
+.thongtinkhacho_data_toreturn_room_window_receipt {
+    margin-top: 0.5rem;
+    border: 0.1rem solid black;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+    .thongtinkhacho_data_toreturn_room_window_receipt:disabled {
+        background-color: #c9c9c9;
+    }
+
+input:disabled {
+    background-color: #c9c9c9;
+}
+
+.food_order_table_field_toreturn_receipt {
+    padding: 0.5rem;
+}
+
+.food_order_table_toreturn_receipt {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.header_table_order_food_toreturn_receipt {
+    background-color: #002b49;
+    color: white;
+}
+
+.food_order_table_toreturn_receipt th, .food_order_table_toreturn_receipt td {
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 0.3rem;
+    border-bottom: 0.1rem solid #c9c9c9;
+}
+
+#sum_price_food_order_toreturn_receipt {
+    border: none;
+    text-align: right;
+    font-weight: bold;
+}
+
+.function_checkout_field_toreturn_receipt {
+    text-align: right;
+    padding-right: 1rem;
+}
+
+#btn_confirm_checkout_toreturn_receipt, #btn_cancel_checkout_toreturn_receipt:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_checkout_toreturn_receipt, #btn_confirm_checkout_toreturn_receipt:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_confirm_checkout_toreturn_receipt, #btn_cancel_checkout_toreturn_receipt {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 15%;
+}
+/*Css popup xem phòng chuẩn bị checkout - end*/
+
+/* Confirm Xuất hóa đơn - begin */
+.notification_confirm_checkout_and_exportrc_window_container {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 7001;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+    .notification_confirm_checkout_and_exportrc_window_container.show {
+        pointer-events: auto;
+        opacity: 1;
+        transition: 0.5s ease;
+    }
+
+.notification_confirm_checkout_and_exportrc_window {
+    width: 25vw;
+    position: relative;
+    max-height: 100vh;
+}
+
+.header_notification_confirm_checkout_and_exportrc_window {
+    display: flex;
+    background-color: #002b49;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header_name_notification_confirm_checkout_and_exportrc_window {
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.header_close_notification_confirm_checkout_and_exportrc_window {
+    margin: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.body_notification_confirm_checkout_and_exportrc_window {
+    background-color: white;
+}
+
+.content_notification_confirm_checkout_and_exportrc_window {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.function_notification_confirm_checkout_and_exportrc_window {
+    text-align: right;
+    padding: 0.8rem;
+    padding-right: 1rem;
+}
+
+#btn_confirm_notification_confirm_checkout_and_exportrc_window, #btn_cancel_notification_confirm_checkout_and_exportrc_window:active {
+    background-color: #002b49;
+    color: white;
+}
+
+    #btn_cancel_notification_confirm_checkout_and_exportrc_window, #btn_confirm_notification_confirm_checkout_and_exportrc_window:active {
+        background-color: white;
+        color: #002b49;
+    }
+
+#btn_confirm_notification_confirm_checkout_and_exportrc_window, #btn_cancel_notification_confirm_checkout_and_exportrc_window {
+    border: 0.1rem solid #002b49;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 30%;
+}
+/* Confirm Xuất hóa đơn  - end */

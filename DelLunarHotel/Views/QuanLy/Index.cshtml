@@ -1,0 +1,2437 @@
+﻿@{
+    Layout = null;
+    var Account_In = ViewData["Account"] as NhanVien;
+    var Account_In_Name = Account_In.Ho + " " + Account_In.Ten;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Del Lunar Manage</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/ManageStyle.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+            integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script src="~/js/Manage.js"></script>
+</head>
+<body>
+    <header class="header_admin">
+        <div class="header_admin_left">
+            <div>
+                <input type="checkbox" id="check_menu_burger_id" checked>
+                <label for="check_menu_burger_id">
+                    <i class="fa fa-bars" style="font-size: 2.5rem;" id="check_menu_burger_icon_id"></i>
+                </label>
+            </div>
+            <p id='today'></p>
+            <p id='time_now_id'></p>
+            <script>
+                const timeElapsed = Date.now();
+                const today = new Date(timeElapsed);
+                document.getElementById('today').innerHTML = today.toDateString();
+                const myInterval = setInterval(myTimer, 1000);
+                function myTimer() {
+                    const date = new Date();
+                    document.getElementById("time_now_id").innerHTML = date.toLocaleTimeString();
+                }
+            </script>
+        </div>
+        <div>
+            <img>
+            <a class="name_of_hotel" id="hotel_name_reload_home_id">Del Lunar</a>
+            <script>
+                document.getElementById('hotel_name_reload_home_id').onclick = function () {
+                    location.reload();
+                }
+            </script>
+        </div>
+        <div class="staff_info_field">
+            <img id="avatar" src="~/assets/quanly/account_avatar.png" class="change_color_icon">
+            <p id='name_nhanvien'>@Account_In_Name</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="menu_burger" id="menu_burger_id">
+            <ul class="user_type_field">
+                @{
+                    if ((bool)ViewData["Is_Admin"])
+                    {
+                        <li class="admin_option" style="display: block;"><a href="#admin_option_list_in_burger_id" id="admin_option_tab_burger_id">Quản lý</a></li>
+                    }
+                    else
+                    {
+                        <li class="admin_option" style="display: none;"><a href="#admin_option_list_in_burger_id" id="admin_option_tab_burger_id">Quản lý</a></li>
+                    }
+                }
+                <li class="staff_option"><a href="#staff_option_list_in_burger_id" id="staff_option_tab_burger_id" class="chosen_tab_menu_burger">Nhân viên</a></li>
+            </ul>
+            <div class="option_list_in_burger" id="staff_option_list_in_burger_id">
+                <div class="option_field_staff">
+                    <div class="option_name_icon" id="option_qlp_menu_burger_id">
+                        <img src="~/assets/quanly/quanlyphong.png" class="icon_item">
+                        <p>Quản lý phòng</p>
+                        <i class="fa fa-caret-left arrow_in_menu_burger" style="font-size:2rem"></i>
+                    </div>
+                    <div id="selection_field_qlp_menu_burger_id">
+                        <div class="selection_name_icon" id="sdp_selection_name_icon_id">
+                            <img class="icon_item" src="~/assets/quanly/sodophong.png">
+                            <p>Sơ đồ phòng</p>
+                        </div>
+                        <div class="selection_name_icon" id="dsdatphong_selection_name_icon_id">
+                            <img class="icon_item" src="~/assets/quanly/danhsachdatphong.png">
+                            <p>Danh sách đặt phòng</p>
+                        </div>
+                        <div class="selection_name_icon" id="dshoadon_selection_name_icon_id">
+                            <img class="icon_item" src="~/assets/quanly/danhsachhoadon.png">
+                            <p>Danh sách hóa đơn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="option_field_staff">
+                    <div class="option_name_icon" id="option_qlkh_menu_burger_id">
+                        <img src="~/assets/quanly/quanlykhachhang.png" class="icon_item">
+                        <p>Quản lý khách hàng</p>
+                        <i class="fa fa-caret-left arrow_in_menu_burger" style="font-size:2rem"></i>
+                    </div>
+                    <div id="selection_field_qlkh_menu_burger_id">
+                        <div class="selection_name_icon" id="dskhachhang_selection_name_icon_id">
+                            <img class="icon_item" src="~/assets/quanly/danhsachkhachhang.png">
+                            <p>Danh sách khách hàng</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="option_list_in_burger" id="admin_option_list_in_burger_id">
+                <div class="admin_option_name_icon" id="quanlynhanvien_admin_option_name_icon_id">
+                    <img src="~/assets/quanly/nhanvien_admin.png" class="icon_item">
+                    <p>Nhân viên</p>
+                </div>
+                <div class="admin_option_name_icon" id="quanlyphong_admin_option_name_icon_id">
+                    <img src="~/assets/quanly/phong_admin.png" class="icon_item">
+                    <p>Phòng</p>
+                </div>
+                <div class="admin_option_name_icon" id="quanlyloaiphong_admin_option_name_icon_id">
+                    <img src="~/assets/quanly/loaiphong_admin.png" class="icon_item">
+                    <p>Loại phòng</p>
+                </div>
+                <div class="admin_option_name_icon" id="quanlydoan_admin_option_name_icon_id">
+                    <img src="~/assets/quanly/doan_admin.png" class="icon_item">
+                    <p>Đồ ăn</p>
+                </div>
+                <div class="admin_option_name_icon" id="quanlytinhluong_admin_option_name_icon_id">
+                    <img src="~/assets/quanly/traluong_admin.png" class="icon_item">
+                    <p>Trả lương</p>
+                </div>
+                <div class="admin_option_name_icon" id="quanlyDoanhThu_admin_option_name_icon_id">
+                    <img src="~/assets/quanly/doanhthu_admin.png" class="icon_item">
+                    <p>Doanh thu</p>
+                </div>
+            </div>
+        </div>
+        <div class="main_working_window">
+            <div id="sdp_main_working_window_id" class="working_window_by_option">
+                <div class="filter_sodophong">
+                    <div class="branch_name_and_btn_book_hot_field">
+                        @{
+                            if (Account_In.IDChiNhanh == "HCM")
+                            {
+                                <p class="branch_name" value="HCM">Hồ Chí Minh</p>
+                            }
+                            else if (Account_In.IDChiNhanh == "HN")
+                            {
+                                <p class="branch_name" value="HN">Hà Nội</p>
+                            }
+                        }
+                        <div class="dropdown_filter_book_hot_sdp_main_working_window">
+                            <button id="btn_book_hot_sdp_main_working_window">Đặt phòng <i class="fa fa-book" style="font-size:1rem; color: #002b49;"></i></button>
+                            <div class="dropdown_content_filter_book_hot_sdp_main_working_window" id="dropdown_content_filter_book_hot_sdp_main_working_window_id">
+                                <form id="filter_book_hot_sdp_main_working_window_id" action="/QuanLy/GetPhongForSDPByFilter">
+                                    <div class="content_filter_book_hot_sdp_main_working_window">
+                                        <div class="part_filter_book_hot_sdp_main_working_window">
+                                            <p>Thời gian ở</p>
+                                            <input id="thoigiano_filter_book_hot_sdp_main_working_window_id" type="date" disabled name="thoigiano">
+                                        </div>
+                                        <div class="part_filter_book_hot_sdp_main_working_window">
+                                            <p>đến</p>
+                                            <input id="thoigianroidi_filter_book_hot_sdp_main_working_window_id" type="date" name="thoigianroidi">
+                                        </div>
+                                        <div class="part_filter_book_hot_sdp_main_working_window">
+                                            <p>Số người ở</p>
+                                            <select name="songuoio">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                        <div class="part_filter_book_hot_sdp_main_working_window">
+                                            <p>Loại phòng</p>
+                                            <select name="loaiphong">
+                                                <option value="STA">Stamdard Room</option>
+                                                <option value="SUP">Superior Room</option>
+                                                <option value="DEL">Deluxe Room</option>
+                                                <option value="SUI">Suite Room</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="function_filter_book_hot_sdp_main_working_window">
+                                        <button id="submit_function_filter_book_hot_sdp_main_working_window" type="submit">Lọc <i class="fa fa-filter" style="font-size:1rem; "></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="filter_sodophong_info" action="#" style="display: none">
+                        <!-- <select class="choose_floor data_sodophong_filter">
+                                        <option selected hidden>Tầng</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select> -->
+                        <select id="status_room_filter_sodophong_info">
+                            <option selected hidden>Trạng thái phòng</option>
+                            <option value="0">Trống</option>
+                            <option value="1">Đã đặt</option>
+                            <option value="2">Sửa chữa</option>
+                            <option value="3">Đã trả</option>
+                            <option value="4">Đã nhận</option>
+                        </select>
+                        <input id="number_room_filter_sodophong_info" type="text" placeholder="Số phòng">
+                        <button id="search_for_filter_sodophong_info" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="data_window_sodophong">
+                </div>
+                <!-- PopUp hiển thị thông tin khách hàng - end -->
+                <!-- Popup xem phòng đã đặt - thêm dịch vụ (màu đỏ) - begin -->
+                <div class="view_room_window_red_container" id="view_room_window_red_container_id">
+                    <div class="view_room_window_red">
+                        <div class="header_view_room_window_red">
+                            <div class="header_name_view_room_window_red">PHÒNG - <span></span></div>
+                            <i class="fa fa-close header_close_view_room_window_red" style="font-size: 1.5rem;"
+                               id="header_close_view_room_window_red_id"></i>
+                        </div>
+                        <div class="body_view_room_window_red">
+                            <div class="tab_option_view_room_window_red">
+                                <div id="option_thongtin_view_room_window_red_id" class="chosen_tab">Thông tin</div>
+                                <div id="option_doan_view_room_window_red_id">Đồ ăn</div>
+                            </div>
+                            <div class="info_view_room_window_red" id="info_view_room_window_red_id">
+                                <div class="part_info_view_room_window_red">
+                                    <div class="thongtinphong_title_view_room_window_red field_name_info_view_room_window_red">
+                                        Thông tin phòng
+                                    </div>
+                                    <div class="thongtinphong_field_view_room_window_red">
+                                        <div class="data_thongtinphong_view_room_window_red">
+                                            <p>Loại phòng:</p>
+                                            <input type="text" disabled id="loaiphong_data_thongtinphong_view_room_window_red_id">
+                                        </div>
+                                        <div class="data_thongtinphong_view_room_window_red">
+                                            <p>Số người ở:</p>
+                                            <input type="text" disabled id="songuoio_data_thongtinphong_view_room_window_red_id">
+                                        </div>
+                                        <div class="data_thongtinphong_view_room_window_red">
+                                            <p>Giá tiền:</p>
+                                            <input type="text" disabled id="giatien_data_thongtinphong_view_room_window_red_id">
+                                        </div>
+                                        <div class="data_thongtinphong_view_room_window_red">
+                                            <p>Tầng:</p>
+                                            <input type="text" disabled id="tang_data_thongtinphong_view_room_window_red_id">
+                                        </div>
+                                        <div class="data_thongtinphong_view_room_window_red">
+                                            <p>Số giường:</p>
+                                            <input type="text" disabled id="sogiuong_data_thongtinphong_view_room_window_red_id">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="part_info_view_room_window_red">
+                                    <div class="thongtindatphong_title_view_room_window_red field_name_info_view_room_window_red">
+                                        Thông tin đặt phòng
+                                    </div>
+                                    <div class="thongtindatphong_field_view_room_window_red">
+                                        <div class="column_data_red">
+                                            <div class="data_thongtindatphong_view_room_window_red">
+                                                <p>ID đặt phòng:</p>
+                                                <input type="text" disabled id="iddatphong_data_thongtindatphong_view_room_window_red_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_view_room_window_red">
+                                                <p>CCCD/Passport khách đặt:</p>
+                                                <input type="text" disabled id="idkhachdat_data_thongtindatphong_view_room_window_red_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_view_room_window_red">
+                                                <p>Thời gian đặt:</p>
+                                                <input type="datetime" disabled id="thoigiandat_data_thongtindatphong_view_room_window_red_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_view_room_window_red">
+                                                <p>CCCD/Passport khách chủ:</p>
+                                                <input disabled class="input_khachchu_thongtindatphong_view_room_window_red"
+                                                       type="text" id="idkhachchu_data_thongtindatphong_view_room_window_red_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_view_room_window_red">
+                                                <p>Tên khách chủ:</p>
+                                                <input type="text" disabled id="tenkhachchu_data_thongtindatphong_view_room_window_red_id">
+                                            </div>
+                                        </div>
+                                        <div class="column_data_red">
+                                            <div class="mini_field_grid_red">
+                                                <div class="data_thongtindatphong_view_room_window_red">
+                                                    <p>Thời gian ở từ:</p>
+                                                    <input type="date" disabled id="ngaydeno_data_thongtindatphong_view_room_window_red_id">
+                                                </div>
+                                                <div class="data_thongtindatphong_view_room_window_red ">
+                                                    <p>đến ngày:</p>
+                                                    <input type="date" id="ngayroidi_data_thongtindatphong_view_room_window_red_id">
+                                                </div>
+                                                <div class="data_thongtindatphong_view_room_window_red">
+                                                    <p>Checkin:</p>
+                                                    <input type="datetime" disabled id="checkin_data_thongtindatphong_view_room_window_red_id">
+                                                </div>
+                                                <div class="data_thongtindatphong_view_room_window_red ">
+                                                    <p>Checkout:</p>
+                                                    <input type="datetime" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="mini_field_grid_thongtinkhacho_red">
+                                                <div class="thongtinkhacho_title_view_room_window_red">Thông tin khách ở:</div>
+                                                <div class="thongtinkhacho_field_view_room_window_red">
+                                                    <div class="data_thongtinkhacho_field_view_room_window_red">
+                                                        <div class="valid_khacho_info_data_red">
+                                                            <input class="tenkhacho_info_red" type="text" value="Lê Hoàng Nguyên">
+                                                            <input class="cccdkhacho_info_red" type="text" value="31245651">
+                                                            <button class="btn_thongtinkhacho_info_red btn_remove_thongtinkhacho_info_red">
+                                                                <i class="fa fa-close"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="invalid_khacho_info_data_red">
+                                                        <input class="tenkhacho_enter_red" type="text"
+                                                               placeholder="Nhập họ tên...">
+                                                        <input class="cccdkhacho_enter_red" type="text"
+                                                               placeholder="Nhập CCCD...">
+                                                        <button class="btn_thongtinkhacho_info_red btn_add_thongtinkhacho_info_red">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="part_info_view_room_window_red">
+                                    <div class="thongtindatdoan_title_view_room_window_red field_name_info_view_room_window_red">
+                                        Thông tin đặt đồ ăn
+                                    </div>
+                                    <div class="food_order_table_field_red">
+                                        <table class="food_order_table_red tabthongtin">
+                                            <colgroup>
+                                                <col style="width: 10%">
+                                                <col style="width: 20%">
+                                                <col style="width: 17%">
+                                                <col style="width: 15%">
+                                                <col style="width: 18%">
+                                                <col style="width: 20%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr class="header_table_order_food_red">
+                                                    <th>#</th>
+                                                    <th>Tên đồ ăn</th>
+                                                    <th>Thời gian đặt</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Đơn giá (VNĐ)</th>
+                                                    <th>Thành tiền (VNĐ)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tr class="sum_row_table_order_food_red">
+                                                <td colspan="6" id='sum_price_food_order_red'>Tổng tiền (VNĐ): 260.000VNĐ</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="part_info_view_room_window_red">
+                                    <div class="function_viewphong_field_red">
+                                        <button id="btn_save_viewphong_red">Lưu</button>
+                                        <button id="btn_cancel_viewphong_red">Hủy</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="addfood_view_room_window_red hidden" id="addfood_view_room_window_red_id">
+                                <div class="food_table_and_order_list_field_view_room_red">
+                                    <div class="bangdoan_datdoan_view_room_field_red">
+                                        <div class="search_function_in_bangdoan_datdoan_view_room_field_red">
+                                            <input type="text" placeholder="Tên đồ ăn...">
+                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                        </div>
+                                        <table class="list_food_table_view_room_red">
+                                            <thead>
+                                                <tr class="header_list_food_table_view_room_red">
+                                                    <th class="stt_list_food_table_view_room_red">#</th>
+                                                    <th class="name_list_food_table_view_room_red">Tên đồ ăn</th>
+                                                    <th class="btn_add_list_food_table_view_room_red"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list_food_table_body_view_room_red">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="bangorderingdoan_datdoan_view_room_field_red">
+                                        <table class="ordering_food_table_view_room_red" id="ordering_food_table_view_room_red_id">
+                                            <thead>
+                                                <tr class="header_ordering_food_table_view_room_red">
+                                                    <th class="stt_ordering_food_table_view_room_red">#</th>
+                                                    <th class="name_ordering_food_table_view_room_red">Tên đồ ăn</th>
+                                                    <th class="count_ordering_food_table_view_room_red">Số lượng</th>
+                                                    <th class="price_ordering_food_table_view_room_red">Đơn giá</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="ordering_food_table_body_view_room_red">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="part_addfood_view_room_window_red">
+                                    <div class="thongtindatdoan_title_view_room_window_red field_name_info_view_room_window_red">
+                                        Thông tin đặt đồ ăn
+                                    </div>
+                                    <div class="food_order_table_field_red">
+                                        <table class="food_order_table_red tabdoan">
+                                            <colgroup>
+                                                <col style="width: 10%">
+                                                <col style="width: 20%">
+                                                <col style="width: 17%">
+                                                <col style="width: 15%">
+                                                <col style="width: 18%">
+                                                <col style="width: 20%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr class="header_table_order_food_red">
+                                                    <th>#</th>
+                                                    <th>Tên đồ ăn</th>
+                                                    <th>Thời gian đặt</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Đơn giá (VNĐ)</th>
+                                                    <th>Thành tiền (VNĐ)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tr class="sum_row_table_order_food_red">
+                                                <td colspan="6" id='sum_price_food_order_red'>Tổng tiền (VNĐ): 260.000VNĐ</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="part_addfood_view_room_window_red">
+                                    <div class="function_addfood_viewphong_field_red">
+                                        <button id="btn_confirm_addfood_red">Lưu</button>
+                                        <button id="btn_cancel_addfood_red">Hủy</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup xem phòng đã đặt - thêm dịch vụ (màu đỏ) - end -->
+                <!-- Popup thông báo phòng sẵn sàng (màu đen) - begin -->
+                <div class="notification_window_black_container" id="notification_window_black_container_id">
+                    <div class="notification_window_black">
+                        <div class="header_notification_window_black">
+                            <div class="header_name_notification_window_black">PHÒNG - <span>0102</span></div>
+                            <i class="fa fa-close header_close_notification_window_black" style="font-size: 1.5rem;"
+                               id="header_close_notification_window_black_id"></i>
+                        </div>
+                        <div class="body_notification_window_black">
+                            <div class="content_notification_window_black">Phòng đã sẵn sàng?</div>
+                            <div class="function_notification_window_black">
+                                <button id="btn_ready_notification_window_black">Sẵn sàng</button>
+                                <button id="btn_cancel_notification_window_black">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup thông báo phòng sẵn sàng (màu đen) - end -->
+                <!-- Popup thông báo phòng sẵn sàng (màu xám) - begin -->
+                <div class="notification_window_gray_container" id="notification_window_gray_container_id">
+                    <div class="notification_window_gray">
+                        <div class="header_notification_window_gray">
+                            <div class="header_name_notification_window_gray">PHÒNG - <span>0102</span></div>
+                            <i class="fa fa-close header_close_notification_window_gray" style="font-size: 1.5rem;"
+                               id="header_close_notification_window_gray_id"></i>
+                        </div>
+                        <div class="body_notification_window_gray">
+                            <div class="content_notification_window_gray">Phòng đã sẵn sàng?</div>
+                            <div class="function_notification_window_gray">
+                                <button id="btn_ready_notification_window_gray">Sẵn sàng</button>
+                                <button id="btn_cancel_notification_window_gray">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup thông báo phòng sẵn sàng (màu xám) - end -->
+                <!-- Popup thông báo các chức năng phòng (màu xanh dương) - begin -->
+                <div class="notification_window_blue_container" id="notification_window_blue_container_id">
+                    <div class="notification_window_blue">
+                        <div class="header_notification_window_blue">
+                            <div class="header_name_notification_window_blue">PHÒNG - <span>0102</span></div>
+                            <i class="fa fa-close header_close_notification_window_blue" style="font-size: 1.5rem;"
+                               id="header_close_notification_window_blue_id"></i>
+                        </div>
+                        <div class="body_notification_window_blue">
+                            <div class="content_notification_window_blue">Bạn muốn:</div>
+                            <div class="function_notification_window_blue">
+                                <button id="btn_order_room_notification_window_blue">Nhận phòng</button>
+                                <button id="btn_fix_room_notification_window_blue">Sửa chữa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup thông báo các chức năng phòng (màu xanh dương) - end -->
+                <!-- Popup nhận phòng tại chỗ (màu xanh dương) - begin -->
+                <div class="receive_room_window_blue_container" id="receive_room_window_blue_container_id">
+                    <div class="receive_room_window_blue">
+                        <div class="header_receive_room_window_blue">
+                            <div class="header_name_receive_room_window_blue">NHẬN PHÒNG - <span></span></div>
+                            <i class="fa fa-close header_close_receive_room_window_blue" style="font-size: 1.5rem;" id="header_close_receive_room_window_blue_id"></i>
+                        </div>
+                        <div class="body_receive_room_window_blue">
+                            <div class="tab_option_receive_room_window_blue">
+                                <div id="option_thongtin_receive_room_window_blue_id" class="chosen_tab">Thông tin</div>
+                                <div id="option_doan_receive_room_window_blue_id">Đồ ăn</div>
+                            </div>
+                            <div class="info_receive_room_window_blue" id="info_receive_room_window_blue_id">
+                                <div class="part_info_receive_room_window_blue">
+                                    <div class="thongtinphong_title_receive_room_window_blue field_name_info_receive_room_window_blue">Thông tin phòng</div>
+                                    <div class="thongtinphong_field_receive_room_window_blue">
+                                        <div class="data_thongtinphong_receive_room_window_blue">
+                                            <p>Loại phòng:</p>
+                                            <input type="text" disabled value="Standard Room" id="loaiphong_data_thongtinphong_receive_room_window_blue_id">
+                                        </div>
+                                        <div class="data_thongtinphong_receive_room_window_blue">
+                                            <p>Số người ở:</p>
+                                            <input type="text" disabled id="songuoio_data_thongtinphong_receive_room_window_blue_id">
+                                        </div>
+                                        <div class="data_thongtinphong_receive_room_window_blue">
+                                            <p>Giá tiền:</p>
+                                            <input type="text" disabled id="giatien_data_thongtinphong_receive_room_window_blue_id">
+                                        </div>
+                                        <div class="data_thongtinphong_receive_room_window_blue">
+                                            <p>Tầng:</p>
+                                            <input type="text" disabled id="tang_data_thongtinphong_receive_room_window_blue_id">
+                                        </div>
+                                        <div class="data_thongtinphong_receive_room_window_blue">
+                                            <p>Số giường:</p>
+                                            <input type="text" disabled id="sogiuong_data_thongtinphong_receive_room_window_blue_id">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="part_info_receive_room_window_blue">
+                                    <div class="thongtindatphong_title_receive_room_window_blue field_name_info_receive_room_window_blue">Thông tin đặt phòng</div>
+                                    <div class="thongtindatphong_field_receive_room_window_blue">
+                                        <div class="column_data_blue">
+                                            <div class="data_thongtindatphong_receive_room_window_blue">
+                                                <p>ID đặt phòng:</p>
+                                                <input type="text" disabled id="iddatphong_data_thongtindatphong_receive_room_window_blue_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_receive_room_window_blue">
+                                                <p>CCCD/Passport khách đặt:</p>
+                                                <input type="text" disabled id="idkhachdat_data_thongtindatphong_receive_room_window_blue_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_receive_room_window_blue">
+                                                <p>Thời gian đặt:</p>
+                                                <input type="datetime" disabled id="thoigiandat_data_thongtindatphong_receive_room_window_blue_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_receive_room_window_blue">
+                                                <p>CCCD/Passport khách chủ:</p>
+                                                <input class="input_khachchu_thongtindatphong_receive_room_window_blue" id="idkhachchu_data_thongtindatphong_receive_room_window_blue_id" type="text">
+                                                <button class="btn_confirm_khachchu_thongtindatphong_receive_room_window_blue" id="btn_confirm_khachchu_thongtindatphong_receive_room_window_blue_id">Tìm</button>
+                                            </div>
+                                            <div class="data_thongtindatphong_receive_room_window_blue">
+                                                <p>Tên khách chủ:</p>
+                                                <input type="text" disabled id="tenkhachchu_data_thongtindatphong_receive_room_window_blue_id">
+                                            </div>
+                                        </div>
+                                        <div class="column_data_blue">
+                                            <div class="mini_field_grid_blue">
+                                                <div class="data_thongtindatphong_receive_room_window_blue">
+                                                    <p>Thời gian ở từ:</p>
+                                                    <input type="date" disabled id="ngaydeno_data_thongtindatphong_receive_room_window_blue_id">
+                                                </div>
+                                                <div class="data_thongtindatphong_receive_room_window_blue ">
+                                                    <p>đến ngày:</p>
+                                                    <input type="date" id="ngayroidi_data_thongtindatphong_receive_room_window_blue_id">
+                                                </div>
+                                                <div class="data_thongtindatphong_receive_room_window_blue">
+                                                    <p>Checkin:</p>
+                                                    <input type="datetime" disabled id="checkin_data_thongtindatphong_receive_room_window_blue_id">
+                                                </div>
+                                                <div class="data_thongtindatphong_receive_room_window_blue ">
+                                                    <p>Checkout:</p>
+                                                    <input type="datetime" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="mini_field_grid_thongtinkhacho_blue">
+                                                <div class="thongtinkhacho_title_receive_room_window_blue">Thông tin khách ở:</div>
+                                                <div class="thongtinkhacho_field_receive_room_window_blue">
+                                                    <div class="data_thongtinkhacho_field_receive_room_window_blue">
+                                                    </div>
+                                                    <div class="invalid_khacho_info_data_blue">
+                                                        <input class="tenkhacho_enter_blue" type="text" placeholder="Nhập họ tên...">
+                                                        <input class="cccdkhacho_enter_blue" type="text" placeholder="Nhập CCCD...">
+                                                        <button class="btn_thongtinkhacho_info_blue btn_add_thongtinkhacho_info_blue"><i class="fa fa-plus"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="part_info_receive_room_window_blue">
+                                    <div class="thongtindatdoan_title_receive_room_window_blue field_name_info_receive_room_window_blue">Thông tin đặt đồ ăn</div>
+                                    <div class="food_order_table_field_blue">
+                                        <table class="food_order_table_blue tabthongtin">
+                                            <colgroup>
+                                                <col style="width: 10%">
+                                                <col style="width: 20%">
+                                                <col style="width: 17%">
+                                                <col style="width: 15%">
+                                                <col style="width: 18%">
+                                                <col style="width: 20%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr class="header_table_order_food_blue">
+                                                    <th>#</th>
+                                                    <th>Tên đồ ăn</th>
+                                                    <th>Thời gian đặt</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Đơn giá (VNĐ)</th>
+                                                    <th>Thành tiền (VNĐ)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tr class="sum_row_table_order_food_blue">
+                                                <td colspan="6" id='sum_price_food_order_blue'>Tổng tiền (VNĐ): 0 VNĐ</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="part_info_receive_room_window_blue">
+                                    <div class="function_receivephong_field_blue">
+                                        <button id="btn_confirm_receivephong_blue">Nhận phòng</button>
+                                        <button id="btn_cancel_receivephong_blue">Hủy</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="addfood_receive_room_window_blue hidden" id="addfood_receive_room_window_blue_id">
+                                <div class="food_table_and_order_list_field_receive_room_blue">
+                                    <div class="bangdoan_datdoan_receive_room_field_blue">
+                                        <div class="search_function_in_bangdoan_datdoan_receive_room_field_blue">
+                                            <input type="text" placeholder="Tên đồ ăn...">
+                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                        </div>
+                                        <table class="list_food_table_receive_room_blue">
+                                            <thead>
+                                                <tr class="header_list_food_table_receive_room_blue">
+                                                    <th class="stt_list_food_table_receive_room_blue">#</th>
+                                                    <th class="name_list_food_table_receive_room_blue">Tên đồ ăn</th>
+                                                    <th class="btn_add_list_food_table_receive_room_blue"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list_food_table_body_receive_room_blue">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="bangorderingdoan_datdoan_receive_room_field_blue">
+                                        <table class="ordering_food_table_receive_room_blue" id="ordering_food_table_receive_room_blue_id">
+                                            <thead>
+                                                <tr class="header_ordering_food_table_receive_room_blue">
+                                                    <th class="stt_ordering_food_table_receive_room_blue">#</th>
+                                                    <th class="name_ordering_food_table_receive_room_blue">Tên đồ ăn</th>
+                                                    <th class="count_ordering_food_table_receive_room_blue">Số lượng</th>
+                                                    <th class="price_ordering_food_table_receive_room_blue">Đơn giá</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="ordering_food_table_body_receive_room_blue">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="part_addfood_receive_room_window_blue">
+                                    <div class="thongtindatdoan_title_receive_room_window_blue field_name_info_receive_room_window_blue">Thông tin đặt đồ ăn</div>
+                                    <div class="food_order_table_field_blue">
+                                        <table class="food_order_table_blue tabdoan">
+                                            <colgroup>
+                                                <col style="width: 10%">
+                                                <col style="width: 20%">
+                                                <col style="width: 17%">
+                                                <col style="width: 15%">
+                                                <col style="width: 18%">
+                                                <col style="width: 20%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr class="header_table_order_food_blue">
+                                                    <th>#</th>
+                                                    <th>Tên đồ ăn</th>
+                                                    <th>Thời gian đặt</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Đơn giá (VNĐ)</th>
+                                                    <th>Thành tiền (VNĐ)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tr class="sum_row_table_order_food_blue">
+                                                <td colspan="6" id='sum_price_food_order_blue'>Tổng tiền (VNĐ): 0 VNĐ</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="part_addfood_receive_room_window_blue">
+                                    <div class="function_addfood_receivephong_field_blue">
+                                        <button id="btn_confirm_addfood_blue">Lưu</button>
+                                        <button id="btn_cancel_addfood_blue">Hủy</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup nhận phòng tại chỗ (màu xanh dương) - end -->
+            </div>
+            <div id="dsdatphong_main_working_window_id" class="working_window_by_option">
+                <div class="filter_dsdatphong">
+                    <div class="branch_name_and_btn_book_redirect_field">
+                        @{
+                            if (Account_In.IDChiNhanh == "HCM")
+                            {
+                                <p class="branch_name" value ="HCM">Hồ Chí Minh</p>
+                            }
+                            else if (Account_In.IDChiNhanh == "HN")
+                            {
+                                <p class="branch_name" value ="HN">Hà Nội</p>
+                            }
+                        }
+                        <button id="btn_book_redirect_dsdatphong_main_working_window">Đặt phòng <i class="fa fa-external-link" style="font-size:1rem; color: #002b49;"></i></button>
+                    </div>
+                    <form id="filter_dsdatphong_info" action="/QuanLy/Load_Data_For_DSDatPhong_By_Filter">
+                        <input id="date_booking_room_filter_dsdatphong_info" type="date" name="ngaydeno_dsdp">
+                        <input id="enter_booking_room_code_filter_dsdatphong_info" type="text" placeholder="Mã đặt phòng (3 số cuối)" name="stt_dsdp">
+                        <button id="search_for_filter_dsdatphong_info" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="data_window_dsdatphong">
+                    <table class="list_book_room_table_data_window_dsdatphong">
+                        <thead>
+                            <tr class="header_list_book_room_table_data_window_dsdatphong">
+                                <th class="madatphong_list_book_room_table_data_window_dsdatphong" rowspan="2">Mã đặt phòng</th>
+                                <th class="idphong_list_book_room_table_data_window_dsdatphong" rowspan="2">ID Phòng</th>
+                                <th class="idkhachdat_list_book_room_table_data_window_dsdatphong" rowspan="2">ID Khách đặt</th>
+                                <th class="thoigiano_list_book_room_table_data_window_dsdatphong" colspan="2">Thời gian ở</th>
+                                <th class="tiencoc_list_book_room_table_data_window_dsdatphong" rowspan="2">Tiền cọc (VNĐ)</th>
+                                <th class="nhanphong_btn_list_book_room_table_data_window_dsdatphong" rowspan="2"></th>
+                            </tr>
+                            <tr class="header_list_book_room_table_data_window_dsdatphong">
+                                <th class="tungay_list_book_room_table_data_window_dsdatphong">Từ ngày</th>
+                                <th class="denngay_list_book_room_table_data_window_dsdatphong">Đến ngày</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="madatphong_list_book_room_table_data_window_dsdatphong">HCM20210101_001</td>
+                                <td class="idphong_list_book_room_table_data_window_dsdatphong">HCM0305</td>
+                                <td class="idkhachdat_list_book_room_table_data_window_dsdatphong">31245678</td>
+                                <td class="tungay_list_book_room_table_data_window_dsdatphong">02/01/2021</td>
+                                <td class="denngay_list_book_room_table_data_window_dsdatphong">02/01/2021</td>
+                                <td class="tiencoc_list_book_room_table_data_window_dsdatphong">1.000.000</td>
+                                <td class="nhanphong_btn_list_book_room_table_data_window_dsdatphong">
+                                    <button class="btn_nhanphong_list_book_room_table_data_window_dsdatphong">
+                                        Nhận phòng
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="madatphong_list_book_room_table_data_window_dsdatphong">HCM20210101_001</td>
+                                <td class="idphong_list_book_room_table_data_window_dsdatphong">HCM0305</td>
+                                <td class="idkhachdat_list_book_room_table_data_window_dsdatphong">31245678</td>
+                                <td class="tungay_list_book_room_table_data_window_dsdatphong">02/01/2021</td>
+                                <td class="denngay_list_book_room_table_data_window_dsdatphong">02/01/2021</td>
+                                <td class="tiencoc_list_book_room_table_data_window_dsdatphong">1.000.000</td>
+                                <td class="nhanphong_btn_list_book_room_table_data_window_dsdatphong">
+                                    <button class="btn_nhanphong_list_book_room_table_data_window_dsdatphong">
+                                        Nhận phòng
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="dshoadon_main_working_window_id" class="working_window_by_option">
+                <div class="filter_dshoadon">
+                    <div class="branch_name_and_btn_create_new_receipt_field">
+                        @{
+                            if (Account_In.IDChiNhanh == "HCM")
+                            {
+                                <p class="branch_name" value="HCM">Hồ Chí Minh</p>
+                            }
+                            else if (Account_In.IDChiNhanh == "HN")
+                            {
+                                <p class="branch_name" value="HN">Hà Nội</p>
+                            }
+                        }
+                        <button id="btn_create_new_receipt_dshoadon_main_working_window">Thêm mới <i class="fa fa-plus" style="font-size:1rem; color: #002b49;"></i></button>
+                    </div>
+                    <form id="filter_dshoadon_info" action ="/QuanLy/Get_DSHoaDon_ByFilter">
+                        <input id="date_of_receipt_filter_dshoadon_info" type="date" name="ngay_cua_hoadon">
+                        <input id="enter_receipt_code_filter_dshoadon_info" type="text" placeholder="Số hóa đơn (3 số cuối)" name="so_cua_hoadon">
+                        <button id="search_for_filter_dshoadon_info" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="data_window_dshoadon">
+                    <table class="list_receipt_table_data_window_dshoadon">
+                        <thead>
+                            <tr class="header_list_receipt_table_data_window_dshoadon">
+                                <th class="mahoadon_list_receipt_table_data_window_dshoadon">Mã hóa đơn</th>
+                                <th class="idkhachthanhtoan_list_receipt_table_data_window_dshoadon">ID Khách thanh toán</th>
+                                <th class="nhanvienthanhtoan_list_receipt_table_data_window_dshoadon">Nhân viên thanh toán</th>
+                                <th class="thoigianxuat_list_receipt_table_data_window_dshoadon">Thời gian xuất</th>
+                                <th class="hinhthucthanhtoan_list_receipt_table_data_window_dshoadon">Hình thức thanh toán</th>
+                                <th class="tongsotien_list_receipt_table_data_window_dshoadon">Tổng số tiền (VNĐ)</th>
+                                <th class="print_btn_list_receipt_table_data_window_dshoadon"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pop up thêm mới hóa đơn - begin -->
+                <div class="add_receipt_window_popup_container" id="add_receipt_window_popup_container_id">
+                    <div class="add_receipt_window_popup">
+                        <div class="header_add_receipt_window_popup">
+                            <div class="header_name_add_receipt_window_popup">THÊM MỚI HÓA ĐƠN</div>
+                            <i class="fa fa-close header_close_add_receipt_window_popup" style="font-size: 1.5rem;" id="header_close_add_receipt_window_popup_id"></i>
+                        </div>
+                        <div class="body_add_receipt_window_popup">
+                            <p class="title_body_add_receipt_window_popup">HÓA ĐƠN THANH TOÁN DỊCH VỤ</p>
+                            <div class="info_body_add_receipt_window_popup">
+                                <div class="field_name_in_info_body_add_receipt_window_popup">Thông tin hóa đơn</div>
+                                <div class="thongtinhoadon_info_body_add_receipt_window_popup">
+                                    <div class="data_field_in_thongtinhoadon_info_body_add_receipt_window_popup">
+                                        <p>Chi nhánh: </p>
+                                        <input disabled type="text" id="chinhanh_data_field_in_thongtinhoadon_info_body_add_receipt_window_popup">
+                                    </div>
+                                    <div class="data_field_in_thongtinhoadon_info_body_add_receipt_window_popup">
+                                        <p>Nhân viên thu ngân: </p>
+                                        <input disabled type="text" id="nhanvienthungan_data_field_in_thongtinhoadon_info_body_add_receipt_window_popup">
+                                    </div>
+                                    <div class="data_field_in_thongtinhoadon_info_body_add_receipt_window_popup">
+                                        <p>Hóa đơn số: </p>
+                                        <input disabled type="text" value="---">
+                                    </div>
+                                    <div class="data_field_in_thongtinhoadon_info_body_add_receipt_window_popup">
+                                        <p>Ngày: </p>
+                                        <input disabled type="date" id="ngayhoadon_data_field_in_thongtinhoadon_info_body_add_receipt_window_popup">
+                                    </div>
+                                    <div class="data_field_in_thongtinhoadon_info_body_add_receipt_window_popup">
+                                        <p>CCCD/Passport khách thanh toán: </p>
+                                        <input type="text" id="cccd_khachthanhtoan_add_receipt_window">
+                                        <button class="btn_confirm_khachthanhtoan_add_receipt_window" id="btn_confirm_khachthanhtoan_add_receipt_window_id">Tìm</button>
+                                    </div>
+                                </div>
+                                <div class="field_name_in_info_body_add_receipt_window_popup">Chi tiết hóa đơn</div>
+                                <div class="search_idphong_info_body_add_receipt_window_popup">
+                                    <p>ID phòng:</p>
+                                    <input type="text" id="idphong_need_paid_id">
+                                    <button id="check_idphong_need_paid_id">Kiểm tra</button>
+                                    <div id="error_nf_check_idphong_need_paid_id"></div>
+                                </div>
+                                <div class="receipt_table_field_in_info_body_add_receipt_window_popup">
+                                    <table class="receipt_table_in_info_body_add_receipt_window_popup">
+                                        <thead>
+                                            <tr class="header_table_in_info_body_add_receipt_window_popup">
+                                                <th class="stt_receipt_table_field_in_add_receipt_window_popup">#</th>
+                                                <th class="service_receipt_table_field_in_add_receipt_window_popup">Dịch vụ</th>
+                                                <th class="checkin_receipt_table_field_in_add_receipt_window_popup">Đến ở</th>
+                                                <th class="checkout_receipt_table_field_in_add_receipt_window_popup">Rời đi</th>
+                                                <th class="count_receipt_table_field_in_add_receipt_window_popup">Số lượng</th>
+                                                <th class="price_receipt_table_field_in_add_receipt_window_popup">Giá tiền (VNĐ)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div>
+                                        <p id='total_price_all_receipt'>Tổng số tiền: 0 VNĐ</p>
+                                    </div>
+                                </div>
+                                <div class="function_add_receipt_window_field">
+                                    <button id="btn_export_add_receipt_window">Xuất</button>
+                                    <button id="btn_cancel_add_receipt_window">Hủy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pop up thêm mới hóa đơn - end -->
+                <!-- Pop up hóa đơn bản pdf để in - begin -->
+                <div class="receipt_export_print_popup_window_container" id="receipt_export_print_popup_window_container_id">
+                    <div class="receipt_export_print_popup_window">
+                        <div class="body_receipt_export_print_popup_window">
+                            <div class="content_receipt_export_print_popup_window"
+                                 id="content_receipt_export_print_popup_window_id">
+                                <div class="header_content_receipt_export_print_popup_window">
+                                    <img id="logo_header_content_receipt_export_print_popup_window" src="~/assets/quanly/background.jpg"
+                                         alt="Del Lunar Logo">
+                                    <div>
+                                        <div id="hotel_name_header_content_receipt_export_print_popup_window_id">Del Lunar</div>
+                                        <p id="address_header_content_receipt_export_print_popup_window_id">
+                                            Địa chỉ: 3730 South Las
+                                            Vegas Boulevard Las Vegas, NV 18915
+                                        </p>
+                                        <div class="email_sdt_header_content_receipt_export_print_popup_window">
+                                            <p>SĐT: 702.590.7111</p>
+                                            <p>Email: dellunarhotel@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="title_content_receipt_export_print_popup_window">HÓA ĐƠN THANH TOÁN DỊCH VỤ</div>
+                                <div class="info_content_receipt_export_print_popup_window">
+                                    <div>
+                                        <p><span id="branch_name_receipt_export_print_popup_window_id"></span>, ngày <span id="receipt_date_receipt_export_print_popup_window_id"></span></p>
+                                        <p id="khachthanhtoan_name_receipt_export_print_popup_window_id"></p>
+                                        <p id="thungan_name_receipt_export_print_popup_window_id"></p>
+                                    </div>
+                                    <p>Hóa đơn số: <span id="number_receipt_receipt_export_print_popup_window_id">---</span></p>
+                                </div>
+                                <table class="receipt_detail_table_content_receipt_export_print_popup_window">
+                                    <colgroup>
+                                        <col style="width: 14%">
+                                        <col style="width: 28%">
+                                        <col style="width: 14%">
+                                        <col style="width: 14%">
+                                        <col style="width: 10%">
+                                        <col style="width: 20%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr class="header_receipt_detail_table_content_receipt_export_print_popup_window">
+                                            <th class="stt_receipt_detail_table_content_receipt_export_print_popup_window">#</th>
+                                            <th class="service_receipt_detail_table_content_receipt_export_print_popup_window">
+                                                Dịch
+                                                vụ
+                                            </th>
+                                            <th class="checkin_receipt_detail_table_content_receipt_export_print_popup_window">
+                                                Check
+                                                In
+                                            </th>
+                                            <th class="checkout_receipt_detail_table_content_receipt_export_print_popup_window">
+                                                Check Out
+                                            </th>
+                                            <th class="count_receipt_detail_table_content_receipt_export_print_popup_window">
+                                                Số
+                                                lượng
+                                            </th>
+                                            <th class="price_receipt_detail_table_content_receipt_export_print_popup_window">
+                                                Giá
+                                                tiền (VNĐ)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <div class="cal_price_content_receipt_export_print_popup_window">
+                                    <div>
+                                        <div class="cal_price_detail_content_receipt_export_print_popup_window">
+                                            <p>Tổng giá gốc:</p>
+                                            <p id="tonggiagoc_cal_price_detail_content_receipt_export_print_popup_window">0 VNĐ</p>
+                                        </div>
+                                        <div class="cal_price_detail_content_receipt_export_print_popup_window">
+                                            <p>Giảm giá phòng:</p>
+                                            <p id="giamgiaphong_cal_price_detail_content_receipt_export_print_popup_window">0 VNĐ</p>
+                                        </div>
+                                        <div class="cal_price_detail_content_receipt_export_print_popup_window">
+                                            <p>Giảm giá đồ ăn:</p>
+                                            <p id="giamgiadoan_cal_price_detail_content_receipt_export_print_popup_window">0 VNĐ</p>
+                                        </div>
+                                        <div class="cal_price_detail_content_receipt_export_print_popup_window">
+                                            <p>Phí quá số người ở:</p>
+                                            <p id="phiquasno_cal_price_detail_content_receipt_export_print_popup_window">0 VNĐ</p>
+                                        </div>
+                                        <div class="cal_price_detail_content_receipt_export_print_popup_window">
+                                            <p>Phí Check In/Out:</p>
+                                            <p id="phicico_cal_price_detail_content_receipt_export_print_popup_window">0 VNĐ</p>
+                                        </div>
+                                        <div class="cal_price_detail_content_receipt_export_print_popup_window">
+                                            <p>Đã trả:</p>
+                                            <p id="datra_cal_price_detail_content_receipt_export_print_popup_window">0 VNĐ</p>
+                                        </div>
+                                        <div class="cal_price_detail_content_receipt_export_print_popup_window phaithu_cost">
+                                            <p>Phải thu (VNĐ):</p>
+                                            <p id="phaithu_cal_price_detail_content_receipt_export_print_popup_window">0 VNĐ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="function_receipt_export_print_popup_window_container">
+                                <button id="btn_cancel_receipt_export_print_popup_window_container">Hủy</button>
+                                <button id="btn_print_receipt_export_print_popup_window_container">
+                                    In <i class="fa fa-print"
+                                          style="font-size:1rem"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pop up hóa đơn bản pdf để in - end -->
+                <!-- Pop up xem phòng chuẩn bị checkout - begin-->
+                <div class="toreturn_room_window_receipt_container" id="toreturn_room_window_receipt_container_id">
+                    <div class="toreturn_room_window_receipt">
+                        <div class="header_toreturn_room_window_receipt">
+                            <div class="header_name_toreturn_room_window_receipt">PHÒNG - <span>0102</span></div>
+                            <i class="fa fa-close header_close_toreturn_room_window_receipt" style="font-size: 1.5rem;" id="header_close_toreturn_room_window_receipt_id"></i>
+                        </div>
+                        <div class="body_toreturn_room_window_receipt">
+                            <div class="tab_option_toreturn_room_window_receipt">
+                                <div id="option_thongtin_toreturn_room_window_receipt_id">Thông tin</div>
+                            </div>
+                            <div class="info_toreturn_room_window_receipt" id="info_toreturn_room_window_receipt_id">
+                                <div class="part_info_toreturn_room_window_receipt">
+                                    <div class="thongtinphong_title_toreturn_room_window_receipt field_name_info_toreturn_room_window_receipt">Thông tin phòng</div>
+                                    <div class="thongtinphong_field_toreturn_room_window_receipt">
+                                        <div class="data_thongtinphong_toreturn_room_window_receipt">
+                                            <p>Loại phòng:</p>
+                                            <input type="text" disabled id="loaiphong_data_thongtinphong_toreturn_room_window_receipt_id">
+                                        </div>
+                                        <div class="data_thongtinphong_toreturn_room_window_receipt">
+                                            <p>Số người ở:</p>
+                                            <input type="text" disabled id="songuoio_data_thongtinphong_toreturn_room_window_receipt_id">
+                                        </div>
+                                        <div class="data_thongtinphong_toreturn_room_window_receipt">
+                                            <p>Giá tiền:</p>
+                                            <input type="text" disabled id="giatien_data_thongtinphong_toreturn_room_window_receipt_id">
+                                        </div>
+                                        <div class="data_thongtinphong_toreturn_room_window_receipt">
+                                            <p>Tầng:</p>
+                                            <input type="text" disabled id="tang_data_thongtinphong_toreturn_room_window_receipt_id">
+                                        </div>
+                                        <div class="data_thongtinphong_toreturn_room_window_receipt">
+                                            <p>Số giường:</p>
+                                            <input type="text" disabled id="sogiuong_data_thongtinphong_toreturn_room_window_receipt_id">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="part_info_toreturn_room_window_receipt">
+                                    <div class="thongtindatphong_title_toreturn_room_window_receipt field_name_info_toreturn_room_window_receipt">Thông tin đặt phòng</div>
+                                    <div class="thongtindatphong_field_toreturn_room_window_receipt">
+                                        <div class="column_data_toreturn_receipt">
+                                            <div class="data_thongtindatphong_toreturn_room_window_receipt">
+                                                <p>ID đặt phòng:</p>
+                                                <input type="text" disabled id="iddatphong_data_thongtindatphong_toreturn_room_window_receipt_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_toreturn_room_window_receipt">
+                                                <p>CCCD/Passport khách đặt:</p>
+                                                <input type="text" disabled id="idkhachdat_data_thongtindatphong_toreturn_room_window_receipt_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_toreturn_room_window_receipt">
+                                                <p>Thời gian đặt:</p>
+                                                <input type="datetime" disabled id="thoigiandat_data_thongtindatphong_toreturn_room_window_receipt_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_toreturn_room_window_receipt">
+                                                <p>CCCD/Passport khách chủ:</p>
+                                                <input disabled class="input_khachchu_thongtindatphong_toreturn_room_window_receipt" type="text" id="idkhachchu_data_thongtindatphong_toreturn_room_window_receipt_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_toreturn_room_window_receipt">
+                                                <p>Tên khách chủ:</p>
+                                                <input type="text" disabled id="tenkhachchu_data_thongtindatphong_toreturn_room_window_receipt_id">
+                                            </div>
+                                        </div>
+                                        <div class="column_data_toreturn_receipt">
+                                            <div class="mini_field_grid_toreturn_receipt">
+                                                <div class="data_thongtindatphong_toreturn_room_window_receipt">
+                                                    <p>Thời gian ở từ:</p>
+                                                    <input type="date" disabled id="ngaydeno_data_thongtindatphong_toreturn_room_window_receipt_id">
+                                                </div>
+                                                <div class="data_thongtindatphong_toreturn_room_window_receipt ">
+                                                    <p>đến ngày:</p>
+                                                    <input type="date" disabled id="ngayroidi_data_thongtindatphong_toreturn_room_window_receipt_id">
+                                                </div>
+                                                <div class="data_thongtindatphong_toreturn_room_window_receipt">
+                                                    <p>Checkin:</p>
+                                                    <input type="datetime" disabled id="checkin_data_thongtindatphong_toreturn_room_window_receipt_id">
+                                                </div>
+                                                <div class="data_thongtindatphong_toreturn_room_window_receipt ">
+                                                    <p>Checkout:</p>
+                                                    <input type="datetime" disabled id="checkout_data_thongtindatphong_toreturn_room_window_receipt_id">
+                                                </div>
+                                            </div>
+                                            <div class="mini_field_grid_thongtinkhacho_toreturn_receipt">
+                                                <div class="thongtinkhacho_title_toreturn_room_window_receipt">Thông tin khách ở:</div>
+                                                <textarea id="thongtinkhacho_data_thongtindatphong_toreturn_room_window_receipt_id" class="thongtinkhacho_data_toreturn_room_window_receipt" cols="28" rows="6" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="part_info_toreturn_room_window_receipt">
+                                    <div class="thongtindatdoan_title_toreturn_room_window_receipt field_name_info_toreturn_room_window_receipt">Thông tin đặt đồ ăn</div>
+                                    <div class="food_order_table_field_toreturn_receipt">
+                                        <table class="food_order_table_toreturn_receipt">
+                                            <colgroup>
+                                                <col style="width: 10%">
+                                                <col style="width: 20%">
+                                                <col style="width: 17%">
+                                                <col style="width: 15%">
+                                                <col style="width: 18%">
+                                                <col style="width: 20%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr class="header_table_order_food_toreturn_receipt">
+                                                    <th>#</th>
+                                                    <th>Tên đồ ăn</th>
+                                                    <th>Thời gian đặt</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Đơn giá (VNĐ)</th>
+                                                    <th>Thành tiền (VNĐ)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Phở Hà Nội</td>
+                                                    <td>10/10/2021 21:56</td>
+                                                    <td>2</td>
+                                                    <td>50.000</td>
+                                                    <td>100.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Phở Hà Nội</td>
+                                                    <td>10/10/2021 21:56</td>
+                                                    <td>2</td>
+                                                    <td>50.000</td>
+                                                    <td>100.000</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Phở Hà Nội</td>
+                                                    <td>10/10/2021 21:56</td>
+                                                    <td>2</td>
+                                                    <td>50.000</td>
+                                                    <td>100.000</td>
+                                                </tr>
+                                            </tbody>
+                                            <tr class="sum_row_table_order_food_toreturn_receipt">
+                                                <td colspan="6" id='sum_price_food_order_toreturn_receipt'>Tổng tiền (VNĐ): 0 VNĐ</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="part_info_toreturn_room_window_receipt">
+                                    <div class="function_checkout_field_toreturn_receipt">
+                                        <button id="btn_confirm_checkout_toreturn_receipt">Trả phòng</button>
+                                        <button id="btn_cancel_checkout_toreturn_receipt">Hủy</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pop up xem phòng chuẩn bị checkout - end-->
+                <!-- Confirm Xuất hóa đơn  - begin -->
+                <div class="notification_confirm_checkout_and_exportrc_window_container" id="notification_confirm_checkout_and_exportrc_window_container_id">
+                    <div class="notification_confirm_checkout_and_exportrc_window">
+                        <div class="header_notification_confirm_checkout_and_exportrc_window">
+                            <div class="header_name_notification_confirm_checkout_and_exportrc_window">XUẤT HÓA ĐƠN</div>
+                            <i class="fa fa-close header_close_notification_confirm_checkout_and_exportrc_window" style="font-size: 1.5rem;" id="header_close_notification_confirm_checkout_and_exportrc_window_id"></i>
+                        </div>
+                        <div class="body_notification_confirm_checkout_and_exportrc_window">
+                            <div class="content_notification_confirm_checkout_and_exportrc_window">Bạn chắc chắn muốn xuất hóa đơn?</div>
+                            <div class="function_notification_confirm_checkout_and_exportrc_window">
+                                <button id="btn_confirm_notification_confirm_checkout_and_exportrc_window">OK</button>
+                                <button id="btn_cancel_notification_confirm_checkout_and_exportrc_window">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Confirm Xuất hóa đơn - end -->
+            </div>
+
+            <div id="dskhachhang_main_working_window_id" class="working_window_by_option">
+                <div class="filter_dskhachhang">
+                    <form id="filter_dskhachhang_info" action="/QuanLy/Search_KhachHang_By_ID_In_DSKhachHang">
+                        <input id="enter_customer_code_filter_dskhachhang_info" type="text" placeholder="Mã khách hàng" name="makhachhang">
+                        <button id="search_for_filter_dskhachhang_info" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="data_window_dskhachhang">
+                    <table class="list_customer_table_data_window_dskhachhang">
+                        <thead>
+                            <tr class="header_list_customer_table_data_window_dskhachhang">
+                                <th class="checkall_list_customer_table_data_window_dskhachhang"><input type="checkbox" id="checkbox_checkall_list_customer_table_data_window_dskhachhang"></th>
+                                <th class="makhachhang_list_customer_table_data_window_dskhachhang">Mã khách hàng</th>
+                                <th class="hoten_list_customer_table_data_window_dskhachhang">Họ và tên</th>
+                                <th class="gioitinh_list_customer_table_data_window_dskhachhang">Giới tính</th>
+                                <th class="ngaysinh_list_customer_table_data_window_dskhachhang">Ngày sinh</th>
+                                <th class="sodienthoai_list_customer_table_data_window_dskhachhang">Số điện thoại</th>
+                                <th class="email_list_customer_table_data_window_dskhachhang">Email</th>
+                                <th class="function_edit_delete_list_customer_table_data_window_dskhachhang">
+                                    <button id="btn_delete_many_list_customer_table_data_window_dskhachhang_id" class="turn_off_btn"><i class="fa fa-trash" style="font-size:1rem"></i></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pop-up sửa thông tin khách hàng - begin -->
+                <div class="edit_customer_profile_window_popup_container" id="edit_customer_profile_window_popup_container_id">
+                    <div class="edit_customer_profile_window_popup">
+                        <div class="header_edit_customer_profile_window_popup">
+                            <div class="header_name_edit_customer_profile_window_popup">THÔNG TIN KHÁCH HÀNG</div>
+                            <i class="fa fa-close header_close_edit_customer_profile_window_popup" style="font-size: 1.5rem;" id="header_close_edit_customer_profile_window_popup_id"></i>
+                        </div>
+                        <div class="body_edit_customer_profile_window_popup">
+                            <div class="info_body_edit_customer_profile_window_popup">
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>CCCD/ Passport (<span class="mark_required_star">*</span>):</p>
+                                    <input type="text" id="makhachhang_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Giới tính (<span class="mark_required_star">*</span>):</p>
+                                    <select id="gioitinh_info_body_edit_customer_profile_window_popup_id">
+                                        <option value="1">Nam</option>
+                                        <option value="0">Nữ</option>
+                                    </select>
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Họ (<span class="mark_required_star">*</span>):</p>
+                                    <input type="text" id="hokhachhang_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Tên (<span class="mark_required_star">*</span>):</p>
+                                    <input type="text" id="tenkhachhang_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Email (<span class="mark_required_star">*</span>):</p>
+                                    <input type="email" id="emailkhachhang_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Số điện thoại (<span class="mark_required_star">*</span>):</p>
+                                    <input type="tel" placeholder="Số điện thoại" id="sdtkhachhang_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Ngày sinh (<span class="mark_required_star">*</span>):</p>
+                                    <input type="date" id="ngaysinh_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Ngày đăng ký (<span class="mark_required_star">*</span>):</p>
+                                    <input type="date" disabled id="ngaydangky_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Tổng tiền:</p>
+                                    <input type="number" disabled id="tongtien_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Mật khẩu (<span class="mark_required_star">*</span>):</p>
+                                    <input type="password" placeholder="Mật khẩu" id="matkhau_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Loại KH:</p>
+                                    <input type="text" disabled id="loaikh_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                                <div class="data_body_edit_customer_profile_window_popup">
+                                    <p>Xác nhận MK: (<span class="mark_required_star">*</span>):</p>
+                                    <input type="password" placeholder="Xác nhận MK" id="confirmmatkhau_info_body_edit_customer_profile_window_popup_id">
+                                </div>
+                            </div>
+                            <div class="function_edit_customer_profile_window_popup_field">
+                                <button id="btn_save_edit_customer_profile_window_popup">Lưu</button>
+                                <button id="btn_cancel_edit_customer_profile_window_popup">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pop-up sửa thông tin khách hàng - end -->
+                <!-- Popup xác nhận xóa khách hàng - begin -->
+                <div class="notification_confirm_delete_customer_window_container" id="notification_confirm_delete_customer_window_container_id">
+                    <div class="notification_confirm_delete_customer_window">
+                        <div class="header_notification_confirm_delete_customer_window">
+                            <div class="header_name_notification_confirm_delete_customer_window">XÓA KHÁCH HÀNG</div>
+                            <i class="fa fa-close header_close_notification_confirm_delete_customer_window" style="font-size: 1.5rem;" id="header_close_notification_confirm_delete_customer_window_id"></i>
+                        </div>
+                        <div class="body_notification_confirm_delete_customer_window">
+                            <div class="content_notification_confirm_delete_customer_window">Các dữ liệu liên quan cũng sẽ bị xóa. Bạn chắc chắn muốn xóa khách hàng?</div>
+                            <div class="function_notification_confirm_delete_customer_window">
+                                <button id="btn_confirm_notification_delete_customer_window">OK</button>
+                                <button id="btn_cancel_notification_delete_customer_window">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup xác nhận xóa khách hàng - end -->
+            </div>
+
+            <div id="quanlynhanvien_main_working_window_id" class="working_window_by_option">
+                <div class="filter_quanlynhanhvien">
+                    <div class="btn_create_new_staff_field">
+                        <button id="btn_create_new_staff_quanlynhanvien_main_working_window">Thêm mới <i class="fa fa-plus" style="font-size:1rem; color: #002b49;"></i></button>
+                    </div>
+                    <form id="filter_quanlynhanvien_info" action="/QuanLy/Search_NhanVien_By_ID_In_DSNhanVien">
+                        <input id="enter_staff_code_filter_quanlynhanvien_info" type="text" placeholder="Mã nhân viên" name="manhanvien">
+                        <button id="search_for_filter_quanlynhanvien_info" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="data_window_quanlynhanvien">
+                    <table class="list_staff_table_data_window_quanlynhanvien">
+                        <thead>
+                            <tr class="header_list_staff_table_data_window_quanlynhanvien">
+                                <th class="checkall_list_staff_table_data_window_quanlynhanvien"><input type="checkbox" id="checkbox_checkall_list_staff_table_data_window_quanlynhanvien"></th>
+                                <th class="manhanvien_list_staff_table_data_window_quanlynhanvien">Mã nhân viên</th>
+                                <th class="hoten_list_staff_table_data_window_quanlynhanvien">Họ và tên</th>
+                                <th class="ngaysinh_list_staff_table_data_window_quanlynhanvien">Ngày sinh</th>
+                                <th class="sodienthoai_list_staff_table_data_window_quanlynhanvien">Số điện thoại</th>
+                                <th class="email_list_staff_table_data_window_quanlynhanvien">Email</th>
+                                <th class="machucvu_list_staff_table_data_window_quanlynhanvien">Chức vụ</th>
+                                <th class="function_edit_delete_list_staff_table_data_window_quanlynhanvien">
+                                    <button id="btn_delete_many_list_staff_table_data_window_quanlynhanvien_id" class="turn_off_btn"><i class="fa fa-trash" style="font-size:1rem"></i></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Popup thêm - sửa thông tin nhân viên - begin -->
+                <div class="edit_staff_profile_popup_window_container" id="edit_staff_profile_popup_window_container_id">
+                    <div class="edit_staff_profile_popup_window">
+                        <div class="header_edit_staff_profile_popup_window">
+                            <div class="header_name_edit_staff_profile_popup_window">THÔNG TIN NHÂN VIÊN</div>
+                            <i class="fa fa-close header_close_edit_staff_profile_popup_window" style="font-size: 1.5rem;" id="header_close_edit_staff_profile_popup_window_id"></i>
+                        </div>
+                        <div class="body_edit_staff_profile_popup_window">
+                            <div class="content_edit_staff_profile_popup_window">
+                                <div class="avatar_field_edit_staff_profile_popup_window">
+                                    <img src="~/assets/quanly/account_avatar.png" id="avatar_img_edit_staff_profile_popup_window">
+                                    <button id="btn_change_avatar_edit_staff_profile_popup_window">Đổi</button>
+                                </div>
+                                <div class="information_field_edit_staff_profile_popup_window">
+                                    <div class="personal_info_edit_staff_profile_popup_window">
+                                        <div class="name_part_info_edit_staff_profile_popup_window">Thông tin cá nhân</div>
+                                        <div class="data_info_edit_staff_profile_popup_window">
+                                            <p>Họ tên:</p>
+                                            <input placeholder="Họ tên (bắt buộc)..." type="text" class="input_data_info_edit_staff_profile_popup_window" id="hoten_data_info_edit_staff_profile_popup_window">
+                                        </div>
+                                        <div class="data_info_edit_staff_profile_popup_window">
+                                            <p>CCCD:</p>
+                                            <input placeholder="CCCD (bắt buộc)..." type="text" class="input_data_info_edit_staff_profile_popup_window" id="cccd_data_info_edit_staff_profile_popup_window">
+                                        </div>
+                                        <div class="data_info_edit_staff_profile_popup_window">
+                                            <p>Số điện thoại:</p>
+                                            <input type="tel" class="input_data_info_edit_staff_profile_popup_window" id="sdt_data_info_edit_staff_profile_popup_window">
+                                        </div>
+                                        <div class="data_info_edit_staff_profile_popup_window">
+                                            <p>Ngày sinh:</p>
+                                            <input type="date" class="input_data_info_edit_staff_profile_popup_window" id="ngaysinh_data_info_edit_staff_profile_popup_window">
+                                        </div>
+                                        <div class="data_info_edit_staff_profile_popup_window">
+                                            <p>Email:</p>
+                                            <input placeholder="Email" type="email" class="input_data_info_edit_staff_profile_popup_window" id="email_data_info_edit_staff_profile_popup_window">
+                                        </div>
+                                        <div class="data_info_edit_staff_profile_popup_window">
+                                            <p>Giới tính:</p>
+                                            <select class="input_data_info_edit_staff_profile_popup_window" id="gioitinh_data_info_edit_staff_profile_popup_window">
+                                                <option value="1">Nam</option>
+                                                <option value="0">Nữ</option>
+                                            </select>
+                                        </div>
+                                        <div class="data_info_edit_staff_profile_popup_window">
+                                            <p>Mật khẩu:</p>
+                                            <input placeholder="Mật khẩu (bắt buộc)..." type="password" class="input_data_info_edit_staff_profile_popup_window" id="matkhau_data_info_edit_staff_profile_popup_window">
+                                        </div>
+                                    </div>
+                                    <div class="work_info_edit_staff_profile_popup_window">
+                                        <div class="name_part_info_edit_staff_profile_popup_window">Thông tin nhân viên</div>
+                                        <div class="data_info_edit_staff_profile_popup_window">
+                                            <p>Chức vụ:</p>
+                                            <select class="input_data_info_edit_staff_profile_popup_window" id="chucvu_data_info_edit_staff_profile_popup_window">
+                                                <option selected>VS001</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                        </div>
+                                        <div class="data_info_edit_staff_profile_popup_window">
+                                            <p>Mã chi nhánh:</p>
+                                            <select class="input_data_info_edit_staff_profile_popup_window" id="chinhanh_data_info_edit_staff_profile_popup_window">
+                                                <option selected>HCM</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                        </div>
+                                        <div class="data_info_edit_staff_profile_popup_window">
+                                            <p>Ngày vào làm:</p>
+                                            <input disabled type="date" class="input_data_info_edit_staff_profile_popup_window" id="ngayvaolam_data_info_edit_staff_profile_popup_window">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="function_edit_staff_profile_popup_window">
+                                <button id="btn_create_new_staff_profile_popup_window">Thêm</button>
+                                <button id="btn_save_edit_staff_profile_popup_window">Lưu</button>
+                                <button id="btn_cancel_edit_staff_profile_popup_window">Thoát</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup thêm - sửa thông tin nhân viên - end -->
+                <!-- Popup xác nhận xóa nhân viên - begin -->
+                <div class="notification_confirm_delete_staff_window_container" id="notification_confirm_delete_staff_window_container_id">
+                    <div class="notification_confirm_delete_staff_window">
+                        <div class="header_notification_confirm_delete_staff_window">
+                            <div class="header_name_notification_confirm_delete_staff_window">XÓA NHÂN VIÊN</div>
+                            <i class="fa fa-close header_close_notification_confirm_delete_staff_window" style="font-size: 1.5rem;" id="header_close_notification_confirm_delete_staff_window_id"></i>
+                        </div>
+                        <div class="body_notification_confirm_delete_staff_window">
+                            <div class="content_notification_confirm_delete_staff_window">Bạn chắc chắn muốn xóa nhân viên?</div>
+                            <div class="function_notification_confirm_delete_staff_window">
+                                <button id="btn_confirm_notification_delete_staff_window">OK</button>
+                                <button id="btn_cancel_notification_delete_staff_window">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup xác nhận xóa nhân viên - end -->
+            </div>
+
+            <div id="quanlyphong_main_working_window_id" class="working_window_by_option">
+                <div class="filter_quanlyphong">
+                    <div class="btn_create_new_room_field">
+                        <button id="btn_create_new_room_quanlyphong_main_working_window_id">Thêm mới <i class="fa fa-plus" style="font-size:1rem; color: #002b49;"></i></button>
+                    </div>
+                    <form id="filter_quanlyphong_info" action="/QuanLy/Search_Phong_By_ID_In_DSPhong">
+                        <input id="enter_room_code_filter_quanlyphong_info" type="text" placeholder="Mã phòng" name="maphong">
+                        <button id="search_for_filter_quanlyphong_info" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="data_window_quanlyphong">
+                    <table class="list_room_table_data_window_quanlyphong">
+                        <thead>
+                            <tr class="header_list_room_table_data_window_quanlyphong">
+                                <th class="checkall_list_room_table_data_window_quanlyphong"><input type="checkbox" id="checkbox_checkall_list_room_table_data_window_quanlyphong"></th>
+                                <th class="maphong_list_room_table_data_window_quanlyphong">Mã phòng</th>
+                                <th class="machinhanh_list_room_table_data_window_quanlyphong">Mã chi nhánh</th>
+                                <th class="maloaiphong_list_room_table_data_window_quanlyphong">Mã loại phòng</th>
+                                <th class="sophong_list_room_table_data_window_quanlyphong">Số phòng</th>
+                                <th class="songuoio_list_room_table_data_window_quanlyphong">Số người ở</th>
+                                <th class="sogiuong_list_room_table_data_window_quanlyphong">Số giường</th>
+                                <th class="function_edit_delete_list_room_table_data_window_quanlyphong">
+                                    <button id="btn_delete_many_list_room_table_data_window_quanlyphong_id" class="turn_off_btn"><i class="fa fa-trash" style="font-size:1rem"></i></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="check_list_room_table_data_window_quanlyphong"><input type="checkbox" class="checkbox_check_list_room_table_data_window_quanlyphong"></td>
+                                <td class="maphong_list_room_table_data_window_quanlyphong">12345678910</td>
+                                <td class="machinhanh_list_room_table_data_window_quanlyphong">HCM</td>
+                                <td class="maloaiphong_list_room_table_data_window_quanlyphong">STA</td>
+                                <td class="sophong_list_room_table_data_window_quanlyphong">125</td>
+                                <td class="songuoio_list_room_table_data_window_quanlyphong">2</td>
+                                <td class="sogiuong_list_room_table_data_window_quanlyphong">2</td>
+                                <td class="function_edit_delete_list_room_table_data_window_quanlyphong">
+                                    <button class="btn_edit_list_room_table_data_window_quanlyphong"><i class="fa fa-edit" style="font-size:1rem"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pop-up thêm - sử thông tin phòng - begin -->
+                <div class="edit_room_info_popup_window_container" id="edit_room_info_popup_window_container_id">
+                    <div class="edit_room_info_popup_window">
+                        <div class="header_edit_room_info_popup_window">
+                            <div class="header_name_edit_room_info_popup_window">THÔNG TIN PHÒNG</div>
+                            <i class="fa fa-close header_close_edit_room_info_popup_window" style="font-size: 1.5rem;" id="header_close_edit_room_info_popup_window_id"></i>
+                        </div>
+                        <div class="body_edit_room_info_popup_window">
+                            <div class="content_edit_room_info_popup_window">
+                                <div class="information_field_name_edit_room_info_popup_window">Thông tin phòng </div>
+                                <div class="information_field_edit_room_info_popup_window">
+                                    <div class="data_info_edit_room_info_popup_window">
+                                        <p>Mã phòng:</p>
+                                        <input type="text" class="input_data_info_edit_room_info_popup_window" disabled id="maphong_data_info_edit_room_info_popup_window">
+                                    </div>
+                                    <div class="data_info_edit_room_info_popup_window">
+                                        <p>Tầng:</p>
+                                        <input min="1" type="number" class="input_data_info_edit_room_info_popup_window" id="tang_data_info_edit_room_info_popup_window">
+                                    </div>
+                                    <div class="data_info_edit_room_info_popup_window">
+                                        <p>Mã chi nhánh:</p>
+                                        <select class="input_data_info_edit_room_info_popup_window" id="chinhanh_data_info_edit_room_info_popup_window">
+                                        </select>
+                                    </div>
+                                    <div class="data_info_edit_room_info_popup_window">
+                                        <p>Số người ở:</p>
+                                        <input type="number" class="input_data_info_edit_room_info_popup_window" id="songuoio_data_info_edit_room_info_popup_window">
+                                    </div>
+                                    <div class="data_info_edit_room_info_popup_window">
+                                        <p>Loại phòng:</p>
+                                        <select class="input_data_info_edit_room_info_popup_window" id="loaiphong_data_info_edit_room_info_popup_window">
+                                        </select>
+                                    </div>
+                                    <div class="data_info_edit_room_info_popup_window">
+                                        <p>Số giường:</p>
+                                        <input min="1" type="number" class="input_data_info_edit_room_info_popup_window" id="sogiuong_data_info_edit_room_info_popup_window">
+                                    </div>
+                                    <div class="data_info_edit_room_info_popup_window">
+                                        <p>Số phòng:</p>
+                                        <input min="1" type="number" class="input_data_info_edit_room_info_popup_window" id="sophong_data_info_edit_room_info_popup_window">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="function_edit_room_info_popup_window">
+                                <button id="btn_create_new_room_edit_room_info_popup_window">Thêm</button>
+                                <button id="btn_save_edit_room_info_popup_window">Lưu</button>
+                                <button id="btn_cancel_edit_room_info_popup_window">Thoát</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pop-up thêm - sử thông tin phòng - end -->
+                <!-- Popup xác nhận xóa phòng - begin -->
+                <div class="notification_confirm_delete_room_window_container" id="notification_confirm_delete_room_window_container_id">
+                    <div class="notification_confirm_delete_room_window">
+                        <div class="header_notification_confirm_delete_room_window">
+                            <div class="header_name_notification_confirm_delete_room_window">XÓA PHÒNG</div>
+                            <i class="fa fa-close header_close_notification_confirm_delete_room_window" style="font-size: 1.5rem;" id="header_close_notification_confirm_delete_room_window_id"></i>
+                        </div>
+                        <div class="body_notification_confirm_delete_room_window">
+                            <div class="content_notification_confirm_delete_room_window">Bạn chắc chắn muốn xóa phòng?</div>
+                            <div class="function_notification_confirm_delete_room_window">
+                                <button id="btn_confirm_notification_delete_room_window">OK</button>
+                                <button id="btn_cancel_notification_delete_room_window">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup xác nhận xóa phòng - begin -->
+            </div>
+
+            <div id="quanlyloaiphong_main_working_window_id" class="working_window_by_option">
+                <div class="filter_quanlyloaiphong">
+                    <div class="btn_create_new_roomtype_field">
+                        <button style="display: none; pointer-events: none;" id="btn_create_new_roomtype_quanlyloaiphong_main_working_window_id">Thêm mới <i class="fa fa-plus" style="font-size:1rem; color: #002b49;"></i></button>
+                    </div>
+                    <form id="filter_quanlyloaiphong_info" style="display: none">
+                        <input id="enter_roomtype_code_filter_quanlyphong_info" type="text" placeholder="Mã loại phòng">
+                        <button id="search_for_filter_quanlyloaiphong_info" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="data_window_quanlyloaiphong">
+                    <table class="list_roomtype_table_data_window_quanlyloaiphong">
+                        <thead>
+                            <tr class="header_list_roomtype_table_data_window_quanlyloaiphong">
+                                <th class="checkall_list_roomtype_table_data_window_quanlyloaiphong"><input type="checkbox" id="checkbox_checkall_list_roomtype_table_data_window_quanlyloaiphong"></th>
+                                <th class="maloaiphong_list_roomtype_table_data_window_quanlyloaiphong">Loại phòng</th>
+                                <th class="phantramquasonguoi_list_roomtype_table_data_window_quanlyloaiphong">Phần trăm quá số người (%)</th>
+                                <th class="tulanh_list_roomtype_table_data_window_quanlyloaiphong">Tủ lạnh</th>
+                                <th class="maylanh_list_roomtype_table_data_window_quanlyloaiphong">Máy lạnh</th>
+                                <th class="giatien_list_roomtype_table_data_window_quanlyloaiphong">Giá tiền (VNĐ)</th>
+                                <th class="giacoc_list_roomtype_table_data_window_quanlyloaiphong">Giá cọc (VNĐ)</th>
+                                <th class="function_edit_delete_list_roomtype_table_data_window_quanlyloaiphong">
+                                    <button id="btn_delete_many_list_roomtype_table_data_window_quanlyloaiphong_id" class="turn_off_btn"><i class="fa fa-trash" style="font-size:1rem"></i></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*<tr>
+                                <td class="check_list_roomtype_table_data_window_quanlyloaiphong"><input type="checkbox" class="checkbox_check_list_roomtype_table_data_window_quanlyloaiphong"></td>
+                                <td class="maloaiphong_list_roomtype_table_data_window_quanlyloaiphong">STA</td>
+                                <td class="phantramquasonguoi_list_roomtype_table_data_window_quanlyloaiphong">5</td>
+                                <td class="tulanh_list_roomtype_table_data_window_quanlyloaiphong">1</td>
+                                <td class="maylanh_list_roomtype_table_data_window_quanlyloaiphong">1</td>
+                                <td class="giatien_list_roomtype_table_data_window_quanlyloaiphong">1.000.000</td>
+                                <td class="giacoc_list_roomtype_table_data_window_quanlyloaiphong">500.000</td>
+                                <td class="function_edit_delete_list_roomtype_table_data_window_quanlyloaiphong">
+                                    <button class="btn_edit_list_roomtype_table_data_window_quanlyloaiphong"><i class="fa fa-edit" style="font-size:1rem"></i></button>
+                                </td>
+                            </tr>*@
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Popup thêm - sửa thông tin loại phòng - begin -->
+                <div class="edit_roomtype_info_popup_window_container" id="edit_roomtype_info_popup_window_container_id">
+                    <div class="edit_roomtype_info_popup_window">
+                        <div class="header_edit_roomtype_info_popup_window">
+                            <div class="header_name_edit_roomtype_info_popup_window">THÔNG TIN LOẠI PHÒNG</div>
+                            <i class="fa fa-close header_close_edit_roomtype_info_popup_window" style="font-size: 1.5rem;"
+                               id="header_close_edit_roomtype_info_popup_window_id"></i>
+                        </div>
+                        <div class="body_edit_roomtype_info_popup_window">
+                            <div class="content_edit_roomtype_info_popup_window">
+                                <div class="img_about_roomtype_field_edit_roomtype_info_popup_window">
+                                    <img src="~/assets/quanly/background.jpg" id="img_about_roomtype_edit_roomtype_info_popup_window">
+                                    <button id="btn_change_img_about_roomtype_field_edit_roomtype_info_popup_window">Đổi</button>
+                                </div>
+                                <div>
+                                    <div class="information_field_name_edit_roomtype_info_popup_window">Thông tin loại phòng </div>
+                                    <div class="information_field_edit_roomtype_info_popup_window">
+                                        <div>
+                                            <div class="data_info_edit_roomtype_info_popup_window">
+                                                <p>Mã loại phòng:</p>
+                                                <input type="text" class="input_data_info_edit_roomtype_info_popup_window" disabled
+                                                       id="maloaiphong_data_info_edit_roomtype_info_popup_window">
+                                            </div>
+                                            <div class="data_info_edit_roomtype_info_popup_window">
+                                                <p>Tên loại phòng:</p>
+                                                <input type="text" class="input_data_info_edit_roomtype_info_popup_window"
+                                                       id="tenloaiphong_data_info_edit_roomtype_info_popup_window">
+                                            </div>
+                                            <div class="data_info_edit_roomtype_info_popup_window">
+                                                <p>Giá tiền (VNĐ):</p>
+                                                <input type="number" class="input_data_info_edit_roomtype_info_popup_window"
+                                                       id="giatien_data_info_edit_roomtype_info_popup_window">
+                                            </div>
+                                            <div class="data_info_edit_roomtype_info_popup_window">
+                                                <p>Giá cọc (VNĐ):</p>
+                                                <input type="number" class="input_data_info_edit_roomtype_info_popup_window"
+                                                       id="giacoc_data_info_edit_roomtype_info_popup_window">
+                                            </div>
+                                            <div class="data_info_edit_roomtype_info_popup_window">
+                                                <p>Kích thước phòng:</p>
+                                                <input type="text" class="input_data_info_edit_roomtype_info_popup_window"
+                                                       id="kichthuocphong_data_info_edit_roomtype_info_popup_window">
+                                            </div>
+                                            <div class="data_info_edit_roomtype_info_popup_window">
+                                                <p>Tiện nghi:</p>
+                                                <div>
+                                                    <input type="checkbox" id="checkbox_tulanh_data_info_edit_roomtype_info_popup_window">
+                                                    <label for="checkbox_tulanh_data_info_edit_roomtype_info_popup_window">Tủ lạnh</label> <br>
+                                                    <input type="checkbox" id="checkbox_maylanh_data_info_edit_roomtype_info_popup_window">
+                                                    <label for="checkbox_maylanh_data_info_edit_roomtype_info_popup_window">Máy lạnh</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="mota_data_info_edit_roomtype_info_popup_window">
+                                                <p>Mô tả:</p>
+                                                <textarea id="mota_data_info_edit_roomtype_info_popup_window" placeholder="Mô tả về loại phòng này...." cols="26" rows="10"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="function_edit_roomtype_info_popup_window">
+                                <button id="btn_create_new_roomtype_edit_roomtype_info_popup_window">Thêm</button>
+                                <button id="btn_save_edit_roomtype_info_popup_window">Lưu</button>
+                                <button id="btn_cancel_edit_roomtype_info_popup_window">Thoát</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup thêm - sửa thông tin loại phòng - end -->
+                <!-- Popup xác nhận xóa loại phòng - begin -->
+                <div class="notification_confirm_delete_roomtype_window_container" id="notification_confirm_delete_roomtype_window_container_id">
+                    <div class="notification_confirm_delete_roomtype_window">
+                        <div class="header_notification_confirm_delete_roomtype_window">
+                            <div class="header_name_notification_confirm_delete_roomtype_window">XÓA LOẠI PHÒNG</div>
+                            <i class="fa fa-close header_close_notification_confirm_delete_roomtype_window" style="font-size: 1.5rem;" id="header_close_notification_confirm_delete_roomtype_window_id"></i>
+                        </div>
+                        <div class="body_notification_confirm_delete_roomtype_window">
+                            <div class="content_notification_confirm_delete_roomtype_window">Các dữ liệu liên quan cũng sẽ bị xóa. Bạn chắc chắn muốn xóa loại phòng?</div>
+                            <div class="function_notification_confirm_delete_roomtype_window">
+                                <button id="btn_confirm_notification_delete_roomtype_window">OK</button>
+                                <button id="btn_cancel_notification_delete_roomtype_window">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup xác nhận xóa loại phòng - end -->
+            </div>
+
+            <div id="quanlydoan_main_working_window_id" class="working_window_by_option">
+                <div class="filter_quanlydoan">
+                    <div class="btn_create_new_food_field">
+                        <button id="btn_create_new_food_quanlydoan_main_working_window_id">Thêm mới <i class="fa fa-plus" style="font-size:1rem; color: #002b49;"></i></button>
+                    </div>
+                    <form id="filter_quanlydoan_info" action="/QuanLy/Search_Food_By_Name_For_DSDoAn">
+                        <input id="enter_food_code_filter_quanlydoan_info" type="text" placeholder="Tên đồ ăn" name="tendoan">
+                        <button id="search_for_filter_quanlydoan_info" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="data_window_quanlydoan">
+                    <table class="list_food_table_data_window_quanlydoan">
+                        <thead>
+                            <tr class="header_list_food_table_data_window_quanlydoan">
+                                <th class="checkall_list_food_table_data_window_quanlydoan"><input type="checkbox" id="checkbox_checkall_list_food_table_data_window_quanlydoan"></th>
+                                <th class="madoan_list_food_table_data_window_quanlydoan">Mã đồ ăn</th>
+                                <th class="tendoan_list_food_table_data_window_quanlydoan">Tên đồ ăn</th>
+                                <th class="linkimg_list_food_table_data_window_quanlydoan">LinkIMG</th>
+                                <th class="giatien_list_food_table_data_window_quanlydoan">Giá tiền (VNĐ)</th>
+                                <th class="function_edit_delete_list_food_table_data_window_quanlydoan">
+                                    <button id="btn_delete_many_list_food_table_data_window_quanlydoan_id" class="turn_off_btn"><i class="fa fa-trash" style="font-size:1rem"></i></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*<tr>
+                                <td class="check_list_food_table_data_window_quanlydoan"><input type="checkbox" class="checkbox_check_list_food_table_data_window_quanlydoan"></td>
+                                <td class="madoan_list_food_table_data_window_quanlydoan">DA001</td>
+                                <td class="tendoan_list_food_table_data_window_quanlydoan">Phở bò</td>
+                                <td class="linkimg_list_food_table_data_window_quanlydoan">1</td>
+                                <td class="giatien_list_food_table_data_window_quanlydoan">50.000</td>
+                                <td class="function_edit_delete_list_food_table_data_window_quanlydoan">
+                                    <button class="btn_edit_list_food_table_data_window_quanlydoan"><i class="fa fa-edit" style="font-size:1rem"></i></button>
+                                </td>
+                            </tr>*@
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Popup thêm - sửa thông tin đồ ăn - begin -->
+                <div class="edit_food_info_popup_window_container" id="edit_food_info_popup_window_container_id">
+                    <div class="edit_food_info_popup_window">
+                        <div class="header_edit_food_info_popup_window">
+                            <div class="header_name_edit_food_info_popup_window">THÔNG TIN ĐỒ ĂN</div>
+                            <i class="fa fa-close header_close_edit_food_info_popup_window" style="font-size: 1.5rem;"
+                               id="header_close_edit_food_info_popup_window_id"></i>
+                        </div>
+                        <div class="body_edit_food_info_popup_window">
+                            <div class="content_edit_food_info_popup_window">
+                                <div class="img_about_food_field_edit_food_info_popup_window">
+                                    <img src="~/assets/quanly/background.jpg" id="img_about_food_edit_food_info_popup_window">
+                                    <button id="btn_change_img_about_food_field_edit_food_info_popup_window">Đổi</button>
+                                </div>
+                                <div>
+                                    <div class="information_field_name_edit_food_info_popup_window">Thông tin đồ ăn </div>
+                                    <div class="information_field_edit_food_info_popup_window">
+                                        <div>
+                                            <div class="data_info_edit_food_info_popup_window">
+                                                <p>Mã đồ ăn:</p>
+                                                <input min="0" type="number" class="input_data_info_edit_food_info_popup_window" disabled
+                                                       id="madoan_data_info_edit_food_info_popup_window_id">
+                                            </div>
+                                            <div class="data_info_edit_food_info_popup_window">
+                                                <p>Tền đồ ăn:</p>
+                                                <input type="text" class="input_data_info_edit_food_info_popup_window"
+                                                       id="tendoan_data_info_edit_food_info_popup_window_id">
+                                            </div>
+                                            <div class="data_info_edit_food_info_popup_window">
+                                                <p>Giá tiền (VNĐ):</p>
+                                                <input min="0" type="number" class="input_data_info_edit_food_info_popup_window"
+                                                       id="giadoan_data_info_edit_food_info_popup_window_id">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="function_edit_food_info_popup_window">
+                                <button id="btn_create_new_food_edit_food_info_popup_window">Thêm</button>
+                                <button id="btn_save_edit_food_info_popup_window">Lưu</button>
+                                <button id="btn_cancel_edit_food_info_popup_window">Thoát</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup thêm - sửa thông tin đồ ăn - end -->
+                <!-- Popup xác nhận xóa đồ ăn - begin -->
+                <div class="notification_confirm_delete_food_window_container" id="notification_confirm_delete_food_window_container_id">
+                    <div class="notification_confirm_delete_food_window">
+                        <div class="header_notification_confirm_delete_food_window">
+                            <div class="header_name_notification_confirm_delete_food_window">XÓA ĐỒ ĂN</div>
+                            <i class="fa fa-close header_close_notification_confirm_delete_food_window" style="font-size: 1.5rem;" id="header_close_notification_confirm_delete_food_window_id"></i>
+                        </div>
+                        <div class="body_notification_confirm_delete_food_window">
+                            <div class="content_notification_confirm_delete_food_window">Các dữ liệu liên quan cũng sẽ bị xóa. Bạn chắc chắn muốn xóa đồ ăn?</div>
+                            <div class="function_notification_confirm_delete_food_window">
+                                <button id="btn_confirm_notification_delete_food_window">OK</button>
+                                <button id="btn_cancel_notification_delete_food_window">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup xác nhận xóa đồ ăn - end -->
+            </div>
+
+            <div id="quanlytinhluong_main_working_window_id" class="working_window_by_option">
+                <div class="filter_quanlytinhluong">
+                    <div class="btn_export_payroll_report_filter_quanlytinhluong_info_field" style="display: none">
+                        <button id="btn_export_payroll_report_filter_quanlytinhluong_info_id">Xuất <i class='fa fa-file' style="font-size:1rem"></i></button>
+                    </div>
+                    <form id="filter_quanlytinhluong_info" style="display: none">
+                        <input id="choose_date_filter_quanlytinhluong_info" type="month">
+                        <button id="btn_calculate_payroll_filter_quanlytinhluong_info" type="submit">Tính lương <i class="fa fa-calculator"></i></button>
+                    </form>
+                </div>
+                <div class="data_window_quanlytinhluong">
+                    <div class="content_payroll_report_data_window_quanlytinhluong" id="content_payroll_report_data_window_quanlytinhluong_id">
+                        <div class="header_content_payroll_report_data_window_quanlytinhluong">
+                            <img id="logo_header_content_payroll_report_data_window_quanlytinhluong" src="~/assets/quanly/background.jpg"
+                                 alt="Del Lunar Logo">
+                            <div>
+                                <div id="hotel_name_header_content_payroll_report_data_window_quanlytinhluong_id">Del Lunar</div>
+                                <p id="address_header_content_payroll_report_data_window_quanlytinhluong_id">
+                                    Địa chỉ: 3730 South Las
+                                    Vegas Boulevard Las Vegas, NV 18915
+                                </p>
+                                <div class="email_sdt_header_content_payroll_report_data_window_quanlytinhluong">
+                                    <p>SĐT: 702.590.7111</p>
+                                    <p>Email: dellunarhotel@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="salary_table_content_payroll_report_data_window_quanlytinhluong" id="salary_table_content_payroll_report_data_window_quanlytinhluong_id">
+                            <caption>BẢNG LƯƠNG NHÂN VIÊN KHÁCH SẠN THÁNG <span>02/2021</span></caption>
+                            <colgroup>
+                                <col style="width: 15%">
+                                <col style="width: 20%">
+                                <col style="width: 20%">
+                                <col style="width: 15%">
+                                <col style="width: 15%">
+                                <col style="width: 15%">
+                            </colgroup>
+                            <thead>
+                                <tr class="header_salary_table_content_payroll_report_data_window_quanlytinhluong">
+                                    <th class="manhanvien_salary_table_content_payroll_report_data_window_quanlytinhluong">Mã nhân viên</th>
+                                    <th class="hoten_salary_table_content_payroll_report_data_window_quanlytinhluong">Họ và tên</th>
+                                    <th class="luongcoban_salary_table_content_payroll_report_data_window_quanlytinhluong">Lương cơ bản</th>
+                                    <th class="sogiotangca_salary_table_content_payroll_report_data_window_quanlytinhluong">Số giờ tăng ca</th>
+                                    <th class="thuongthem_salary_table_content_payroll_report_data_window_quanlytinhluong">Thưởng thêm</th>
+                                    <th class="ghichu_salary_table_content_payroll_report_data_window_quanlytinhluong">Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="manhanvien_salary_table_content_payroll_report_data_window_quanlytinhluong">19520355</td>
+                                    <td class="hoten_salary_table_content_payroll_report_data_window_quanlytinhluong">Nguyễn Văn A</td>
+                                    <td class="luongcoban_salary_table_content_payroll_report_data_window_quanlytinhluong">5.500.000</td>
+                                    <td class="sogiotangca_salary_table_content_payroll_report_data_window_quanlytinhluong">12</td>
+                                    <td class="thuongthem_salary_table_content_payroll_report_data_window_quanlytinhluong">300.000</td>
+                                    <td class="ghichu_salary_table_content_payroll_report_data_window_quanlytinhluong">Ghi chú 1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer_content_payroll_report_data_window_quanlytinhluong">
+                            <div class="signature_content_payroll_report_data_window_quanlytinhluong">
+                                <p>TP Hồ Chí Minh, ngày 10 tháng 03 năm 2021</p>
+                                <p>Giám đốc tài chính</p>
+                                <br>
+                                <br>
+                                <p class="signature_name_content_payroll_report_data_window_quanlytinhluong">Nguyễn Văn B</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quanlyDoanhThu_main_working_window_id" class="working_window_by_option">
+                <div class="filter_quanlyDoanhThu">
+                    <div class="btn_print_turnover_report_filter_quanlyDoanhThu_info_field" style="display: none">
+                        <button id="btn_print_turnover_report_filter_quanlyDoanhThu_info_id"><i class="fa fa-print" style="font-size:1.5rem"></i></button>
+                    </div>
+                    <form id="filter_quanlyDoanhThu_info" style="display: none">
+                        <input id="choose_date_filter_quanlyDoanhThu_info" type="month">
+                        <button id="btn_view_turnover_filter_quanlyDoanhThu_info" type="submit">Xem <i class="fa fa-eye"></i></button>
+                    </form>
+                </div>
+                <div class="data_window_quanlyDoanhThu">
+                    <div class="content_turnover_report_data_window_quanlyDoanhThu" id="content_turnover_report_data_window_quanlyDoanhThu_id">
+                        <div class="header_content_turnover_report_data_window_quanlyDoanhThu">
+                            <img id="logo_header_content_turnover_report_data_window_quanlyDoanhThu" src="~/assets/quanly/background.jpg"
+                                 alt="Del Lunar Logo">
+                            <div>
+                                <div id="hotel_name_header_content_turnover_report_data_window_quanlyDoanhThu_id">Del Lunar</div>
+                                <p id="address_header_content_turnover_report_data_window_quanlyDoanhThu_id">
+                                    Địa chỉ: 3730 South Las
+                                    Vegas Boulevard Las Vegas, NV 18915
+                                </p>
+                                <div class="email_sdt_header_content_turnover_report_data_window_quanlyDoanhThu_id">
+                                    <p>SĐT: 702.590.7111</p>
+                                    <p>Email: dellunarhotel@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="title_content_turnover_report_data_window_quanlyDoanhThu">BẢNG THỐNG KÊ DOANH THU THÁNG <span>02/2021</span></div>
+                        <div id="duration_content_turnover_report_data_window_quanlyDoanhThu">Từ ngày 10/02/2021 đến ngày 10/03/2021</div>
+                        <div class="name_table_content_turnover_report_data_window_quanlyDoanhThu">BẢNG THU</div>
+                        <table class="turnin_table_content_turnover_report_data_window_quanlyDoanhThu">
+                            <colgroup>
+                                <col style="width: 15%">
+                                <col style="width: 30%">
+                                <col style="width: 20%">
+                                <col style="width: 35%">
+                            </colgroup>
+                            <thead>
+                                <tr class="header_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">
+                                    <th class="stt_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">#</th>
+                                    <th class="service_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">Dịch vụ</th>
+                                    <th class="cost_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">Tổng tiền (VNĐ)</th>
+                                    <th class="note_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="stt_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">1</td>
+                                    <td class="service_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">Phòng khách sạn</td>
+                                    <td class="cost_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">250.500.000 VNĐ</td>
+                                    <td class="note_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">Ghi chú 1</td>
+                                </tr>
+                                <tr>
+                                    <td class="stt_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">2</td>
+                                    <td class="service_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">Đồ ăn</td>
+                                    <td class="cost_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">250.500.000 VNĐ</td>
+                                    <td class="note_turnin_table_content_turnover_report_data_window_quanlyDoanhThu">Ghi chú 2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="name_table_content_turnover_report_data_window_quanlyDoanhThu">BẢNG CHI</div>
+                        <table class="turnout_table_content_turnover_report_data_window_quanlyDoanhThu">
+                            <colgroup>
+                                <col style="width: 12%">
+                                <col style="width: 25%">
+                                <col style="width: 18%">
+                                <col style="width: 20%">
+                                <col style="width: 25%">
+                            </colgroup>
+                            <thead>
+                                <tr class="header_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">
+                                    <th class="stt_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">#</th>
+                                    <th class="service_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">Dịch vụ</th>
+                                    <th class="time_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">Thời gian</th>
+                                    <th class="cost_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">Số tiền (VNĐ)</th>
+                                    <th class="note_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="stt_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">1</td>
+                                    <td class="service_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">Lương nhân viên</td>
+                                    <td class="time_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">10/10/2021</td>
+                                    <td class="cost_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">250.500.000 VNĐ</td>
+                                    <td class="note_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">Ghi chú 1</td>
+                                </tr>
+                                <tr>
+                                    <td class="stt_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">2</td>
+                                    <td class="service_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">Điện</td>
+                                    <td class="time_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">10/10/2021</td>
+                                    <td class="cost_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">250.500.000 VNĐ</td>
+                                    <td class="note_turnout_table_content_turnover_report_data_window_quanlyDoanhThu">Ghi chú 2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="footer_content_turnover_report_data_window_quanlyDoanhThu">
+                            <div class="calculation_content_turnover_report_data_window_quanlyDoanhThu">
+                                <div class="calculation_detail_content_turnover_report_data_window_quanlyDoanhThu">
+                                    <p>- TỔNG THU:</p>
+                                    <p>2.350.000 VNĐ</p>
+                                </div>
+                                <div class="calculation_detail_content_turnover_report_data_window_quanlyDoanhThu">
+                                    <p>- TỔNG CHI:</p>
+                                    <p>2.350.000 VNĐ</p>
+                                </div>
+                                <div class="calculation_detail_content_turnover_report_data_window_quanlyDoanhThu">
+                                    <p>- LỢI NHUẬN:</p>
+                                    <p>2.350.000 VNĐ</p>
+                                </div>
+                            </div>
+                            <div class="signature_content_turnover_report_data_window_quanlyDoanhThu">
+                                <p>TP Hồ Chí Minh, ngày 10 tháng 03 năm 2021</p>
+                                <p>Giám đốc tài chính</p>
+                                <br>
+                                <br>
+                                <p class="signature_name_content_turnover_report_data_window_quanlyDoanhThu">Nguyễn Văn B</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- Popup xem thông tin cá nhân của nhân viên - begin -->
+            <div class="staff_profile_popup_window_container" id="staff_profile_popup_window_container_id">
+                <div class="staff_profile_popup_window">
+                    <div class="header_staff_profile_popup_window">
+                        <div class="header_name_staff_profile_popup_window">THÔNG TIN NHÂN VIÊN</div>
+                        <i class="fa fa-close header_close_staff_profile_popup_window" style="font-size: 1.5rem;"
+                           id="header_close_staff_profile_popup_window_id"></i>
+                    </div>
+                    <div class="body_staff_profile_popup_window">
+                        <div class="content_staff_profile_popup_window">
+                            <div class="avatar_field_staff_profile_popup_window">
+                                <img src="~/assets/quanly/account_avatar.png" id="avatar_img_staff_profile_popup_window">
+                                <button id="btn_change_avatar_staff_profile_popup_window">Đổi</button>
+                            </div>
+                            <div class="information_field_staff_profile_popup_window">
+                                <div class="personal_info_staff_profile_popup_window">
+                                    <div class="name_part_info_staff_profile_popup_window">Thông tin cá nhân</div>
+                                    <div class="data_info_staff_profile_popup_window">
+                                        <p>Họ tên:</p>
+                                        <input type="text" class="input_data_info_staff_profile_popup_window" disabled
+                                               value="@Account_In_Name">
+                                    </div>
+                                    <div class="data_info_staff_profile_popup_window">
+                                        <p>CCCD:</p>
+                                        <input type="text" class="input_data_info_staff_profile_popup_window" disabled
+                                               value="@Account_In.IDNhanVien">
+                                    </div>
+                                    <div class="data_info_staff_profile_popup_window">
+                                        <p>Số điện thoại:</p>
+                                        <input type="tel" class="input_data_info_staff_profile_popup_window" disabled
+                                               value=@Account_In.SDT>
+                                    </div>
+                                    <div class="data_info_staff_profile_popup_window">
+                                        <p>Ngày sinh:</p>
+                                        <input type="date" class="input_data_info_staff_profile_popup_window" disabled
+                                               value=@Account_In.NgaySinh.ToString("yyyy-MM-dd")>
+                                    </div>
+                                    <div class="data_info_staff_profile_popup_window">
+                                        <p>Email:</p>
+                                        <input type="email" class="input_data_info_staff_profile_popup_window" disabled
+                                               value=@Account_In.Email>
+                                    </div>
+                                </div>
+                                <div class="work_info_staff_profile_popup_window">
+                                    <div class="name_part_info_staff_profile_popup_window">Thông tin nhân viên</div>
+                                    <div class="data_info_staff_profile_popup_window">
+                                        <p>Mã chức vụ:</p>
+                                        <select class="input_data_info_staff_profile_popup_window" disabled>
+                                            <option selected>@Account_In.IDChucVu</option>
+                                        </select>
+                                    </div>
+                                    <div class="data_info_staff_profile_popup_window">
+                                        <p>Mã chi nhánh:</p>
+                                        <select class="input_data_info_staff_profile_popup_window" disabled>
+                                            <option selected>@Account_In.IDChiNhanh</option>
+                                        </select>
+                                    </div>
+                                    <div class="data_info_staff_profile_popup_window">
+                                        <p>Ngày vào làm:</p>
+                                        <input type="date" class="input_data_info_staff_profile_popup_window" disabled
+                                               value=@Account_In.NgayVaoLam.ToString("yyyy-MM-dd")>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="function_field_staff_profile_popup_window">
+                            <button id="btn_logout_admin_in_staff_profile_popup_window_id">Đăng xuất</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Popup xem thông tin cá nhân của nhân viên - end -->
+            <!-- Popup nhận phòng (màu xanh lá) - begin -->
+            <div class="receive_room_window_green_container" id="receive_room_window_green_container_id">
+                <div class="receive_room_window_green">
+                    <div class="header_receive_room_window_green">
+                        <div class="header_name_receive_room_window_green">NHẬN PHÒNG - <span></span></div>
+                        <i class="fa fa-close header_close_receive_room_window_green" style="font-size: 1.5rem;"
+                           id="header_close_receive_room_window_green_id"></i>
+                    </div>
+                    <div class="body_receive_room_window_green">
+                        <div class="tab_option_receive_room_window_green">
+                            <div id="option_thongtin_receive_room_window_green_id" class="chosen_tab">Thông tin</div>
+                            <div id="option_doan_receive_room_window_green_id">Đồ ăn</div>
+                        </div>
+                        <div class="info_receive_room_window_green" id="info_receive_room_window_green_id">
+                            <div class="part_info_receive_room_window_green">
+                                <div class="thongtinphong_title_receive_room_window_green field_name_info_receive_room_window_green">
+                                    Thông tin phòng
+                                </div>
+                                <div class="thongtinphong_field_receive_room_window_green">
+                                    <div class="data_thongtinphong_receive_room_window_green">
+                                        <p>Loại phòng:</p>
+                                        <input id="loaiphong_data_thongtinphong_receive_room_window_green_id" type="text" disabled>
+                                    </div>
+                                    <div class="data_thongtinphong_receive_room_window_green">
+                                        <p>Số người ở:</p>
+                                        <input id="songuoio_data_thongtinphong_receive_room_window_green_id" type="text" disabled>
+                                    </div>
+                                    <div class="data_thongtinphong_receive_room_window_green">
+                                        <p>Giá tiền:</p>
+                                        <input id="giatien_data_thongtinphong_receive_room_window_green_id" type="text" disabled>
+                                    </div>
+                                    <div class="data_thongtinphong_receive_room_window_green">
+                                        <p>Tầng:</p>
+                                        <input id="tang_data_thongtinphong_receive_room_window_green_id" type="text" disabled>
+                                    </div>
+                                    <div class="data_thongtinphong_receive_room_window_green">
+                                        <p>Số giường:</p>
+                                        <input id="sogiuong_data_thongtinphong_receive_room_window_green_id" type="text" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="part_info_receive_room_window_green">
+                                <div class="thongtindatphong_title_receive_room_window_green field_name_info_receive_room_window_green">
+                                    Thông tin đặt phòng
+                                </div>
+                                <div class="thongtindatphong_field_receive_room_window_green">
+                                    <div class="column_data_green">
+                                        <div class="data_thongtindatphong_receive_room_window_green">
+                                            <p>ID đặt phòng:</p>
+                                            <input id="iddatphong_data_thongtindatphong_receive_room_window_green_id" type="text" disabled>
+                                        </div>
+                                        <div class="data_thongtindatphong_receive_room_window_green">
+                                            <p>CCCD/Passport khách đặt:</p>
+                                            <input id="idkhachdat_data_thongtindatphong_receive_room_window_green_id" type="text" disabled>
+                                        </div>
+                                        <div class="data_thongtindatphong_receive_room_window_green">
+                                            <p>Thời gian đặt:</p>
+                                            <input id="thoigiandat_data_thongtindatphong_receive_room_window_green_id" type="datetime" disabled>
+                                        </div>
+                                        <div class="data_thongtindatphong_receive_room_window_green">
+                                            <p>CCCD/Passport khách chủ:</p>
+                                            <input id="idkhachchu_data_thongtindatphong_receive_room_window_green_id" class="input_khachchu_thongtindatphong_receive_room_window_green" type="text">
+                                            <button class="btn_confirm_khachchu_thongtindatphong_receive_room_window_green"
+                                                    id="btn_confirm_khachchu_thongtindatphong_receive_room_window_green_id">
+                                                Tìm
+                                            </button>
+                                        </div>
+                                        <div class="data_thongtindatphong_receive_room_window_green">
+                                            <p>Tên khách chủ:</p>
+                                            <input id="tenkhachchu_data_thongtindatphong_receive_room_window_green_id" type="text" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="column_data_green">
+                                        <div class="mini_field_grid_green">
+                                            <div class="data_thongtindatphong_receive_room_window_green">
+                                                <p>Thời gian ở từ:</p>
+                                                <input id="ngaydeno_data_thongtindatphong_receive_room_window_green_id" type="date" disabled>
+                                            </div>
+                                            <div class="data_thongtindatphong_receive_room_window_green ">
+                                                <p>đến ngày:</p>
+                                                <input id="ngayroidi_data_thongtindatphong_receive_room_window_green_id" type="date">
+                                            </div>
+                                            <div class="data_thongtindatphong_receive_room_window_green">
+                                                <p>Checkin:</p>
+                                                <input type="datetime" disabled id="checkin_data_thongtindatphong_receive_room_window_green_id">
+                                            </div>
+                                            <div class="data_thongtindatphong_receive_room_window_green ">
+                                                <p>Checkout:</p>
+                                                <input type="datetime" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="mini_field_grid_thongtinkhacho_green">
+                                            <div class="thongtinkhacho_title_receive_room_window_green">
+                                                Thông tin khách ở:
+                                            </div>
+                                            <div class="thongtinkhacho_field_receive_room_window_green">
+                                                <div class="data_thongtinkhacho_field_receive_room_window_green">
+
+                                                </div>
+                                                <div class="invalid_khacho_info_data_green">
+                                                    <input class="tenkhacho_enter_green" type="text" placeholder="Nhập họ tên...">
+                                                    <input class="cccdkhacho_enter_green" type="text" placeholder="Nhập CCCD...">
+                                                    <button class="btn_thongtinkhacho_info_green btn_add_thongtinkhacho_info_green">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="part_info_receive_room_window_green">
+                                <div class="thongtindatdoan_title_receive_room_window_green field_name_info_receive_room_window_green">
+                                    Thông tin đặt đồ ăn
+                                </div>
+                                <div class="food_order_table_field_green">
+                                    <table class="food_order_table_green tabthongtin">
+                                        <colgroup>
+                                            <col style="width: 10%">
+                                            <col style="width: 20%">
+                                            <col style="width: 17%">
+                                            <col style="width: 15%">
+                                            <col style="width: 18%">
+                                            <col style="width: 20%">
+                                        </colgroup>
+                                        <thead>
+                                            <tr class="header_table_order_food_green">
+                                                <th>#</th>
+                                                <th>Tên đồ ăn</th>
+                                                <th>Thời gian đặt</th>
+                                                <th>Số lượng</th>
+                                                <th>Đơn giá (VNĐ)</th>
+                                                <th>Thành tiền (VNĐ)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tr class="sum_row_table_order_food_green">
+                                            <td colspan="6" id='sum_price_food_order_green'>Tổng tiền (VNĐ): 0VNĐ</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="part_info_receive_room_window_green">
+                                <div class="function_receivephong_field_green">
+                                    <button id="btn_confirm_receivephong_green">Nhận phòng</button>
+                                    <button id="btn_cancel_receivephong_green">Hủy</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="addfood_receive_room_window_green hidden" id="addfood_receive_room_window_green_id">
+                            <div class="food_table_and_order_list_field_receive_room_green">
+                                <div class="bangdoan_datdoan_receive_room_field_green">
+                                    <div class="search_function_in_bangdoan_datdoan_receive_room_field_green">
+                                        <input type="text" placeholder="Tên đồ ăn...">
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    </div>
+                                    <table class="list_food_table_receive_room_green">
+                                        <thead>
+                                            <tr class="header_list_food_table_receive_room_green">
+                                                <th class="stt_list_food_table_receive_room_green">#</th>
+                                                <th class="name_list_food_table_receive_room_green">Tên đồ ăn</th>
+                                                <th class="btn_add_list_food_table_receive_room_green"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list_food_table_body_receive_room_green">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="bangorderingdoan_datdoan_receive_room_field_green">
+                                    <table class="ordering_food_table_receive_room_green" id="ordering_food_table_receive_room_green_id">
+                                        <thead>
+                                            <tr class="header_ordering_food_table_receive_room_green">
+                                                <th class="stt_ordering_food_table_receive_room_green">#</th>
+                                                <th class="name_ordering_food_table_receive_room_green">Tên đồ ăn</th>
+                                                <th class="count_ordering_food_table_receive_room_green">Số lượng</th>
+                                                <th class="price_ordering_food_table_receive_room_green">Đơn giá</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="ordering_food_table_body_receive_room_green">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="part_addfood_receive_room_window_green">
+                                <div class="thongtindatdoan_title_receive_room_window_green field_name_info_receive_room_window_green">
+                                    Thông tin đặt đồ ăn
+                                </div>
+                                <div class="food_order_table_field_green">
+                                    <table class="food_order_table_green tabdoan">
+                                        <colgroup>
+                                            <col style="width: 10%">
+                                            <col style="width: 20%">
+                                            <col style="width: 17%">
+                                            <col style="width: 15%">
+                                            <col style="width: 18%">
+                                            <col style="width: 20%">
+                                        </colgroup>
+                                        <thead>
+                                            <tr class="header_table_order_food_green">
+                                                <th>#</th>
+                                                <th>Tên đồ ăn</th>
+                                                <th>Thời gian đặt</th>
+                                                <th>Số lượng</th>
+                                                <th>Đơn giá (VNĐ)</th>
+                                                <th>Thành tiền (VNĐ)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tr class="sum_row_table_order_food_green">
+                                            <td colspan="6" id='sum_price_food_order_green'>Tổng tiền (VNĐ): 260.000VNĐ</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="part_addfood_receive_room_window_green">
+                                <div class="function_addfood_receivephong_field_green">
+                                    <button id="btn_confirm_addfood_green">Lưu</button>
+                                    <button id="btn_cancel_addfood_green">Hủy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Popup nhận phòng (màu xanh lá) - end -->
+            <!-- PopUp hiển thị thông tin khách hàng - begin -->
+            <div class="thongtinkhachhang_window_popup_container" id="thongtinkhachhang_window_popup_container_id">
+                <div class="thongtinkhachhang_window_popup">
+                    <div class="header_thongtinkhachhang_window_popup">
+                        <div class="header_name_thongtinkhachhang_window">THÔNG TIN KHÁCH HÀNG</div>
+                        <i class="fa fa-close header_close_thongtinkhachhang_window" style="font-size: 1.5rem;"
+                           id="header_close_thongtinkhachhang_window_id"></i>
+                    </div>
+                    <div class="body_thongtinkhachhang_window">
+                        <div class="info_thongtinkhachhang_window">
+                            <div class="data_thongtinkhachhhang_info_field">
+                                <p>CCCD/ Passport (<span class="mark_required_star">*</span>):</p>
+                                <input id="cccdkhachhang_info_thongtinkhachhang_window_id" type="text">
+                            </div>
+                            <div class="data_thongtinkhachhhang_info_field">
+                                <p>Giới tính (<span class="mark_required_star">*</span>):</p>
+                                <select id="gioitinhkhachhang_info_thongtinkhachhang_window_id">
+                                    <option value="1">Nam</option>
+                                    <option value="0">Nữ</option>
+                                </select>
+                            </div>
+                            <div class="data_thongtinkhachhhang_info_field">
+                                <p>Họ (<span class="mark_required_star">*</span>):</p>
+                                <input id="hokhachhang_info_thongtinkhachhang_window_id" type="text">
+                            </div>
+                            <div class="data_thongtinkhachhhang_info_field">
+                                <p>Tên (<span class="mark_required_star">*</span>):</p>
+                                <input id="tenkhachhang_info_thongtinkhachhang_window_id" type="text">
+                            </div>
+                            <div class="data_thongtinkhachhhang_info_field">
+                                <p>Email (<span class="mark_required_star">*</span>):</p>
+                                <input id="emailkhachhang_info_thongtinkhachhang_window_id" type="email">
+                            </div>
+                            <div class="data_thongtinkhachhhang_info_field">
+                                <p>Số điện thoại:</p>
+                                <input id="sdtkhachhang_info_thongtinkhachhang_window_id" type="tel">
+                            </div>
+                            <div class="data_thongtinkhachhhang_info_field">
+                                <p>Ngày sinh (<span class="mark_required_star">*</span>):</p>
+                                <input id="ngaysinhkhachhang_info_thongtinkhachhang_window_id" type="date">
+                            </div>
+                            <div class="data_thongtinkhachhhang_info_field data_loaikh_thongtinkhachhhang_info_field">
+                                <p>Loại KH:</p>
+                                <input id="loaikhkhachhang_info_thongtinkhachhang_window_id" type="text" disabled>
+                            </div>
+                        </div>
+                        <div class="function_thongtinkhachhang_window_field">
+                            <button id="btn_add_thongtinkhachhang">Thêm</button>
+                            <button id="btn_confirm_thongtinkhachhang">Lưu</button>
+                            <button id="btn_cancel_thongtinkhachhang">Hủy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PopUp hiển thị thông tin khách hàng - end -->
+            <!-- PopUp hiển thị trạng thái khi thêm, xóa, sửa dữ liệu - begin -->
+            <div class="notification_insert_update_delete_status_popup_container" id="notification_insert_update_delete_status_popup_container_id">
+                <div class="notification_insert_update_delete_status_popup">
+                    <div class="header_notification_insert_update_delete_status_popup">
+                        <div class="header_name_notification_insert_update_delete_status_popup">THÔNG BÁO</div>
+                        <i class="fa fa-close header_close_notification_insert_update_delete_status_popup" style="font-size: 1.5rem;" id="header_close_notification_insert_update_delete_status_popup_id"></i>
+                    </div>
+                    <div class="body_notification_insert_update_delete_status_popup">
+                        <div class="content_notification_insert_update_delete_status_popup"></div>
+                        <div class="function_notification_insert_update_delete_status_popup">
+                            <button id="btn_confirm_notification_insert_update_delete_status_popup">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PopUp hiển thị trạng thái khi thêm, xóa, sửa dữ liệu - end -->
+        </div>
+    </main>
+    <script>
+
+        var notification_status_iud_data_popup = document.querySelector("#notification_insert_update_delete_status_popup_container_id");
+        var ok_notification_status_iud_data_popup = notification_status_iud_data_popup.querySelector("#btn_confirm_notification_insert_update_delete_status_popup");
+        var close_notification_status_iud_data_popup = notification_status_iud_data_popup.querySelector("#header_close_notification_insert_update_delete_status_popup_id");
+        ok_notification_status_iud_data_popup.addEventListener("click", function () {
+            notification_status_iud_data_popup.classList.remove('show');
+        });
+        close_notification_status_iud_data_popup.addEventListener("click", function () {
+            notification_status_iud_data_popup.classList.remove('show');
+        })
+        // Menu burger - begin
+        document.getElementById("check_menu_burger_icon_id").addEventListener("click", () => {
+            var t = document.getElementById("check_menu_burger_id").checked;
+            if (t == true) {
+                document.getElementsByClassName("menu_burger")[0].style.left = "-20.5%";
+                document.getElementsByClassName("main_working_window")[0].style.marginLeft = "0";
+            }
+            else {
+                document.getElementsByClassName("menu_burger")[0].style.left = "0";
+                document.getElementsByClassName("main_working_window")[0].style.marginLeft = "20.5%";
+            }
+        })
+
+        var options_burger_menu = document.querySelectorAll(".option_name_icon");
+        options_burger_menu.forEach(function (option) {
+            option.addEventListener("click", function (e) {
+                var arrow_option_burger_menu = e.target.querySelector(".arrow_in_menu_burger");
+                arrow_option_burger_menu.classList.toggle("rotate_90_icon_arrow");
+            });
+        });
+
+
+        var options_admin_burger_menu = document.querySelectorAll(".admin_option_name_icon");
+        var selections_options_burger_menu = document.querySelectorAll(".selection_name_icon");
+
+        selections_options_burger_menu.forEach(function (selection) {
+            selection.addEventListener("click", function (e) {
+                selections_options_burger_menu.forEach(function (b) {
+                    if (b !== e.target && b.classList.contains("chosen_selection_menu_burger")) {
+                        b.classList.remove("chosen_selection_menu_burger");
+                    }
+                });
+                options_admin_burger_menu.forEach(function (b) {
+                    b.classList.remove("chosen_selection_menu_burger");
+                });
+                if (!e.target.classList.contains('chosen_selection_menu_burger')) {
+                    e.target.classList.add("chosen_selection_menu_burger");
+                }
+            });
+        });
+
+        options_admin_burger_menu.forEach(function (option) {
+            option.addEventListener("click", function (e) {
+                options_admin_burger_menu.forEach(function (b) {
+                    if (b !== e.target && b.classList.contains("chosen_selection_menu_burger")) {
+                        b.classList.remove("chosen_selection_menu_burger");
+                    }
+                });
+                selections_options_burger_menu.forEach(function (b) {
+                    b.classList.remove("chosen_selection_menu_burger");
+                });
+                if (!e.target.classList.contains('chosen_selection_menu_burger')) {
+                    e.target.classList.add("chosen_selection_menu_burger");
+                }
+            });
+        });
+
+
+        var admin_option_burger = document.getElementById("admin_option_tab_burger_id");
+        var staff_option_burger = document.getElementById("staff_option_tab_burger_id");
+        admin_option_burger.addEventListener("click", () => {
+            admin_option_burger.classList.add('chosen_tab_menu_burger');
+            staff_option_burger.classList.remove('chosen_tab_menu_burger');
+        })
+        staff_option_burger.addEventListener("click", () => {
+            staff_option_burger.classList.add('chosen_tab_menu_burger');
+            admin_option_burger.classList.remove('chosen_tab_menu_burger');
+        })
+        // Menu burger - end
+    </script>
+    <script>
+        var thongtinkhachhangpopup = document.getElementById("thongtinkhachhang_window_popup_container_id");
+        var closethongtinkhachhangpopup = thongtinkhachhangpopup.querySelector("#header_close_thongtinkhachhang_window_id");
+        var cancelthongtinkhachhangpopup = thongtinkhachhangpopup.querySelector("#btn_cancel_thongtinkhachhang");
+        var savethongtinkhachhangpopup = thongtinkhachhangpopup.querySelector("#btn_confirm_thongtinkhachhang");
+        var createthongtinkhachhangpopup = thongtinkhachhangpopup.querySelector("#btn_add_thongtinkhachhang");
+    </script>
+    <script>
+        var btn_view_staff_profile = document.querySelector(".staff_info_field");
+        var view_staff_profile_popup = document.getElementById("staff_profile_popup_window_container_id");
+        btn_view_staff_profile.addEventListener("click", () => {
+            view_staff_profile_popup.classList.add('show');
+            var close_view_staff_profile_popup = view_staff_profile_popup.querySelector("#header_close_staff_profile_popup_window_id");
+            var logout_btn_in_staff_profile_popup = view_staff_profile_popup.querySelector("#btn_logout_admin_in_staff_profile_popup_window_id");
+            close_view_staff_profile_popup.onclick = function () {
+                view_staff_profile_popup.classList.remove('show');
+            }
+            logout_btn_in_staff_profile_popup.onclick = function () {
+                window.location.replace("https://localhost:5001/QuanLy/LogOutAdmin");
+            }
+        })
+    </script>
+</body>
+</html>

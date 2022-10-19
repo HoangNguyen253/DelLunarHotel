@@ -1,0 +1,117 @@
+﻿@{
+    Layout = null;
+    KhachHang KH = ViewData["KH"] as KhachHang;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Thay đổi thông tin</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/ChangInfo.css'>
+    <script src="https://kit.fontawesome.com/c694a51664.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="header-top-bar">
+        <div class="top-bar-left">
+            <img class="logo-img" src="~/assets/logo.png">
+            <a class="del-lunar-home" href="/Home/Index">Del Lunar</a>
+        </div>
+        <div class="top-bar-middle">
+            <p class="step-name">Thay đổi thông tin</p>
+        </div>
+        <div class="top-bar-right">
+            <div id="user_name" style="display:block">
+                <span><i class='fa fa-user' style='font-size: 1.25rem; color: #002b49'></i> @KH.Ten @KH.Ho</span>
+                <div class="user-dropdown-content">
+                    <div class="row-selection infocustomer">
+                        <img src="~/assets/account.png" alt="account">
+                        <span>Thông tin khách hàng</span>
+                    </div>
+                    <div class="row-selection changepass">
+                        <img src="~/assets/door-key.png" alt="account">
+                        <span>Đổi mật khẩu</span>
+                    </div>
+                    <div class="row-selection logoutcustomer">
+                        <img src="~/assets/logout.png" alt="account">
+                        <span>Đăng xuất</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="page-4 slidepage">
+            <div class="form-fill-field">
+                @if (KH.Avt != "")
+                {
+                    <img src="@KH.Avt">
+                }
+                else
+                {
+                    <img src="~/assets/account.png">
+                }
+                <div>
+                    <div class="form-fill">
+                        <div class="form-part">
+
+                            <p class="name-entry">Họ (<span class="mark-required-icon">*</span>)</p>
+                            <input class="info-entry" placeholder="Họ" id="userfname_require_step3" value="@KH.Ho">
+                            <p class="warning-field">Họ không được để trống</p>
+
+                            <p class="name-entry">Tên (<span class="mark-required-icon">*</span>)</p>
+                            <input class="info-entry" placeholder="Tên" id="userlname_require_step3" value="@KH.Ten">
+                            <p class="warning-field">Tên không được để trống</p>
+                            <div class="form-mini">
+                                <div id="name-entry-dateofbird">
+                                    <p class="name-entry">Ngày sinh</p>
+                                    <input class="info-entry-mini" type="date" id="userdatebirth_require_step3" value="@KH.NgaySinh.ToString("yyyy-MM-dd")">
+                                    <p class="warning-field">Ngày sinh không được để trống</p>
+                                </div>
+                                <div>
+                                    <p class="name-entry">Giới tính</p>
+                                    <select class="info-entry-mini" id="usergender_require_step3">
+                                        @if (KH.GioiTinh == 1)
+                                        {
+                                            <option value=1 selected>Nam</option>
+                                            <option value=0>Nữ</option>
+                                        }
+                                        else
+                                        {
+                                            <option value=1 >Nam</option>
+                                            <option value=0 selected>Nữ</option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-part">
+                            <p class="name-entry">Email (<span class="mark-required-icon">*</span>)</p>
+                            <input class="info-entry" placeholder="Email" type="email" id="useremail_require_step3" value="@KH.Email">
+                            <p class="warning-field">Email không được để trống</p>
+                            <p class="name-entry">Số điện thoại</p>
+                            @if (KH.SDT == "")
+                            {
+                                <input class="info-entry" placeholder="Số điện thoại" type="tel" id="usertele_require_step3">
+                            }
+                            else
+                            {
+                                <input class="info-entry" placeholder="Số điện thoại" type="tel" id="usertele_require_step3" value="@KH.SDT">
+                            }
+
+                            <div class="g-recaptcha" data-sitekey="6LfTJHEdAAAAAGzkQOCUskUDSkEur7ebAoFha8F_" id="recaptcha_step3"></div>
+                        </div>
+                    </div>
+                    <div id="errorform"><p style='font-size: 24px; font-weight: 400;'></p></div>
+                    <div class="next-button-field">
+                        <button type="submit" class="next-button page-4-next">Sửa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="~/js/ChangeInfo.js"></script>
+</body>
+</html>

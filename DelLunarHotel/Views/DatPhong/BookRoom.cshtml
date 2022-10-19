@@ -1,0 +1,428 @@
+﻿@{
+    string checkinDay = (string)ViewData["checkinDay"];
+    string checkoutDay = (string)ViewData["checkoutDay"];
+    int numberPeople = (int)ViewData["numberPeople"];
+    string branch = (string)ViewData["branch"];
+}
+<header class="header-top-bar">
+    <div class="top-bar-left">
+        <img class="logo-img" src="~/assets/logo.png">
+        <a class="del-lunar-home" href="/Home/Index">Del Lunar</a>
+    </div>
+    <div class="top-bar-middle">
+        @if (branch == "HCM")
+        {
+            <p class="step-name">Hồ Chí Minh</p>
+        }
+        else
+        {
+            <p class="step-name">Hà Nội</p>
+        }
+    </div>
+    <div class="top-bar-right">
+        <button id="login-button-all-pages" style="display: none">Đăng Nhập</button>
+        <div id="user_name" style="display:none"><span></span>
+            <div class="user-dropdown-content">
+                <div class="row-selection infocustomer">
+                    <img src="~/assets/account.png" alt="account">
+                    <span>Thông tin khách hàng</span>
+                </div>
+                <div class="row-selection changepass">
+                        <img src="~/assets/door-key.png" alt="account">
+                        <span>Đổi mật khẩu</span>
+                </div>
+                <div class="row-selection logoutcustomer">
+                    <img src="~/assets/logout.png" alt="logout">
+                    <span>Đăng xuất</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="steps-bar">
+        <div class="step step-1">
+            <div class="bullet">
+                <span>1</span>
+            </div>
+            <p>Chọn phòng</p>
+        </div>
+        <div class="step step-2">
+            <div class="bullet">
+                <span>2</span>
+            </div>
+            <p>Chọn đồ ăn</p>
+        </div>
+        <div class="step step-3">
+            <div class="bullet">
+                <span>3</span>
+            </div>
+            <p>Thông tin</p>
+        </div>
+        <div class="step step-4">
+            <div class="bullet">
+                <span>4</span>
+            </div>
+            <p>Thanh toán</p>
+        </div>
+    </div>
+    <div class="bookroom">
+        <div class="page-1 slidepage">
+            <div class="page">
+                <div class="filter">
+                    <div class="field selectday">
+                        <div class="label">Chọn ngày</div>
+                        <div class="selectday-container">
+                            <div class="checkday">
+                                <p>Check in</p>
+                                <input type="date" id="checkin_day_in_filter" value="@checkinDay" min="@checkinDay">
+                            </div>
+                            <div class="checkday">
+                                <p>Check out</p>
+                                <input type="date" id="checkout_day_in_filter" value="@checkoutDay" min="@checkoutDay">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field select">
+                        <div class="label">Số người ở</div>
+                        <div class="choose-number-of-guest">
+                            <div class="guest-1 nbog-button">1</div>
+                            <div class="guest-2 nbog-button">2</div>
+                            <div class="guest-3 nbog-button">3</div>
+                            <div class="guest-4 nbog-button">4</div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <p id="invalid-filter" style="color: red; font-size: 14px;font-weight: 500;"></p>
+                        <button id="btnConfirmFilter">OK</button>
+                    </div>
+                </div>
+                <div class="result">
+                    <p style="padding-left: 20px;font-weight: bold; text-align: left; font-size: 30px;">
+                        Phòng trống
+                    </p>
+                    @{ List<object> lst = ViewData["lst"] as List<object>;
+                        bool ckeckList = (bool)ViewData["checkList"];
+                        if (ckeckList)
+                        {
+                            <ul class="grid">
+                                @foreach (var l in lst)
+                                {
+                                    string idLoaiPhong = l.GetType().GetProperty("idLoaiPhong").GetValue(l, null).ToString();
+                                    string kichThuocPhong = l.GetType().GetProperty("kichThuocPhong").GetValue(l, null).ToString();
+                                    string tenLoaiPhong = l.GetType().GetProperty("tenLoaiPhong").GetValue(l, null).ToString();
+                                    int tuLanh = (int)l.GetType().GetProperty("tuLanh").GetValue(l, null);
+                                    int mayLanh = (int)l.GetType().GetProperty("mayLanh").GetValue(l, null);
+                                    int sl = (int)l.GetType().GetProperty("sl").GetValue(l, null);
+                                    string imgsrc = l.GetType().GetProperty("linkIMG").GetValue(l, null).ToString();
+                                    string giaTien = l.GetType().GetProperty("giaTien").GetValue(l, null).ToString();
+                                    string giaTienAfter = "";
+                                    for (int i = 1; i <= giaTien.Length; i++)
+                                    {
+                                        giaTienAfter = giaTien[giaTien.Length - i] + giaTienAfter;
+                                        if (i % 3 == 0 && i != giaTien.Length)
+                                        {
+                                            giaTienAfter = "." + giaTienAfter;
+                                        }
+                                    }
+                                    <li>
+                                        <div class="room">
+                                            <img src="@imgsrc" alt="image">
+                                            <p class="name">@tenLoaiPhong</p>
+                                            <p class="desc">@kichThuocPhong</p>
+                                            <p class="desc">@mayLanh máy lạnh</p>
+                                            <p class="desc">@tuLanh tủ lạnh</p>
+                                            <p class="price">@giaTienAfter VND/đêm</p>
+                                            <div class="btns">
+                                                <a href="/Home/Room">Chi tiết</a>
+                                                <button class="btnchooseroom" maloaiphong="@idLoaiPhong" soluong="@sl" checkin="@checkinDay" checkout="@checkoutDay" songuoio="@numberPeople">ĐẶT NGAY</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                 }
+                            </ul> }
+                        else
+                        {
+                            <ul class="nogrid"><li><p style='font-size: 24px; font-weight: 400;'>Xin lỗi! Không có phòng nào trống theo yêu cầu.</p></li></ul> } 
+                        }
+                </div>
+            </div>
+        </div>
+        <div class="page-2 slidepage">
+            <button class="addanother" id="pageSecondAddAnother">Thêm phòng khác</button>
+            <button class="page-2-next" id="pageSecondNext">Tiếp theo</button>
+        </div>
+        <div class="page-3 slidepage">
+            <div class="page-3-room-container">
+            </div>
+            <div id="select_food_page_container" class="select-food-page-container">
+                <div class="select-food-page">
+                    <div class="header-select-food">
+                        <div class="top-bar-left">
+                            <img class="logo-img" src="~/assets/logo.png">
+                            <a class="del-lunar-home" href="#">Del Lunar</a>
+                        </div>
+                        <div class="top-bar-middle">
+                            <p class="step-name">CHỌN ĐỒ ĂN</p>
+                        </div>
+                        <div class="top-bar-right">
+                            <div>
+                                <img src="~/assets/close_logo.png" class="close-button-food-list"
+                                     id="close-button-food-list">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-welcome">
+                        <p>
+                            Cùng <b>Del Lunar Hotel</b> có những bữa ăn tuyệt vời với thật nhiều món ngon nhé.
+                            <b>
+                                Chúc bạn
+                                ngon miệng!!!
+                            </b>
+                        </p>
+                        <div class="filter-field">
+                            <div>Hãy chọn thực đơn của bạn: </div>
+                            <select class="filter">
+                                <option>0 - 100.000 VNĐ</option>
+                                <option>100.000 VNĐ - 200.000 VNĐ</option>
+                                <option>200.000 VNĐ - 500.000 VNĐ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="info-food-list">
+                        @{ List<DoAn> dsDoAn = (List<DoAn>)ViewData["DanhSachDoAn"];
+                                        foreach (DoAn doan in dsDoAn)
+                                        {
+                            <div class="food-item-in-list" madoan = "@doan.IDDoAn">
+                                <img class="food-item-img" src="@doan.LinkIMG" style="height: 120px">
+                                <p class="food-item-name">@doan.TenDoAn</p>
+                                <p>Giá: <span class="food-item-cost">@doan.Gia</span> VNĐ</p>
+                            </div> } }
+                    </div>
+                </div>
+            </div>
+            <button class="page-3-next">Tiếp theo</button>
+        </div>
+        <div class="page-4 slidepage">
+            <div class="form-fill-field">
+                <div>
+                    <div class="form-fill">
+                        <div class="form-part">
+                            <p class="name-entry">CMND/CCCD/Passport (<span class="mark-required-icon">*</span>)</p>
+                            <input class="info-entry" placeholder="CMND/CCCD/Passport" id="usercccd_require_step3">
+                            <p class="example-entry">Ex: 312412356</p>
+
+                            <p class="name-entry">Họ (<span class="mark-required-icon">*</span>)</p>
+                            <input class="info-entry" placeholder="Họ" id="userfname_require_step3">
+
+                            <p class="name-entry">Tên (<span class="mark-required-icon">*</span>)</p>
+                            <input class="info-entry" placeholder="Tên" id="userlname_require_step3">
+
+                            <div class="form-mini">
+                                <div id="name-entry-dateofbird">
+                                    <p class="name-entry">Ngày sinh</p>
+                                    <input class="info-entry-mini" type="date" id="userdatebirth_require_step3">
+                                </div>
+                                <div>
+                                    <p class="name-entry">Giới tính</p>
+                                    <select class="info-entry-mini" id="usergender_require_step3">
+                                        <option value=1>Nam</option>
+                                        <option value=0>Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-part">
+                            <p class="name-entry">Email (<span class="mark-required-icon">*</span>)</p>
+                            <input class="info-entry" placeholder="Email" type="email" id="useremail_require_step3">
+                            <p class="example-entry">Ex: dellunarhotel@gmail.com</p>
+
+                            <p class="name-entry">Số điện thoại</p>
+                            <input class="info-entry" placeholder="Số điện thoại" type="tel" id="usertele_require_step3">
+                            <p class="example-entry">Ex: 0914567892</p>
+
+                            <p class="name-entry">
+                                (<span class="mark-required-icon">*</span>) là những trường bắt
+                                buộc.
+                            </p>
+                            <div class="g-recaptcha" data-sitekey="6LfTJHEdAAAAAGzkQOCUskUDSkEur7ebAoFha8F_" id="recaptcha_step3"></div>
+                        </div>
+                    </div>
+                    <div id="errorform"><p style='font-size: 24px; font-weight: 400;'></p></div>
+                    <div class="next-button-field">
+                        <button type="submit" class="next-button page-4-next">Tiếp theo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-5 slidepage">
+            <div class="receipt-field">
+                <div class="info-user-field">
+                    <div class="info-part">
+                        <p class="label-in-receipt">
+                            CCCD/CMND/Passport: <span id="cccd-receipt"
+                                                      class="info-in-receipt"></span>
+                        </p>
+                        <p class="label-in-receipt">
+                            Họ và tên: <span id="name-receipt"
+                                             class="info-in-receipt"></span>
+                        </p>
+                        <p class="label-in-receipt">
+                            Email: <span id="email-receipt"
+                                         class="info-in-receipt"></span>
+                        </p>
+                        <p class="label-in-receipt">
+                            Ngày hóa đơn: <span id="date-receipt"
+                                                class="info-in-receipt"></span>
+                        </p>
+                    </div>
+                    <div class="info-part">
+                        <img src="~/assets/logo.png" class="img-receipt">
+                        <p class="label-in-receipt">Del Lunar</p>
+                    </div>
+                </div>
+                <div class="receipt-table-field">
+                    <table class="receipt-table">
+                        <caption class="title-table-receipt">HÓA ĐƠN THANH TOÁN</caption>
+                        <colgroup>
+                            <col style="width: 11%">
+                            <col style="width: 28%">
+                            <col style="width: 15%">
+                            <col style="width: 15%">
+                            <col style="width: 11%">
+                            <col style="width: 20%">
+                        </colgroup>
+                        <thead>
+                            <tr class="header-table">
+                                <th>#</th>
+                                <th>Phòng</th>
+                                <th>Check In</th>
+                                <th>Check Out</th>
+                                <th>Số lượng</th>
+                                <th>Giá tiền (VND)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                        
+                    </table>
+                </div>
+            </div>
+            <div class="next-button-field">
+                <button class="next-button page-5-next" id="pagefifthpay">Thanh toán</button>
+            </div>
+        </div>
+        <!-- Màn hình đăng nhập - đăng kí -->
+        <div id="login_page_container" class="login-page-container">
+            <div class="login-page">
+                <img src="~/assets/close_logo.png" class="close-button-login-signup" id="close-button-login">
+                <p class="login-welcome-say">Welcome to</p>
+                <p class="login-hotel-name">DEL LUNAR</p>
+                <div>
+                    <input class="login-entry" placeholder="CMND/CCCD/Passport" type="text" id="usercccd_inform">
+                    <input class="login-entry" placeholder="Mật khẩu" type="password" id="userpass_inform">
+                    <p style="color: red" id="login_error_notify"></p>
+                    <input type="submit" value="Đăng nhập" class="login-page-button">
+                </div>
+                <button class="signup-page-button" id="signup-page-button">Đăng ký</button>
+                <p>Bạn đã quên <a href="/KhachHang/ForgetPassword">mật khẩu</a>? </p>
+            </div>
+        </div>
+        <div id="signup_page_container" class="signup-page-container">
+            <div class="signup-page">
+                <img src="~/assets/close_logo.png" class="close-button-login-signup" id="close-button-signup">
+                <p class="login-welcome-say">Welcome to</p>
+                <p class="login-hotel-name">DEL LUNAR</p>
+                <div>
+                    <div class="form-fill">
+                        <div class="form-part">
+                            <p class="name-entry-signup-page">
+                                CMND/CCCD/Passport (<span class="mark-required-icon">*</span>)
+                            </p>
+                            <input class="info-entry" placeholder="CMND/CCCD/Passport" id="registry_cccd_user">
+                            <p class="example-entry-signup-page">Ex: 312412356</p>
+
+                            <p class="name-entry-signup-page">Họ (<span class="mark-required-icon">*</span>)</p>
+                            <input class="info-entry" placeholder="Họ" id="registry_firstname_user">
+
+                            <p class="name-entry-signup-page">Tên (<span class="mark-required-icon">*</span>)</p>
+                            <input class="info-entry" placeholder="Tên" id="registry_lastname_user">
+
+                            <div class="form-mini">
+                                <div id="name-entry-dateofbird">
+                                    <p class="name-entry-signup-page">Ngày sinh</p>
+                                    <input class="info-entry-mini" type="date" id="registry_datebirth_user">
+                                </div>
+                                <div>
+                                    <p class="name-entry-signup-page">Giới tính</p>
+                                    <select class="info-entry-mini" id="registry_gender_user">
+                                        <option value=1 selected="selected">Nam</option>
+                                        <option value=0>Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-part">
+                            <p class="name-entry-signup-page">Email (<span class="mark-required-icon">*</span>)</p>
+                            <input class="info-entry" placeholder="Email" type="email" id="registry_email_user">
+                            <p class="example-entry-signup-page">Ex: dellunarhotel@gmail.com</p>
+
+                            <p class="name-entry-signup-page">Số điện thoại</p>
+                            <input class="info-entry" placeholder="Số điện thoại" type="tel" id="registry_tele_user">
+                            <p class="example-entry-signup-page">Ex: 0914567892</p>
+
+                            <p class="name-entry-signup-page">Mật khẩu</p>
+                            <input class="info-entry" placeholder="Mật khẩu" type="password" id="registry_pswd_user">
+
+                            <p class="name-entry-signup-page">Xác nhận mật khẩu</p>
+                            <input class="info-entry" placeholder="Xác nhận mật khẩu" type="password" id="registry_pswdconfirm_user">
+
+                            <p class="name-entry-signup-page">
+                                (<span class="mark-required-icon">*</span>) là những
+                                trường
+                                bắt buộc.
+                            </p>
+                            <div class="g-recaptcha" data-sitekey="6LfTJHEdAAAAAGzkQOCUskUDSkEur7ebAoFha8F_"></div>
+                        </div>
+                    </div>
+                    <p style="color: red" id="registry_error_notify"></p>
+                    <input type="submit" value="Đăng ký" class="signup-page-button">
+                </div>
+                <button class="login-page-button">Đăng nhập</button>
+            </div>
+        </div>
+    </div>
+
+</main>
+<footer>
+    <ul>
+        <li>
+            <h3><i class="fas fa-map-marker-alt"></i>Address</h3>
+            <p>3730 South Las Vegas Boulevard Las Vegas, NV 89158</p>
+        </li>
+        <li>
+            <h3><i class="fas fa-phone-alt"></i>Contact</h3>
+            <p>702.590.7111</p>
+        </li>
+        <li>
+            <h3><i class="fas fa-envelope"></i>Email</h3>
+            <p>delhotel@gmail.com</p>
+        </li>
+        <li>
+            <h3><i class="fas fa-funnel-dollar"></i>Sponsor</h3>
+            <a href="https://www.uit.edu.vn/"> <img class="logo-uit-sponsor" src="~/assets/logo-uit.png" /></a>
+            <a href="https://vnuhcm.edu.vn/">  <img class="logo-hcm-sponsor" src="~/assets/logo-hcm.png" /></a>
+        </li>
+    </ul>
+</footer>
+
+<script src='~/js/ShowBookFood.js'></script>
+<script src='~/js/ShowForm.js'></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="~/js/SignInUp.js"></script>
+<script src="~/js/jquery-3.6.0.min.js"></script>
+<script src="~/js/BookRoomJS.js"></script>
+@*Check đăng nhập đăng ký*@

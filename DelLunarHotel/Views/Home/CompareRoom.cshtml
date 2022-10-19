@@ -1,0 +1,155 @@
+﻿    <!--####----------COMPARE ROOM-------------####-->
+<div class="compare-room" id="compare-section">
+    <!--###--chọn ngày để so sánh--###-->
+    <div class="filter">
+        <a href="/Home/Index"><i class="fas fa-long-arrow-alt-left"></i> Come back</a>
+        <h1>COMPARE ROOMS</h1>
+    </div>
+
+    <!--###--bảng so sánh---###-->
+    <div class="compare-table-container">
+        <table id="compare-table">
+            <tr>
+                <th>Room Type</th>
+                <td id="column-room-1">
+                    <a href="#room-list">
+                        <button class="room-img-input">
+                            <svg width="56" height="56" class="add-room-icon" viewBox="0 0 58 58">
+                                <g transform="translate(1 1)" fill="none" fill-rule="evenodd"
+                                   stroke-linecap="square">
+                                    <circle stroke="black" stroke-width="1.5" fill="black" cx="28" cy="28" r="28">
+                                    </circle>
+                                    <path d="M28 19v16M36 27H20" stroke="#FFF" stroke-width="2"></path>
+                                </g>
+                            </svg>
+                            <p>Chọn phòng để so sánh</p>
+                        </button>
+                    </a>
+                </td>
+                <td id="column-room-2">
+                    <a href="#room-list">
+                        <button class="room-img-input">
+                            <svg width="56" height="56" class="add-room-icon" viewBox="0 0 58 58">
+                                <g transform="translate(1 1)" fill="none" fill-rule="evenodd"
+                                   stroke-linecap="square">
+                                    <circle stroke="black" stroke-width="1.5" fill="black" cx="28" cy="28" r="28">
+                                    </circle>
+                                    <path d="M28 19v16M36 27H20" stroke="#FFF" stroke-width="2"></path>
+                                </g>
+                            </svg>
+                            <p>Chọn phòng để so sánh</p>  
+                        </button>
+                    </a>
+                </td>
+                <td id="column-room-3">
+                    <a href="#room-list">
+                        <button class="room-img-input">
+                            <svg width="56" height="56" class="add-room-icon" viewBox="0 0 58 58">
+                                <g transform="translate(1 1)" fill="none" fill-rule="evenodd"
+                                   stroke-linecap="square">
+                                    <circle stroke="black" stroke-width="1.5" fill="black" cx="28" cy="28" r="28">
+                                    </circle>
+                                    <path d="M28 19v16M36 27H20" stroke="#FFF" stroke-width="2"></path>
+                                </g>
+                            </svg>
+                            <p>Chọn phòng để so sánh</p>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr class="name">
+                <th>Loại phòng</th>
+                <td class="column-room-1"></td>
+                <td class="column-room-2"></td>
+                <td class="column-room-3"></td>
+            </tr>
+            <tr class="size">
+                <th>Diện tích</th>
+                <td class="column-room-1"></td>
+                <td class="column-room-2"></td>
+                <td class="column-room-3"></td>
+            </tr>
+            <tr class="occupancy">
+                <th>Số người</th>
+                <td class="column-room-1"></td>
+                <td class="column-room-2"></td>
+                <td class="column-room-3"></td>
+            </tr>
+            <tr class="air_condition">
+                <th>Máy lạnh</th>
+                <td class="column-room-1"></td>
+                <td class="column-room-2"></td>
+                <td class="column-room-3"></td>
+            </tr>
+            <tr class="freezer">
+                <th>Tủ lạnh</th>
+                <td class="column-room-1"></td>
+                <td class="column-room-2"></td>
+                <td class="column-room-3"></td>
+            </tr>
+            <tr class="deposit">
+                <th>Đặt cọc</th>
+                <td class="column-room-1"></td>
+                <td class="column-room-2"></td>
+                <td class="column-room-3"></td>
+            </tr>
+            <tr class="price">
+                <th>Giá</th>
+                <td class="column-room-1"></td>
+                <td class="column-room-2"></td>
+                <td class="column-room-3"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!--###########################################-->
+<!--####---------POP UP LIST-----------####-->
+<div id="room-list">
+    <h1>Chọn phòng để so sánh</h1>
+    <a class="return" href="#compare-section"><i class="fas fa-times fa-2x"></i></a>
+    <div class="room-select-container">
+
+        <!--##--grid box ngoài cùng--##-->
+        <div class="room-select-list">
+            <div class="room-select" id="room-standard">
+                <img class="room-select-standard" src="~/assets/homeimg/room-standard.jpg" alt="standard room" />
+                <button>SELECT</button>
+                <h2>Standard Room</h2>
+                <p>5m x 6m | 1 King Bed | Tối đa 4 người</p>
+                <p>
+                    Unparalleled amenities, floor-to-ceiling windows, and state-of-the-art technology.
+                </p>
+            </div>
+
+            <div class="room-select" id="room-standard">
+                <img src="~/assets/homeimg/room-superior.jpg" alt="superior room" />
+                <h2>Superior Room</h2>
+                <p>6m x 6m | 2 Queen Beds | Tối đa 4 người</p>
+                <p>
+                    Unparalleled amenities, corner views and state-of-the-art technology featuring Stay Well
+                    Premier room amenities.
+                </p>
+            </div>
+
+            <div class="room-select" id="room-standard">
+                <img src="~/assets/homeimg/room-deluxe.jpg" alt="deluxe room" />
+                <h2>Deluxe Room</h2>
+                <p>8m x 8m | 1 King Bed | Tối đa 4 người</p>
+                <p>
+                    Our Sky Suites One Bedroom with Two Queen Beds features custom furnishings and a spa-like
+                    bathroom.
+                </p>
+            </div>
+
+            <div class="room-select" id="room-standard">
+                <img src="~/assets/homeimg/room-suite.jpg" alt="suite room" />
+                <h2>Suite Room</h2>
+                <p>10m x 10m | 2 King Bed | Tối đa 4 người</p>
+                <p>
+                    The ultimate in contemporary sophistication.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--###########################################-->

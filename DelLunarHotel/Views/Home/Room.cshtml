@@ -1,0 +1,108 @@
+﻿        <!--####----------------ROOM---------------####-->
+<div class="room" id="room-section">
+    <div class="room-header">
+        <h1>ROOM & SUITES</h1>
+        <p>
+            Discover a world of illuminating experiences at Del Lunar Hotel, where
+            world-class dining and five-star service converge with in-room
+            technologies and award-winning rooms and suites.
+        </p>
+    </div>
+
+    <div class="room-navbar-container">
+        <div class="room-navbar">
+            <div class="room-type">
+                <button id="standard">Standard Room</button>
+                <button id="superior">Superior Room</button>
+                <button id="deluxe">Deluxe Room</button>
+                <button id="suite">Suite Room</button>
+            </div>
+            <a href="/Home/CompareRoom"><button id="compare-room">COMPARE ROOM</button></a>
+        </div>
+    </div>
+
+    <div class="room-slide">
+        <div class="room-slide-detail">
+            <h1 id="room-slide-detail-title">Standard Room</h1>
+            <p id="room-slide-detail-descript">
+                Phòng cơ bản nhất của khách sạn, phù hợp với ngân sách của bạn
+            </p>
+            <a href="/Home/RoomSuperior"><button>THÔNG TIN CHI TIẾT</button></a>
+        </div>
+        <img src="~/assets/homeimg/room-standard.jpg" alt="standard room" id="room-img" />
+    </div>
+
+    <!--###---danh sách phòng--###-->
+    <div class="room-list">
+        <div class="room-block">
+            <a href="/Home/RoomStandard"><img src="~/assets/homeimg/room-standard.jpg" alt="standard room" /></a>
+            <a href="/Home/RoomStandard">
+                <h2>Standard Room</h2>
+            </a>
+            <p class="room-block-spec">320 sq.ft | 1 King Bed | Max Guest 4</p>
+            <p>Tiện nghi, cửa sổ kính từ trần đến sàn với công nghệ hiện đại</p>
+            <div class="room-block-button">
+                <form action="/DatPhong/ChooseBranch">
+                    <button class="room-book-now">BOOK NOW</a></button>
+                </form>
+                <a href="/Home/CompareRoom" class="room-compare">
+                    COMPARE ROOM <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="room-block">
+            <a href="/Home/RoomSuperior"><img src="~/assets/homeimg/room-superior.jpg" alt="superior room" /></a>
+            <a href="/Home/RoomSuperior">
+                <h2>Superior Room</h2>
+            </a>
+            <p class="room-block-spec">520 sq.ft | 1 King Bed | Max Guest 3</p>
+            <p>Unparalleled amenities, floor-to-ceiling windows, and state-of-the-art technology.</p>
+            <div class="room-block-button">
+                <form action="/DatPhong/ChooseBranch">
+                    <button class="room-book-now">BOOK NOW</button>
+                </form>
+                    <a href="/Home/CompareRoom" class="room-compare">
+                        COMPARE ROOM <i class="fas fa-arrow-right"></i>
+                    </a>
+            </div>
+        </div>
+
+        <div class="room-block">
+            <a href="/Home/RoomDeluxe"><img src="~/assets/homeimg/room-deluxe.jpg" alt="deluxe room" /></a>
+            <a href="/Home/RoomDeluxe">
+                <h2>Deluxe Room</h2>
+            </a>
+            <p class="room-block-spec">520 sq.ft | 1 King Bed | Max Guest 3</p>
+            <p>Unparalleled amenities, floor-to-ceiling windows, and state-of-the-art technology.</p>
+
+            <div class="room-block-button">
+                <form action="/DatPhong/ChooseBranch">
+                    <button class="room-book-now">BOOK NOW</button>
+                </form>
+                <a href="/Home/CompareRoom" class="room-compare">
+                    COMPARE ROOM <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="room-block">
+            <a href="/Home/RoomSuite"><img src="~/assets/homeimg/room-suite.jpg" alt="suite room" /></a>
+            <a href="/Home/RoomSuite">
+                <h2>Suite Room</h2>
+            </a>
+            <p class="room-block-spec">520 sq.ft | 1 King Bed | Max Guest 3</p>
+            <p>Unparalleled amenities, floor-to-ceiling windows, and state-of-the-art technology.</p>
+            <div class="room-block-button">
+                <form action="/DatPhong/ChooseBranch">
+                    <button class="room-book-now">BOOK NOW</button>
+                </form>
+                <a href="/Home/CompareRoom" class="room-compare">
+                    COMPARE ROOM <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--###########################################-->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>

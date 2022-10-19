@@ -1,0 +1,147 @@
+﻿@{
+    Layout = null;
+    KhachHang KH = ViewData["KH"] as KhachHang;
+    LoaiKhachHang LKH = ViewData["LKH"] as LoaiKhachHang;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Thông tin khách hàng</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/ViewInfoUser.css'>
+    <script src="https://kit.fontawesome.com/c694a51664.js" crossorigin="anonymous"></script>
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header class="header-top-bar">
+        <div class="top-bar-left">
+            <img class="logo-img" src="~/assets/User/logo.png">
+            <a class="del-lunar-home" href="/Home/Index">Del Lunar</a>
+        </div>
+        <div class="top-bar-middle">
+            <p class="step-name">Thông tin khách hàng</p>
+        </div>
+        <div class="top-bar-right">
+            <div id="user_name" style="display:block">
+                <span><i class='fa fa-user' style='font-size: 1.25rem; color: #002b49'></i> @KH.Ten @KH.Ho</span>
+                <div class="user-dropdown-content">
+                    <div class="row-selection infocustomer">
+                        <img src="~/assets/account.png" alt="account">
+                        <span>Thông tin khách hàng</span>
+                    </div>
+                    <div class="row-selection changepass">
+                        <img src="~/assets/door-key.png" alt="account">
+                        <span>Đổi mật khẩu</span>
+                    </div>
+                    <div class="row-selection logoutcustomer">
+                        <img src="~/assets/logout.png" alt="account">
+                        <span>Đăng xuất</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="image-user">
+                <img id="imgUser" src="@KH.Avt" alt="image-user">
+                <div>
+                    <input type='file' onchange="readURL(this);" id="fileUpload" style="display: none;" />
+                    <button id="btnUpload">Đổi</button>
+                </div>
+            </div>
+            <div class="infor-user">
+                <div class="card-name">
+                    <div class="name-card">THẺ THÀNH VIÊN</div>
+                    <img src="~/assets/User/logo.png" alt="changeInfo">
+                </div>
+                <div class="info-header">
+                    <div class="name">@KH.Ten @KH.Ho</div>
+                    <img id="changeInfoImageButton" src="~/assets/User/changeInfo.png" alt="changeInfo">
+                </div>
+
+                <div class="description">
+                    <div class="field">
+                        <div class="label">CCCD/CMND</div>
+                        <div class="content">@KH.IDKhachHang</div>
+                    </div>
+                    <div class="field">
+                        <div class="label">Ngày sinh</div>
+                        <div class="content">@KH.NgaySinh.ToString("yyyy-MM-dd")</div>
+                    </div>
+                    <div class="field">
+                        <div class="label">Email</div>
+                        <div class="content">@KH.Email</div>
+                    </div>
+                </div>
+                <div class="rank">
+                    <div class="accumulate">
+                        <img src="~/assets/User/crown.png" alt="rank">
+                        <div class="content">@LKH.TenLoaiKH</div>
+                    </div>
+                    <div class="discount">
+                        <div class="phong">Chiết khấu phòng: @LKH.ChietKhauPhong%</div>
+                        <div class="doan">Chiết khấu đồ ăn: @LKH.ChietKhauDoAn%</div>
+                    </div>
+                </div>
+                <div class="mavach">
+                    <div>
+                        <img src="~/assets/User/mavach.png" alt="mavach">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <ul>
+            <li>
+                <h3><i class="fas fa-map-marker-alt"></i>Address</h3>
+                <p>3730 South Las Vegas Boulevard Las Vegas, NV 89158</p>
+            </li>
+            <li>
+                <h3><i class="fas fa-phone-alt"></i>Contact</h3>
+                <p>702.590.7111</p>
+            </li>
+            <li>
+                <h3><i class="fas fa-envelope"></i>Email</h3>
+                <p>delhotel@gmail.com</p>
+            </li>
+            <li>
+                <h3><i class="fas fa-funnel-dollar"></i>Sponsor</h3>
+                <a href="https://www.uit.edu.vn/"> <img class="logo-uit-sponsor" src="~/assets/User/logo-uit.png" /></a>
+                <a href="https://vnuhcm.edu.vn/"> <img class="logo-hcm-sponsor" src="~/assets/User/logo-hcm.png" /></a>
+            </li>
+        </ul>
+    </footer>
+    <script src="~/js/ViewInfoUser.js"></script>
+    <script>
+        function readURL(input) {
+            var formData = new FormData();
+            formData.append('file', input.files[0]);
+
+            let xhr_uploadImage = new XMLHttpRequest();
+            let url_uploadImage = "https://localhost:5001/KhachHang/UploadImage";
+            xhr_uploadImage.open("POST", url_uploadImage, true);
+            xhr_uploadImage.timeout = 50000;
+            xhr_uploadImage.onreadystatechange = function () {
+                if (xhr_uploadImage.readyState == 4 && xhr_uploadImage.status == 200) {
+                    document.getElementById("imgUser").setAttribute('src', xhr_uploadImage.responseText);
+                }
+            }
+            xhr_uploadImage.send(formData);
+            console.log(input.files[0]);
+        }
+        $(function () {
+            $('#btnUpload').click(function () {
+                $('#fileUpload').trigger('click');
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,282 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+
+html {
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    position: relative;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    background-color: #002B49;
+    border: #002B49;
+    border-radius: 5px;
+}
+
+    button:hover {
+        background-color: black !important;
+        color: white !important;
+    }
+
+ul {
+    list-style: none;
+}
+
+body {
+    align-items: center;
+    justify-content: center;
+    background-image: url("/assets/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-width: 800px;
+    margin: 0;
+    position: relative;
+}
+
+.header-top-bar {
+    max-height: 70px;
+    line-height: 35px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #002B49;
+    background-color: white;
+    border-bottom: 1px solid black;
+    z-index: 5;
+    background-image: url("/assets/header_banner_gray.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: fixed;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-gap: 0px;
+}
+
+    .header-top-bar .top-bar-middle {
+        text-align: center;
+    }
+
+        .header-top-bar .top-bar-middle p {
+            margin: 20px;
+            font-size: 35px;
+        }
+
+    .header-top-bar .top-bar-right {
+        position: relative;
+        padding-right: 30px;
+        justify-content: end;
+        display: flex;
+        align-items: center;
+    }
+
+    .header-top-bar .top-bar-left {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        max-height: 70px;
+        left: 30px;
+        padding: 10px;
+    }
+
+        .header-top-bar .top-bar-left img {
+            height: 80%;
+        }
+
+        .header-top-bar .top-bar-left a {
+            text-decoration: none;
+            color: #002B49;
+            font-family: 'Cinzel Decorative', cursive;
+            font-weight: 700;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+    .header-top-bar .top-bar-right .user-dropdown-content {
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        font-size: 0.8rem;
+        min-width: 200px;
+        right: 0;
+    }
+
+        .header-top-bar .top-bar-right .user-dropdown-content img {
+            max-height: 30px;
+            padding-right: 8px;
+        }
+
+#user_name {
+    position: relative;
+    font-weight: 400;
+    cursor: context-menu;
+}
+
+    #user_name .user-dropdown-content {
+        display: none;
+    }
+
+        #user_name .user-dropdown-content .row-selection {
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+            #user_name .user-dropdown-content .row-selection * {
+                pointer-events: none;
+            }
+
+            #user_name .user-dropdown-content .row-selection:hover {
+                background-color: #adadad;
+                cursor: pointer;
+            }
+
+            #user_name .user-dropdown-content .row-selection:active {
+                background-color: #818181;
+            }
+
+            #user_name .user-dropdown-content .row-selection:last-child {
+                border-top: 1px solid black;
+            }
+
+    #user_name:hover .user-dropdown-content {
+        display: block;
+    }
+/*container start*/
+main {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 30px;
+}
+
+    main .container {
+        width: 30%;
+        background-color: rgb(243, 240, 240);
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+        border-radius: 8px;
+        margin: 0 auto;
+        padding: 30px 80px;
+    }
+
+        main .container .headerform {
+            text-align: center;
+        }
+
+            main .container .headerform img {
+                height: 80px;
+            }
+
+            main .container .headerform p {
+                font-family: 'Cinzel Decorative', cursive;
+                font-size: 30px;
+                font-weight: 700;
+                color: #002B49;
+                margin: 0;
+                margin-top: 10px;
+            }
+
+        main .container .field {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+            main .container .field .getMail {
+                display: flex;
+            }
+
+                main .container .field .getMail div {
+                    width: 100%;
+                }
+
+                main .container .field .getMail button {
+                    margin-top: 10px;
+                    margin-left: 40px;
+                    width: 120px;
+                }
+
+            main .container .field input {
+                box-sizing: border-box;
+                width: 100%;
+                margin-top: 10px;
+                font-size: 16px;
+                padding: 10px 10px;
+                border: 2px solid black;
+                border-radius: 4px;
+            }
+
+        main .container div:last-child {
+            text-align: center;
+        }
+
+        main .container div .validateOTP {
+            width: 100px;
+            font-size: 16px;
+        }
+/* The animation code */
+@keyframes example {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(90deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    75% {
+        transform: rotate(270deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+main .container .field.wait {
+    position: relative;
+}
+
+    main .container .field.wait .waitanimate img {
+        display: none;
+        position: absolute;
+        right: -30px;
+        bottom: 13px;
+        width: 20px;
+        height: 20px;
+        animation-name: example;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    main .container .field.wait .success img {
+        display: none;
+        position: absolute;
+        right: -30px;
+        bottom: 13px;
+        width: 20px;
+        height: 20px;
+    }
+
+    main .container .field.wait .fail img {
+        display: none;
+        position: absolute;
+        right: -30px;
+        bottom: 13px;
+        width: 20px;
+        height: 20px;
+    }

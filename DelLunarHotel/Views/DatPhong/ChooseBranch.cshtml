@@ -1,0 +1,151 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Chọn chi nhánh</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/ChooseBranch.css'>
+    <script src="https://kit.fontawesome.com/c694a51664.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="header-top-bar">
+        <div class="top-bar-left">
+            <img class="logo-img" src="~/assets/logo.png">
+            <a class="del-lunar-home" href="/Home/Index">Del Lunar</a>
+        </div>
+        <div class="top-bar-middle">
+            <p class="step-name">Đặt phòng</p>
+        </div>
+        <div class="top-bar-right">
+            <button id="login-button-all-pages" style="display: none">Đăng Nhập</button>
+            <div id="user_name" style="display:none">
+                <span></span>
+                <div class="user-dropdown-content">
+                    <div class="row-selection infocustomer">
+                        <img src="~/assets/account.png" alt="account">
+                        <span>Thông tin khách hàng</span>
+                    </div>
+                    <div class="row-selection changepass">
+                        <img src="~/assets/door-key.png" alt="account">
+                        <span>Đổi mật khẩu</span>
+                    </div>
+                    <div class="row-selection logoutcustomer">
+                        <img src="~/assets/logout.png" alt="logout">
+                        <span>Đăng xuất</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h1>Chọn chi nhánh bạn muốn đặt phòng</h1>
+        <form action="/DatPhong/BookRoom" method="post">
+            <div class="branch-container">
+                <label>
+                    <input type="radio" id="HCM" name="branchHotel" value="HCM" checked>
+                    <div>
+                        <img class="imgBranch" src="~/assets/branch/HCMBranch.jpg" alt="HCMBranch">
+                        <p>Hồ Chí Minh</p>
+                    </div>
+                </label>
+                <label>
+                    <input type="radio" id="HN" name="branchHotel" value="HN">
+                    <div>
+                        <img class="imgBranch" src="~/assets/branch/HNBranch.jpg" alt="HCMBranch">
+                        <p>Hà Nội</p>
+                    </div>
+                </label>
+            </div>
+            <input class="chooseBranchNext" type="submit" value="Next">
+        </form>
+    </main>
+    <div id="login_page_container" class="login-page-container">
+        <div class="login-page">
+            <img src="~/assets/close_logo.png" class="close-button-login-signup" id="close-button-login">
+            <p class="login-welcome-say">Welcome to</p>
+            <p class="login-hotel-name">DEL LUNAR</p>
+            <div>
+                <input class="login-entry" placeholder="CMND/CCCD/Passport" type="text" id="usercccd_inform">
+                <input class="login-entry" placeholder="Mật khẩu" type="password" id="userpass_inform">
+                <p style="color: red" id="login_error_notify"></p>
+                <input type="submit" value="Đăng nhập" class="login-page-button">
+            </div>
+            <button class="signup-page-button" id="signup-page-button">Đăng ký</button>
+            <p>Bạn đã quên <a href="/KhachHang/ForgetPassword">mật khẩu</a>? </p>
+        </div>
+    </div>
+    <div id="signup_page_container" class="signup-page-container">
+        <div class="signup-page">
+            <img src="~/assets/close_logo.png" class="close-button-login-signup" id="close-button-signup">
+            <p class="login-welcome-say">Welcome to</p>
+            <p class="login-hotel-name">DEL LUNAR</p>
+            <div>
+                <div class="form-fill">
+                    <div class="form-part">
+                        <p class="name-entry-signup-page">
+                            CMND/CCCD/Passport (<span class="mark-required-icon">*</span>)
+                        </p>
+                        <input class="info-entry" placeholder="CMND/CCCD/Passport" id="registry_cccd_user">
+                        <p class="example-entry-signup-page">Ex: 312412356</p>
+
+                        <p class="name-entry-signup-page">Họ (<span class="mark-required-icon">*</span>)</p>
+                        <input class="info-entry" placeholder="Họ" id="registry_firstname_user">
+
+                        <p class="name-entry-signup-page">Tên (<span class="mark-required-icon">*</span>)</p>
+                        <input class="info-entry" placeholder="Tên" id="registry_lastname_user">
+
+                        <div class="form-mini">
+                            <div id="name-entry-dateofbird">
+                                <p class="name-entry-signup-page">Ngày sinh</p>
+                                <input class="info-entry-mini" type="date" id="registry_datebirth_user">
+                            </div>
+                            <div>
+                                <p class="name-entry-signup-page">Giới tính</p>
+                                <select class="info-entry-mini" id="registry_gender_user">
+                                    <option value=1 selected="selected">Nam</option>
+                                    <option value=0>Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-part">
+                        <p class="name-entry-signup-page">Email (<span class="mark-required-icon">*</span>)</p>
+                        <input class="info-entry" placeholder="Email" type="email" id="registry_email_user">
+                        <p class="example-entry-signup-page">Ex: dellunarhotel@gmail.com</p>
+
+                        <p class="name-entry-signup-page">Số điện thoại</p>
+                        <input class="info-entry" placeholder="Số điện thoại" type="tel" id="registry_tele_user">
+                        <p class="example-entry-signup-page">Ex: 0914567892</p>
+
+                        <p class="name-entry-signup-page">Mật khẩu</p>
+                        <input class="info-entry" placeholder="Mật khẩu" type="password" id="registry_pswd_user">
+
+                        <p class="name-entry-signup-page">Xác nhận mật khẩu</p>
+                        <input class="info-entry" placeholder="Xác nhận mật khẩu" type="password" id="registry_pswdconfirm_user">
+
+                        <p class="name-entry-signup-page">
+                            (<span class="mark-required-icon">*</span>) là những
+                            trường
+                            bắt buộc.
+                        </p>
+                        <div class="g-recaptcha" data-sitekey="6LfTJHEdAAAAAGzkQOCUskUDSkEur7ebAoFha8F_"></div>
+                    </div>
+                </div>
+                <p style="color: red" id="registry_error_notify"></p>
+                <input type="submit" value="Đăng ký" class="signup-page-button">
+            </div>
+            <button class="login-page-button">Đăng nhập</button>
+        </div>
+    </div>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="~/js/ChooseBranch.js"></script>
+</body>
+
+</html>
