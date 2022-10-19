@@ -25,19 +25,24 @@ Website cho phép người dùng có thể đặt phòng, bên cạnh đó có t
 - Database: MySQL (sử dụng phpMyAdmin của XAMPP)
 ### Một số hình ảnh của website
 > *Trang chủ*
+
 ![image](https://user-images.githubusercontent.com/90995578/196738370-8a8fe9a4-6f8e-4801-80a4-a4c7e22415a4.png)
 
 
 > *Trang đặt phòng 1*
+
 ![image](https://user-images.githubusercontent.com/90995578/196738505-0dec3ff8-e5c6-4f83-95bc-fe0f41cdfc54.png)
 
 
 > *Trang đặt phòng 2*
+
 ![image](https://user-images.githubusercontent.com/90995578/196738656-83bbf1b8-8d1e-49ac-94fc-db5143b699f3.png)
 
 
 > *Trang thông tin món ăn*
+
 ![image](https://user-images.githubusercontent.com/90995578/196739072-639fb3b4-a0de-4dc2-9674-a1a57d208c9d.png)
 
 > *Trang thông tin người dùng*
+
 ![image](https://user-images.githubusercontent.com/90995578/196740010-0adc8be8-10cb-4af7-861b-ce2ef3f4d279.png)
